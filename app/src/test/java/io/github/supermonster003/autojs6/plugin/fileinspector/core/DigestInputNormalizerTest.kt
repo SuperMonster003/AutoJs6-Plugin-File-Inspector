@@ -70,6 +70,7 @@ class DigestInputNormalizerTest {
     @Test
     fun rejectsMalformedOrAmbiguousInputs() {
         val sha256 = "00".repeat(DigestAlgorithm.SHA256.byteCount)
+        val fullWidthDigits = (0xFF11..0xFF18).map(Int::toChar).joinToString(separator = "")
         val cases = listOf(
             "" to DigestInputError.EMPTY,
             "   \r\n" to DigestInputError.EMPTY,
@@ -81,7 +82,7 @@ class DigestInputNormalizerTest {
                     DigestInputError.INVALID_SEPARATOR,
             "$sha256\n$sha256" to DigestInputError.MULTILINE,
             "$sha256 file.bin" to DigestInputError.INVALID_CHARACTER,
-            "１２３４５６７８" to DigestInputError.INVALID_CHARACTER,
+            fullWidthDigits to DigestInputError.INVALID_CHARACTER,
             "00\u200B00" to DigestInputError.INVALID_CHARACTER,
             "a".repeat(513) to DigestInputError.TOO_LONG,
         )

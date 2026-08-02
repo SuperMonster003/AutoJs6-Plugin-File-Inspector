@@ -302,13 +302,17 @@ class FileInspectorIntentPolicyInstrumentationTest {
 
         assertNotNull(
             FileInspectorIntentPolicy.resolve(
-                Intent(validIntent()).setType("*/*"),
+                Intent(validIntent()).setDataAndType(targetUri, "*/*"),
             ),
         )
-        assertNull(FileInspectorIntentPolicy.resolve(Intent(validIntent()).setType(null)))
         assertNull(
             FileInspectorIntentPolicy.resolve(
-                Intent(validIntent()).setType("Application/JSON"),
+                Intent(validIntent()).setDataAndType(targetUri, null),
+            ),
+        )
+        assertNull(
+            FileInspectorIntentPolicy.resolve(
+                Intent(validIntent()).setDataAndType(targetUri, "Application/JSON"),
             ),
         )
     }
