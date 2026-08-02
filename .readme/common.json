@@ -1,0 +1,18 @@
+{
+  "repo_url": "https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector",
+  "repo_slug": "SuperMonster003/AutoJs6-Plugin-File-Inspector",
+  "docs_autojs6_url": "https://docs.autojs6.com",
+  "plugin_action": "org.autojs.plugin.EXPLORER_ACTION",
+  "plugin_execute_action": "org.autojs.plugin.EXPLORER_ACTION_EXECUTE",
+  "plugin_id": "file-inspector",
+  "plugin_engine": "explorer-action",
+  "plugin_variant": "default",
+  "explorer_action_id": "inspect-file",
+  "mime_type": "*/*",
+  "required_host_build": "5268",
+  "supported_abis": "unrestricted (supportedAbis = emptyArray())",
+  "supported_formats": "ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3",
+  "max_input_size": "8 TiB",
+  "header_size": "64 bytes",
+  "digest_input_max": "512 ASCII characters"
+}

@@ -1,0 +1,24 @@
+{
+  "changelog_label_hint": "ヒント",
+  "changelog_label_feature": "機能",
+  "changelog_label_fix": "修正",
+  "changelog_label_improvement": "改善",
+  "changelog_label_dependency": "依存関係",
+  "$data": {
+    "v1.0.0": {
+      "released_date": "2026/08/02",
+      "feature": [
+        "プラグインID `file-inspector`, アクションID `inspect-file`, エンジン `explorer-action`, バリアント `default` を持つFile Inspectorプラグイン",
+        "任意の読み取り可能な通常ファイルを対象とする単一ファイル用の読み取り専用Explorerアクション, 入力上限8 TiB, ストレージ権限とネットワーク権限は不要",
+        "1回の読み取りによるCRC32, MD5, SHA-1, SHA-256, SHA-512の同時計算, 進捗表示とキャンセル",
+        "アルゴリズム推定, 明示的な接頭辞, 同じ長さのバイトの定数時間比較を使う期待ダイジェストの厳密な正規化と検証",
+        "64バイトの16進数とASCIIヘッダースナップショット, BOM検出, ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3シグネチャ認識",
+        "ネイティブライブラリを含まない純粋なJVM実装, `supportedAbis = emptyArray()` によるABI無制限の宣言, ABIに依存しない単一APK, 必須AutoJs6ホストビルド5268",
+        "スペイン語, フランス語, ロシア語, アラビア語, 日本語, 韓国語, 英語, 簡体字中国語, 香港繁体字中国語, 台湾繁体字中国語のメタデータ, UIテキスト, 使用説明, README, 変更履歴"
+      ],
+      "dependency": [
+        "AndroidX Lifecycle ViewModel バージョン 2.9.4 を追加"
+      ]
+    }
+  }
+}
