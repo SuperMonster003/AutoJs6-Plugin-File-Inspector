@@ -4,5 +4,7 @@
     <color name="color_primary_dark">#6E3700</color>
     <color name="color_secondary">#4DD0E1</color>
     <color name="toolbar_text">#FFFFFFFF</color>
+    <color name="verification_match">#FF81C784</color>
+    <color name="verification_mismatch">#FFEF9A9A</color>
     <color name="window_background">#FF0D1117</color>
 </resources>
