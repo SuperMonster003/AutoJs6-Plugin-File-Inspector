@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="action_file_inspector">Inspect file</string>
+    <string name="app_name">File Inspector</string>
+    <string name="placeholder_message">File Inspector is ready for implementation</string>
+    <string name="plugin_description">Inspect file metadata and integrity information</string>
+</resources>
