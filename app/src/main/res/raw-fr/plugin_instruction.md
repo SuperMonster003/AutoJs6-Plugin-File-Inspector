@@ -4,7 +4,7 @@ L'inspecteur de fichiers examine un fichier avec une seule lecture en continu. I
 
 MD5 et SHA-1 sont signalés comme algorithmes hérités. Collez une somme de contrôle attendue pour la vérifier. Vous pouvez aussi copier une somme de contrôle individuelle, ou copier et partager le rapport d'inspection complet.
 
-Le plugin nécessite AutoJs6 build 5268+. Il est entièrement implémenté sur la JVM et ne dépend pas de l'ABI de l'appareil.
+La version 5268+ de l'hôte est requise.
 
 Limites de sécurité et de confidentialité:
 

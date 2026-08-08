@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>AutoJs6 Explorer向けの読み取り専用ファイルシグネチャ, ヘッダー情報, チェックサム検証</p>
+  <p>ファイルマネージャープラグイン. ファイルシグネチャを検査して暗号学的チェックサムを検証</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 File Inspectorプラグインは, AutoJs6 Explorerから一時的な読み取り専用content URIアクセスで渡された任意の読み取り可能な通常ファイルを検査します. 元ファイルを変更せずに, メタデータ, 先頭64バイトのヘッダー, 複数のダイジェストを表示します.
+ファイルインスペクターは, ファイルマネージャーから一時的な読み取り専用content URIアクセスで渡された任意の読み取り可能な通常ファイルを検査します. 元ファイルを変更せずに, メタデータ, 先頭64バイトのヘッダー, 複数のダイジェストを表示します.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6は次の識別子でプラグインを検出して実行します:
+ホストは次の識別子でプラグインを検出して実行します:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-バージョン1はAutoJs6のメインExplorerにある単一ファイル用の読み取り専用オーバーフローアクションに限定されます.
+バージョン1では, メインのファイルマネージャーで単一ファイル用の読み取り専用オーバーフローアクションを利用できます.
 
-プラグインは完全にJVMで実装され, ネイティブライブラリを含みません. `supportedAbis = emptyArray()` を宣言し, ABIに依存しない単一APKとして公開されます. AutoJs6ホストのビルド5268以降が必要です.
+ホストビルド5268以降が必要です.
 
 ******
 
@@ -116,6 +115,13 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修正` プラグインセンターで有効化するとサービスバインディングがnullになる問題
+* `改善` より明確で簡潔なプラグイン名, 説明, ユーザードキュメント
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 * `機能` 1回の読み取りによるCRC32, MD5, SHA-1, SHA-256, SHA-512の同時計算, 進捗表示とキャンセル
 * `機能` アルゴリズム推定, 明示的な接頭辞, 同じ長さのバイトの定数時間比較を使う期待ダイジェストの厳密な正規化と検証
 * `機能` 64バイトの16進数とASCIIヘッダースナップショット, BOM検出, ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3シグネチャ認識
-* `機能` ネイティブライブラリを含まない純粋なJVM実装, `supportedAbis = emptyArray()` によるABI無制限の宣言, ABIに依存しない単一APK, 必須AutoJs6ホストビルド5268
 * `機能` スペイン語, フランス語, ロシア語, アラビア語, 日本語, 韓国語, 英語, 簡体字中国語, 香港繁体字中国語, 台湾繁体字中国語のメタデータ, UIテキスト, 使用説明, README, 変更履歴
 * `依存関係` AndroidX Lifecycle ViewModel バージョン 2.9.4 を追加
 

@@ -13,7 +13,7 @@
     <string name="algorithm_sha1">SHA-1</string>
     <string name="algorithm_sha256">SHA-256</string>
     <string name="algorithm_sha512">SHA-512</string>
-    <string name="app_name">AutoJs6 プラグイン - ファイルインスペクター</string>
+    <string name="app_name">ファイルインスペクター</string>
     <string name="bom_none">検出なし</string>
     <string name="bom_utf16_be">UTF-16 BE BOM</string>
     <string name="bom_utf16_le">UTF-16 LE BOM</string>
@@ -56,7 +56,7 @@
     <string name="inspect_starting">ファイルを準備しています</string>
     <string name="integrity_check">完全性チェック</string>
     <string name="no_extension">なし</string>
-    <string name="plugin_description">ファイルシグネチャを検査して暗号学的チェックサムを検証</string>
+    <string name="plugin_description">ファイルマネージャープラグイン. ファイルシグネチャを検査して暗号学的チェックサムを検証</string>
     <string name="report_copied">検査レポートをコピーしました</string>
     <string name="report_share_title">検査レポートを共有</string>
     <string name="text_encoding">バイトオーダーマーク: %1$s</string>

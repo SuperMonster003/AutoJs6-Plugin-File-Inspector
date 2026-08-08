@@ -13,7 +13,7 @@
     <string name="algorithm_sha1">SHA-1</string>
     <string name="algorithm_sha256">SHA-256</string>
     <string name="algorithm_sha512">SHA-512</string>
-    <string name="app_name">AutoJs6 外掛程式 - 檔案檢查器</string>
+    <string name="app_name">檔案檢查器</string>
     <string name="bom_none">未偵測到</string>
     <string name="bom_utf16_be">UTF-16 BE BOM</string>
     <string name="bom_utf16_le">UTF-16 LE BOM</string>
@@ -56,7 +56,7 @@
     <string name="inspect_starting">正在準備檔案</string>
     <string name="integrity_check">完整性驗證</string>
     <string name="no_extension">無</string>
-    <string name="plugin_description">檢查檔案簽章並驗證密碼學校驗碼</string>
+    <string name="plugin_description">檔案管理器外掛程式. 檢查檔案簽章並驗證密碼學校驗碼</string>
     <string name="report_copied">已複製檢查報告</string>
     <string name="report_share_title">分享檢查報告</string>
     <string name="text_encoding">位元組順序記號: %1$s</string>

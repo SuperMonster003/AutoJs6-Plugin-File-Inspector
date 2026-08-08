@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Firmas de archivo, detalles de cabecera y verificación de sumas de comprobación en modo de solo lectura para el Explorador de AutoJs6</p>
+  <p>Complemento del gestor de archivos. Inspecciona firmas de archivo y verifica sumas de comprobación criptográficas</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@ El README.md actual admite los siguientes idiomas:
 
 ******
 
-El plugin AutoJs6 File Inspector inspecciona cualquier archivo normal legible que el Explorador de AutoJs6 proporciona mediante acceso temporal de solo lectura a un content URI. Muestra metadatos, los primeros 64 bytes de la cabecera y varios resúmenes sin modificar el archivo de origen.
+File Inspector inspecciona cualquier archivo normal legible que proporciona el gestor de archivos mediante acceso temporal de solo lectura a un content URI. Muestra metadatos, los primeros 64 bytes de la cabecera y varios resúmenes sin modificar el archivo de origen.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6 descubre y ejecuta el plugin con las siguientes identidades:
+El host descubre y ejecuta el plugin con las siguientes identidades:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-La versión 1 se limita a una acción adicional de solo lectura para un único archivo en el Explorador principal de AutoJs6.
+La versión 1 ofrece una acción adicional de solo lectura para un único archivo en el gestor de archivos principal.
 
-El plugin está implementado completamente en JVM y no contiene bibliotecas nativas. Declara `supportedAbis = emptyArray()` y se publica como un único APK independiente de ABI. Requiere la compilación 5268 o posterior del host AutoJs6.
+Se requiere la compilación 5268 o posterior del host.
 
 ******
 
@@ -116,6 +115,13 @@ El plugin no solicita permisos de almacenamiento ni de red. El host concede acce
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Corrección` Enlace de servicio nulo al activar el complemento en el centro de complementos
+* `Mejora` Nombre, descripción y documentación de usuario más claros y concisos
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ El plugin no solicita permisos de almacenamiento ni de red. El host concede acce
 * `Función` Cálculo de CRC32, MD5, SHA-1, SHA-256 y SHA-512 en una sola lectura con progreso y cancelación
 * `Función` Normalización y verificación estrictas del resumen esperado con deducción del algoritmo, prefijos explícitos y comparación en tiempo constante de bytes de igual longitud
 * `Función` Captura de cabecera de 64 bytes en hexadecimal y ASCII, detección de BOM y reconocimiento de firmas ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX y SQLite 3
-* `Función` Implementación JVM pura sin bibliotecas nativas, ABI sin restricciones mediante `supportedAbis = emptyArray()`, un APK independiente de ABI y compilación de host AutoJs6 5268 requerida
 * `Función` Metadatos, texto de interfaz, instrucciones de uso, archivos README e historiales localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán
 * `Dependencia` Añadido AndroidX Lifecycle ViewModel versión 2.9.4
 

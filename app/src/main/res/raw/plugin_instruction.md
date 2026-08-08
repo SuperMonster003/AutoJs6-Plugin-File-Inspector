@@ -4,7 +4,7 @@ File Inspector examines a file through one streaming read. It calculates CRC32, 
 
 MD5 and SHA-1 are marked as legacy algorithms. Paste an expected checksum to verify it. You can also copy an individual checksum, or copy and share the full inspection report.
 
-The plugin requires AutoJs6 build 5268+. It is implemented entirely on the JVM and is independent of device ABI.
+Host build 5268+ is required.
 
 Safety and privacy limits:
 

@@ -4,6 +4,13 @@
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Fix` Null service binding when enabling the plugin in Plugin Center
+* `Improvement` Clearer and more concise plugin name, description, and user documentation
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -13,6 +20,5 @@
 * `Feature` One-pass CRC32, MD5, SHA-1, SHA-256, and SHA-512 calculation with progress and cancellation
 * `Feature` Strict expected digest normalization and verification with algorithm inference, explicit prefixes, and constant-time comparison of equal-length bytes
 * `Feature` A 64-byte hexadecimal and ASCII header snapshot, BOM detection, and recognition of ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, and SQLite 3 signatures
-* `Feature` Pure JVM implementation with no native library, unrestricted ABIs declared by `supportedAbis = emptyArray()`, one ABI-independent APK, and required AutoJs6 host build 5268
 * `Feature` Localized metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese
 * `Dependency` Added AndroidX Lifecycle ViewModel version 2.9.4

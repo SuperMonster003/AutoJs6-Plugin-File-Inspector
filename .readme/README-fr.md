@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Signatures de fichier, détails d'en-tête et vérification des sommes de contrôle en lecture seule pour l'explorateur AutoJs6</p>
+  <p>Plugin de gestionnaire de fichiers. Inspecte les signatures de fichiers et vérifie les sommes de contrôle cryptographiques</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@ Le fichier README.md actuel prend en charge les langues suivantes:
 
 ******
 
-Le plugin AutoJs6 File Inspector inspecte tout fichier ordinaire lisible fourni par l'explorateur AutoJs6 via un accès temporaire en lecture seule à un content URI. Il affiche les métadonnées, les 64 premiers octets de l'en-tête et plusieurs empreintes sans modifier le fichier source.
+File Inspector inspecte tout fichier ordinaire lisible transmis par le gestionnaire de fichiers via un accès temporaire en lecture seule à un content URI. Il affiche les métadonnées, les 64 premiers octets de l'en-tête et plusieurs empreintes sans modifier le fichier source.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6 découvre et exécute le plugin avec les identités suivantes:
+L'hôte découvre et exécute le plugin avec les identités suivantes:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-La version 1 se limite à une action supplémentaire en lecture seule pour un seul fichier dans l'explorateur AutoJs6 principal.
+La version 1 fournit une action supplémentaire en lecture seule pour un seul fichier dans le gestionnaire de fichiers principal.
 
-Le plugin est entièrement implémenté sur la JVM et ne contient aucune bibliothèque native. Il déclare `supportedAbis = emptyArray()` et est publié sous la forme d'un APK unique indépendant de l'ABI. La version 5268 ou ultérieure de l'hôte AutoJs6 est requise.
+La version 5268 ou ultérieure de l'hôte est requise.
 
 ******
 
@@ -116,6 +115,13 @@ Le plugin ne demande aucune autorisation de stockage ou de réseau. L'hôte acco
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Correctif` Liaison de service nulle lors de l'activation du plugin dans le centre des plugins
+* `Amélioration` Nom, description et documentation utilisateur plus clairs et concis
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ Le plugin ne demande aucune autorisation de stockage ou de réseau. L'hôte acco
 * `Fonctionnalité` Calcul de CRC32, MD5, SHA-1, SHA-256 et SHA-512 en une seule lecture avec progression et annulation
 * `Fonctionnalité` Normalisation et vérification strictes de l'empreinte attendue avec déduction de l'algorithme, préfixes explicites et comparaison en temps constant des octets de même longueur
 * `Fonctionnalité` Instantané d'en-tête de 64 octets en hexadécimal et ASCII, détection du BOM et reconnaissance des signatures ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX et SQLite 3
-* `Fonctionnalité` Implémentation JVM pure sans bibliothèque native, ABI sans restriction via `supportedAbis = emptyArray()`, un APK indépendant de l'ABI et version 5268 de l'hôte AutoJs6 requise
 * `Fonctionnalité` Métadonnées, textes de l'interface, instructions, fichiers README et historiques localisés en espagnol, français, russe, arabe, japonais, coréen, anglais, chinois simplifié, chinois traditionnel de Hong Kong et chinois traditionnel de Taïwan
 * `Dépendance` Ajout de AndroidX Lifecycle ViewModel version 2.9.4
 

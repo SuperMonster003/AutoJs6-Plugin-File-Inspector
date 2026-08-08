@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>فحص تواقيع الملفات وتفاصيل الرأس والتحقق من قيم checksum للقراءة فقط في مستكشف AutoJs6</p>
+  <p>ملحق مدير الملفات. يفحص تواقيع الملفات ويتحقق من المجاميع الاختبارية التشفيرية</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-يفحص ملحق AutoJs6 File Inspector اي ملف عادي قابل للقراءة يقدمه مستكشف AutoJs6 عبر وصول مؤقت للقراءة فقط الى content URI. يعرض بيانات الملف واول 64 بايت من الرأس وعدة قيم digest من دون تعديل الملف المصدر.
+يفحص File Inspector اي ملف عادي قابل للقراءة يقدمه مدير الملفات عبر وصول مؤقت للقراءة فقط الى content URI. يعرض بيانات الملف واول 64 بايت من الرأس وعدة قيم digest من دون تعديل الملف المصدر.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-يكتشف AutoJs6 الملحق وينفذه بالمعرفات التالية:
+يكتشف المضيف الملحق وينفذه بالمعرفات التالية:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-يقتصر الاصدار 1 على اجراء overflow للقراءة فقط لملف واحد في مستكشف AutoJs6 الرئيسي.
+يوفر الاصدار 1 اجراء overflow للقراءة فقط لملف واحد في مدير الملفات الرئيسي.
 
-تم تنفيذ الملحق بالكامل على JVM ولا يحتوي على مكتبات اصلية. يعلن `supportedAbis = emptyArray()` وينشر كملف APK واحد مستقل عن ABI. يتطلب بناء المضيف AutoJs6 رقم 5268 او احدث.
+يتطلب الملحق بناء المضيف رقم 5268 او احدث.
 
 ******
 
@@ -116,6 +115,13 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `إصلاح` ربط خدمة فارغ عند تفعيل الملحق في مركز الملحقات
+* `تحسين` اسم ووصف ووثائق مستخدم اوضح واكثر ايجازا
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 * `ميزة` حساب CRC32 وMD5 وSHA-1 وSHA-256 وSHA-512 في قراءة واحدة مع عرض التقدم ودعم الالغاء
 * `ميزة` تطبيع وتحقق صارمان لقيمة digest المتوقعة مع استنتاج الخوارزمية والبادئات الصريحة ومقارنة البايتات متساوية الطول بزمن ثابت
 * `ميزة` لقطة رأس من 64 بايت بصيغتي hexadecimal وASCII واكتشاف BOM والتعرف على تواقيع ZIP وGZIP وPDF وPNG وJPEG وGIF87a وGIF89a وELF وDEX وSQLite 3
-* `ميزة` تنفيذ JVM خالص من دون مكتبة اصلية واعلان ABI غير محدود عبر `supportedAbis = emptyArray()` وملف APK واحد مستقل عن ABI ومتطلب بناء المضيف AutoJs6 رقم 5268
 * `ميزة` بيانات الملحق ونصوص الواجهة وتعليمات الاستخدام وملفات README وسجلات التغييرات المترجمة الى الاسبانية والفرنسية والروسية والعربية واليابانية والكورية والانجليزية والصينية المبسطة والصينية التقليدية لهونغ كونغ والصينية التقليدية لتايوان
 * `تبعية` إضافة AndroidX Lifecycle ViewModel الإصدار 2.9.4
 

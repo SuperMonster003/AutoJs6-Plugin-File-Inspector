@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>為 AutoJs6 檔案瀏覽器提供唯讀檔案特徵, 標頭資訊和校驗和驗證</p>
+  <p>檔案管理器外掛程式. 檢查檔案簽章並驗證密碼學檢查碼</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 檔案檢查器外掛程式透過主程式暫時授予的唯讀 content URI 檢查任何可讀的一般檔案. 外掛程式會報告檔案中繼資料, 前 64 位元組標頭和多個摘要, 而不會修改來源檔案.
+檔案檢查器透過檔案管理器暫時授予的唯讀 content URI 檢查任何可讀的一般檔案. 外掛程式會報告檔案中繼資料, 前 64 位元組標頭和多個摘要, 而不會修改來源檔案.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6 使用以下識別資訊探索和執行外掛程式:
+主程式使用以下識別資訊探索和執行外掛程式:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-版本 1 僅提供 AutoJs6 主檔案瀏覽器中的單一檔案唯讀溢出選單動作.
+版本 1 在主檔案管理器中提供單一檔案唯讀溢出選單動作.
 
-外掛程式完全使用 JVM 實作, 不包含原生程式庫. 外掛程式宣告 `supportedAbis = emptyArray()`, 並以單一 ABI 無關 APK 發行. 需要 AutoJs6 主程式建置版本 5268 或更新版本.
+需要主程式建置版本 5268 或更新版本.
 
 ******
 
@@ -116,6 +115,13 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修復` 外掛程式中心啟用時出現空服務綁定的問題
+* `優化` 外掛程式名稱, 描述和使用者文件更簡潔自然
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 * `新增` 單次讀取同時計算 CRC32, MD5, SHA-1, SHA-256 和 SHA-512, 支援進度顯示和取消
 * `新增` 嚴格正規化和驗證預期摘要, 支援演算法推斷, 明確前綴和等長位元組恆定時間比較
 * `新增` 64 位元組十六進位和 ASCII 標頭快照, BOM 偵測, 以及 ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX 和 SQLite 3 檔案特徵辨識
-* `新增` 純 JVM 實作且不包含原生程式庫, 透過 `supportedAbis = emptyArray()` 宣告 ABI 無限制, 發行單一 ABI 無關 APK, 要求 AutoJs6 主程式建置版本 5268
 * `新增` 外掛程式中繼資料, 介面文字, 使用說明, README 和 CHANGELOG 的多語言資源: 西班牙語/法語/俄語/阿拉伯語/日語/韓語/英語/簡體中文/香港繁體/台灣繁體
 * `相依性` 附加 AndroidX Lifecycle ViewModel 版本 2.9.4
 

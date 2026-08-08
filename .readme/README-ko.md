@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>AutoJs6 탐색기를 위한 읽기 전용 파일 시그니처, 헤더 정보 및 체크섬 검증</p>
+  <p>파일 관리자 플러그인. 파일 시그니처를 검사하고 암호학적 체크섬을 검증</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 File Inspector 플러그인은 AutoJs6 탐색기가 임시 읽기 전용 content URI 접근으로 제공한 읽을 수 있는 일반 파일을 검사합니다. 원본 파일을 변경하지 않고 메타데이터, 처음 64바이트 헤더 및 여러 다이제스트를 표시합니다.
+파일 검사기는 파일 관리자가 임시 읽기 전용 content URI 접근으로 제공한 읽을 수 있는 일반 파일을 검사합니다. 원본 파일을 변경하지 않고 메타데이터, 처음 64바이트 헤더 및 여러 다이제스트를 표시합니다.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6는 다음 식별자로 플러그인을 검색하고 실행합니다:
+호스트는 다음 식별자로 플러그인을 검색하고 실행합니다:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-버전 1은 AutoJs6 기본 탐색기의 단일 파일용 읽기 전용 오버플로 작업으로 제한됩니다.
+버전 1은 기본 파일 관리자에서 단일 파일용 읽기 전용 오버플로 작업을 제공합니다.
 
-플러그인은 전부 JVM으로 구현되며 네이티브 라이브러리를 포함하지 않습니다. `supportedAbis = emptyArray()`를 선언하고 ABI 독립적인 단일 APK로 배포됩니다. AutoJs6 호스트 빌드 5268 이상이 필요합니다.
+호스트 빌드 5268 이상이 필요합니다.
 
 ******
 
@@ -116,6 +115,13 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `수정` 플러그인 센터에서 활성화할 때 서비스 바인딩이 null이 되는 문제
+* `개선` 더 명확하고 간결한 플러그인 이름, 설명 및 사용자 문서
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 * `기능` 한 번의 읽기로 CRC32, MD5, SHA-1, SHA-256 및 SHA-512를 함께 계산하고 진행률 및 취소 지원
 * `기능` 알고리즘 추론, 명시적 접두사 및 같은 길이 바이트의 상수 시간 비교를 사용하는 예상 다이제스트의 엄격한 정규화 및 검증
 * `기능` 64바이트 16진수 및 ASCII 헤더 스냅샷, BOM 감지, ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX 및 SQLite 3 시그니처 인식
-* `기능` 네이티브 라이브러리가 없는 순수 JVM 구현, `supportedAbis = emptyArray()`를 통한 ABI 무제한 선언, ABI 독립적인 단일 APK 및 필수 AutoJs6 호스트 빌드 5268
 * `기능` 스페인어, 프랑스어, 러시아어, 아랍어, 일본어, 한국어, 영어, 중국어 간체, 홍콩 중국어 번체 및 대만 중국어 번체로 현지화된 메타데이터, UI 텍스트, 사용 안내, README 및 변경 기록
 * `의존성` AndroidX Lifecycle ViewModel 버전 2.9.4 추가
 

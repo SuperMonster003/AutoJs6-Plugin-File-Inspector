@@ -13,7 +13,7 @@
     <string name="algorithm_sha1">SHA-1</string>
     <string name="algorithm_sha256">SHA-256</string>
     <string name="algorithm_sha512">SHA-512</string>
-    <string name="app_name">Плагин AutoJs6 - Инспектор файлов</string>
+    <string name="app_name">Инспектор файлов</string>
     <string name="bom_none">Не обнаружено</string>
     <string name="bom_utf16_be">UTF-16 BE BOM</string>
     <string name="bom_utf16_le">UTF-16 LE BOM</string>
@@ -56,7 +56,7 @@
     <string name="inspect_starting">Подготовка файла</string>
     <string name="integrity_check">Проверка целостности</string>
     <string name="no_extension">Нет</string>
-    <string name="plugin_description">Проверяет сигнатуры файлов и криптографические контрольные суммы</string>
+    <string name="plugin_description">Плагин файлового менеджера. Проверяет сигнатуры файлов и криптографические контрольные суммы</string>
     <string name="report_copied">Отчет о проверке скопирован</string>
     <string name="report_share_title">Поделиться отчетом о проверке</string>
     <string name="text_encoding">Метка порядка байтов: %1$s</string>

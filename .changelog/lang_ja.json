@@ -5,6 +5,15 @@
   "changelog_label_improvement": "改善",
   "changelog_label_dependency": "依存関係",
   "$data": {
+    "v1.0.1": {
+      "released_date": "2026/08/08",
+      "fix": [
+        "プラグインセンターで有効化するとサービスバインディングがnullになる問題"
+      ],
+      "improvement": [
+        "より明確で簡潔なプラグイン名, 説明, ユーザードキュメント"
+      ]
+    },
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
@@ -13,7 +22,6 @@
         "1回の読み取りによるCRC32, MD5, SHA-1, SHA-256, SHA-512の同時計算, 進捗表示とキャンセル",
         "アルゴリズム推定, 明示的な接頭辞, 同じ長さのバイトの定数時間比較を使う期待ダイジェストの厳密な正規化と検証",
         "64バイトの16進数とASCIIヘッダースナップショット, BOM検出, ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3シグネチャ認識",
-        "ネイティブライブラリを含まない純粋なJVM実装, `supportedAbis = emptyArray()` によるABI無制限の宣言, ABIに依存しない単一APK, 必須AutoJs6ホストビルド5268",
         "スペイン語, フランス語, ロシア語, アラビア語, 日本語, 韓国語, 英語, 簡体字中国語, 香港繁体字中国語, 台湾繁体字中国語のメタデータ, UIテキスト, 使用説明, README, 変更履歴"
       ],
       "dependency": [

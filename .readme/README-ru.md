@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>Сигнатуры файлов, сведения о заголовке и проверка контрольных сумм в режиме только для чтения для Проводника AutoJs6</p>
+  <p>Плагин файлового менеджера. Проверяет сигнатуры файлов и криптографические контрольные суммы</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-Плагин AutoJs6 File Inspector проверяет любой доступный для чтения обычный файл, переданный Проводником AutoJs6 через временный доступ только для чтения к content URI. Он показывает метаданные, первые 64 байта заголовка и несколько дайджестов, не изменяя исходный файл.
+File Inspector проверяет любой доступный для чтения обычный файл, переданный файловым менеджером через временный доступ только для чтения к content URI. Он показывает метаданные, первые 64 байта заголовка и несколько дайджестов, не изменяя исходный файл.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6 обнаруживает и запускает плагин со следующими идентификаторами:
+Хост обнаруживает и запускает плагин со следующими идентификаторами:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-Версия 1 ограничена действием переполнения только для чтения для одного файла в основном Проводнике AutoJs6.
+Версия 1 предоставляет действие дополнительного меню только для чтения для одного файла в основном файловом менеджере.
 
-Плагин полностью реализован на JVM и не содержит нативных библиотек. Он объявляет `supportedAbis = emptyArray()` и выпускается как один APK, не зависящий от ABI. Требуется сборка хоста AutoJs6 5268 или новее.
+Требуется сборка хоста 5268 или новее.
 
 ******
 
@@ -116,6 +115,13 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `Исправление` Пустая привязка службы при включении плагина в центре плагинов
+* `Улучшение` Более ясные и краткие название, описание и пользовательская документация
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 * `Функция` Вычисление CRC32, MD5, SHA-1, SHA-256 и SHA-512 за одно чтение с отображением прогресса и отменой
 * `Функция` Строгая нормализация и проверка ожидаемого дайджеста с определением алгоритма, явными префиксами и сравнением байтов одинаковой длины за постоянное время
 * `Функция` Снимок 64 байтов заголовка в шестнадцатеричном виде и ASCII, определение BOM и распознавание сигнатур ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX и SQLite 3
-* `Функция` Чистая реализация JVM без нативных библиотек, неограниченные ABI через `supportedAbis = emptyArray()`, один независимый от ABI APK и обязательная сборка хоста AutoJs6 5268
 * `Функция` Локализованные метаданные, текст интерфейса, инструкции, README и журналы изменений на испанском, французском, русском, арабском, японском, корейском, английском, упрощенном китайском, традиционном китайском Гонконга и традиционном китайском Тайваня
 * `Зависимость` Добавлена зависимость AndroidX Lifecycle ViewModel версии 2.9.4
 

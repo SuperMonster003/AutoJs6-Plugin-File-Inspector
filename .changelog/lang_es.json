@@ -1,10 +1,19 @@
 {
-  "changelog_label_hint": "Consejo",
+  "changelog_label_hint": "Aviso",
   "changelog_label_feature": "Función",
   "changelog_label_fix": "Corrección",
   "changelog_label_improvement": "Mejora",
   "changelog_label_dependency": "Dependencia",
   "$data": {
+    "v1.0.1": {
+      "released_date": "2026/08/08",
+      "fix": [
+        "Enlace de servicio nulo al activar el complemento en el centro de complementos"
+      ],
+      "improvement": [
+        "Nombre, descripción y documentación de usuario más claros y concisos"
+      ]
+    },
     "v1.0.0": {
       "released_date": "2026/08/02",
       "feature": [
@@ -13,7 +22,6 @@
         "Cálculo de CRC32, MD5, SHA-1, SHA-256 y SHA-512 en una sola lectura con progreso y cancelación",
         "Normalización y verificación estrictas del resumen esperado con deducción del algoritmo, prefijos explícitos y comparación en tiempo constante de bytes de igual longitud",
         "Captura de cabecera de 64 bytes en hexadecimal y ASCII, detección de BOM y reconocimiento de firmas ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX y SQLite 3",
-        "Implementación JVM pura sin bibliotecas nativas, ABI sin restricciones mediante `supportedAbis = emptyArray()`, un APK independiente de ABI y compilación de host AutoJs6 5268 requerida",
         "Metadatos, texto de interfaz, instrucciones de uso, archivos README e historiales localizados en español, francés, ruso, árabe, japonés, coreano, inglés, chino simplificado, chino tradicional de Hong Kong y chino tradicional de Taiwán"
       ],
       "dependency": [

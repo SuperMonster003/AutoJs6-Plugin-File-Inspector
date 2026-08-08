@@ -13,7 +13,7 @@
     <string name="algorithm_sha1">SHA-1</string>
     <string name="algorithm_sha256">SHA-256</string>
     <string name="algorithm_sha512">SHA-512</string>
-    <string name="app_name">AutoJs6 Plugin - File Inspector</string>
+    <string name="app_name">File Inspector</string>
     <string name="bom_none">None detected</string>
     <string name="bom_utf16_be">UTF-16 BE BOM</string>
     <string name="bom_utf16_le">UTF-16 LE BOM</string>
@@ -56,7 +56,7 @@
     <string name="inspect_starting">Preparing file</string>
     <string name="integrity_check">Integrity check</string>
     <string name="no_extension">None</string>
-    <string name="plugin_description">Inspect file signatures and verify cryptographic checksums</string>
+    <string name="plugin_description">File manager plugin. Inspect file signatures and verify cryptographic checksums</string>
     <string name="report_copied">Inspection report copied</string>
     <string name="report_share_title">Share inspection report</string>
     <string name="text_encoding">Byte order mark: %1$s</string>

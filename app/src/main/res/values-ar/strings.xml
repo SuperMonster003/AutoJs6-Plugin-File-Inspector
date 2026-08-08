@@ -13,7 +13,7 @@
     <string name="algorithm_sha1">SHA-1</string>
     <string name="algorithm_sha256">SHA-256</string>
     <string name="algorithm_sha512">SHA-512</string>
-    <string name="app_name">إضافة AutoJs6 - فاحص الملفات</string>
+    <string name="app_name">فاحص الملفات</string>
     <string name="bom_none">لم يتم الكشف عن شيء</string>
     <string name="bom_utf16_be">UTF-16 BE BOM</string>
     <string name="bom_utf16_le">UTF-16 LE BOM</string>
@@ -56,7 +56,7 @@
     <string name="inspect_starting">جار تحضير الملف</string>
     <string name="integrity_check">فحص التكامل</string>
     <string name="no_extension">لا يوجد</string>
-    <string name="plugin_description">فحص تواقيع الملفات والتحقق من المجاميع الاختبارية التشفيرية</string>
+    <string name="plugin_description">ملحق مدير الملفات. يفحص تواقيع الملفات ويتحقق من المجاميع الاختبارية التشفيرية</string>
     <string name="report_copied">تم نسخ تقرير الفحص</string>
     <string name="report_share_title">مشاركة تقرير الفحص</string>
     <string name="text_encoding">علامة ترتيب البايت: %1$s</string>

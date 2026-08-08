@@ -2,10 +2,10 @@
 
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="autojs6-plugin-file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
   </p>
 
-  <p>为 AutoJs6 文件浏览器提供只读文件特征, 头部信息和校验和验证</p>
+  <p>文件管理器插件. 检查文件签名并校验加密校验和</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
@@ -39,7 +39,7 @@
 
 ******
 
-AutoJs6 文件检查器插件通过宿主临时授予的只读 content URI 检查任意可读普通文件. 插件报告文件元数据, 前 64 字节头部和多个摘要, 不会修改源文件.
+文件检查器通过文件管理器临时授予的只读 content URI 检查任意可读普通文件. 插件会报告文件元数据, 前 64 字节头部和多个摘要, 不会修改源文件.
 
 ******
 
@@ -71,7 +71,7 @@ ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
 
 ******
 
-AutoJs6 使用以下标识发现并执行插件:
+宿主使用以下标识发现并执行插件:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -82,12 +82,11 @@ variant: default
 Explorer action id: inspect-file
 MIME type: */*
 required host build: 5268
-supported ABIs: unrestricted (supportedAbis = emptyArray())
 ```
 
-版本 1 仅提供 AutoJs6 主文件浏览器中的单文件只读溢出菜单动作.
+版本 1 在主文件管理器中提供单文件只读溢出菜单动作.
 
-插件完全使用 JVM 实现, 不包含原生库. 插件声明 `supportedAbis = emptyArray()`, 并以单一 ABI 无关 APK 发布. 需要 AutoJs6 宿主构建版本 5268 或更高版本.
+需要宿主构建版本 5268 或更高版本.
 
 ******
 
@@ -116,6 +115,13 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 
 ******
 
+# v1.0.1
+
+###### 2026/08/08
+
+* `修复` 插件中心启用时出现空服务绑定的问题
+* `优化` 插件名称, 描述和用户文档更加简洁自然
+
 # v1.0.0
 
 ###### 2026/08/02
@@ -125,7 +131,6 @@ supported ABIs: unrestricted (supportedAbis = emptyArray())
 * `新增` 单次读取同时计算 CRC32, MD5, SHA-1, SHA-256 和 SHA-512, 支持进度显示和取消
 * `新增` 严格规范化和验证预期摘要, 支持算法推断, 显式前缀和等长字节恒定时间比较
 * `新增` 64 字节十六进制和 ASCII 头部快照, BOM 检测, 以及 ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX 和 SQLite 3 文件特征识别
-* `新增` 纯 JVM 实现且不包含原生库, 通过 `supportedAbis = emptyArray()` 声明 ABI 无限制, 发布单一 ABI 无关 APK, 要求 AutoJs6 宿主构建版本 5268
 * `新增` 插件元数据, 界面文本, 使用说明, README 和 CHANGELOG 的多语言资源: 西班牙语/法语/俄语/阿拉伯语/日语/韩语/英语/简体中文/香港繁体/台湾繁体
 * `依赖` 附加 AndroidX Lifecycle ViewModel 版本 2.9.4
 
