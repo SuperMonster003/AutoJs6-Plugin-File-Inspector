@@ -61,12 +61,14 @@
 
 - [x] (测试) core 层单元测试: FileInspectionEngine 的上限/大小不一致/取消分支, HeaderInspector 全部特征与 BOM, DigestVerifier 等长恒定时间比较.
 - [x] (测试) FileInspectorIntentPolicy 伪造 Intent 矩阵: 错误动作、协议版本不符、坏 content URI、ClipData 不符、越权授权、超大声明等全部拒绝分支.
-- [ ] (发布) GitHub Actions: assembleDebug + 单元测试 + 文档一致性检查 (运行 generate_markdown.py 后工作区无 diff 才通过). 工作流与本地 clean-snapshot 验证已完成, 待远程仓库建立后取得首次 GitHub-hosted 绿色运行记录.
+- [x] (发布) GitHub Actions: assembleDebug + 单元测试 + 文档一致性检查 (运行 generate_markdown.py 后工作区无 diff 才通过). 已在 GitHub-hosted Ubuntu runner 上取得完整绿色运行记录.
 - [x] (发布) releases/ 产物附 SHA-256 校验文件, 命名与现有 `autojs6-plugin-file-inspector-v*-<hash>.apk` 规则统一; README 使用方法中引导用户用本插件完成自校验.
 
 验收条件: CI 在干净克隆上绿灯; 手工改动生成的 Markdown 会被文档一致性检查拦截; 每个发布产物均可用插件自身校验通过.
 
 验证记录 (2026-08-30): 59 项 JVM 单元测试全部通过 (0 failure / 0 error / 0 skipped), 其中 FileInspectionEngine 18 项覆盖声明/硬上限、长短大小不一致、零长度读取、I/O 失败与协程取消关流, HeaderInspector 9 项覆盖全部 26 种特征、5 种 BOM、短文件与错位误报, DigestVerifier 覆盖首/中/末差异和异长拒绝. FileInspectorIntentPolicy 的 11 项伪造矩阵分别在 API 28、31、35 实机通过, 共执行 33 项且全部拒绝分支符合预期. `.github/workflows/ci.yml` 已以只读权限和完整提交 SHA 固定官方 actions, `actionlint` 通过; 由当前 170 个非忽略文件建立的干净 Git 快照按 workflow 同等命令完成 `assembleDebug`、`testDebugUnitTest` 与生成文档零 diff. 但当前本地仓库没有 Git remote, 目标 GitHub 仓库亦尚不可解析, 无法触发 GitHub-hosted runner, 因而 CI 条目严格保留为未完成. 两份历史 APK 的 CRC32 文件名后缀与同名 `.apk.sha256` 已由 `verifyReleaseChecksums` 核对; `ReleaseArtifactSelfCheckTest` 再使用插件自身的 sidecar 解析、单遍读取、SHA-256 与恒定时间比较管线确认两份均匹配. 10 种语言 README/内置说明均给出升级前或首装后的 APK 自检步骤, 36 个生成输出二次运行前后聚合 SHA-256 均为 `63e977bd315826a694b7f896aacf0d44a13e7073925a0c099c15d2b68f336cb5`.
+
+验证记录 (2026-09-01): 已建立公开远端仓库并在 GitHub-hosted Ubuntu runner 上完成首次 CI 闭环. 前两次运行分别暴露并修复了构建对本机 Maven Local 中未发布平台版本插件的依赖, 以及 Temurin 环境自动选择 AGP 8.7.3 而不满足当前 AndroidX 依赖最低 AGP 8.9.1 的问题; 仓库现使用自包含构建配置并显式固定已验证的 AGP 9.2.1. 提交 `45134a8` 对应的 [CI 运行 #33490364656](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/runs/33490364656) 在 2 分 13 秒内依次通过源码检出、JDK/Python/Gradle 环境配置、`assembleDebug`、`testDebugUnitTest`、文档再生成与工作区零差异检查, M4 的远端 CI 验收条件已满足.
 
 ## M5: 宿主协同 (跨仓库, 可选)
 
