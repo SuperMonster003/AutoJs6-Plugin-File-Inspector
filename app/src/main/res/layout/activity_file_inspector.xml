@@ -3,23 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="locale"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/color_primary"
+        android:background="?attr/colorPrimary"
         android:elevation="4dp"
         app:navigationContentDescription="@string/action_back"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:title="@string/action_file_inspector"
-        app:titleTextColor="@color/toolbar_text" />
+        app:titleTextColor="?attr/colorOnPrimary" />
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scroll_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:clipToPadding="false"
         android:fillViewport="true">
 
         <LinearLayout
@@ -32,10 +35,9 @@
                 android:id="@+id/file_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="middle"
-                android:maxLines="2"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
-                android:textIsSelectable="true" />
+                android:breakStrategy="simple"
+                android:hyphenationFrequency="none"
+                android:textAppearance="@style/TextAppearance.Material3.TitleLarge" />
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -50,38 +52,35 @@
                     android:padding="16dp">
 
                     <TextView
+                        android:id="@+id/file_information_title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/file_information"
-                        android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                        android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                     <TextView
                         android:id="@+id/mime_type"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textIsSelectable="true" />
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         android:id="@+id/extension"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:textIsSelectable="true" />
+                        android:layout_marginTop="4dp" />
 
                     <TextView
                         android:id="@+id/declared_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:textIsSelectable="true" />
+                        android:layout_marginTop="4dp" />
 
                     <TextView
                         android:id="@+id/actual_size"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:textIsSelectable="true"
                         android:visibility="gone" />
 
                     <TextView
@@ -89,7 +88,20 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:textIsSelectable="true"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/container_hint"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/content_analysis"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
                         android:visibility="gone" />
 
                     <TextView
@@ -97,7 +109,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:textIsSelectable="true"
                         android:visibility="gone" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -116,7 +127,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:text="@string/inspect_starting"
-                android:textAppearance="@style/TextAppearance.MaterialComponents.Body2" />
+                android:textAppearance="@style/TextAppearance.Material3.BodyMedium" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -126,16 +137,20 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/cancel"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
                     android:text="@string/action_cancel" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/retry"
-                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    style="@style/Widget.Material3.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:minHeight="48dp"
+                    android:minWidth="48dp"
                     android:text="@string/action_retry"
                     android:visibility="gone" />
             </LinearLayout>
@@ -154,24 +169,64 @@
                     android:layout_marginTop="8dp"
                     android:nestedScrollingEnabled="false" />
 
+                <TextView
+                    android:id="@+id/report_format_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:labelFor="@id/report_format_group"
+                    android:text="@string/report_format_label"
+                    android:textAppearance="@style/TextAppearance.Material3.TitleSmall" />
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/report_format_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical"
+                    app:checkedButton="@id/report_format_markdown"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/report_format_markdown"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="@string/report_format_markdown" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/report_format_json"
+                        style="@style/Widget.Material3.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="48dp"
+                        android:minWidth="48dp"
+                        android:text="@string/report_format_json" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="4dp"
+                    android:orientation="vertical">
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/copy_report"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:text="@string/action_copy_report" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/share_report"
-                        style="@style/Widget.MaterialComponents.Button.TextButton"
-                        android:layout_width="wrap_content"
+                        style="@style/Widget.Material3.Button.TextButton"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:minHeight="48dp"
                         android:text="@string/action_share" />
                 </LinearLayout>
 
@@ -188,17 +243,18 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/integrity_check_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/integrity_check"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
                         <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/expected_digest_layout"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:hint="@string/verification_expected_hint">
+                            android:hint="@string/verification_expected_label">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/expected_digest"
@@ -207,24 +263,43 @@
                                 android:fontFamily="monospace"
                                 android:importantForAutofill="no"
                                 android:inputType="textNoSuggestions"
+                                android:layoutDirection="ltr"
                                 android:maxLength="512"
                                 android:maxLines="4"
                                 android:textDirection="ltr" />
                         </com.google.android.material.textfield.TextInputLayout>
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/verification_expected_hint"
+                            android:textAppearance="@style/TextAppearance.Material3.BodySmall" />
+
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/verify"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="end"
+                            android:minHeight="48dp"
                             android:text="@string/action_verify" />
 
                         <TextView
                             android:id="@+id/verification_result"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:accessibilityLiveRegion="polite"
                             android:layout_marginTop="4dp"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyLarge"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/verification_file_name_warning"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:accessibilityLiveRegion="polite"
+                            android:layout_marginTop="4dp"
+                            android:textColor="@color/verification_warning"
+                            android:textAppearance="@style/TextAppearance.Material3.BodyMedium"
                             android:visibility="gone" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -243,19 +318,37 @@
                         android:padding="16dp">
 
                         <TextView
+                            android:id="@+id/file_header_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/file_header"
-                            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1" />
+                            android:textAppearance="@style/TextAppearance.Material3.TitleMedium" />
 
-                        <TextView
-                            android:id="@+id/header_hex"
+                        <HorizontalScrollView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:fontFamily="monospace"
-                            android:textDirection="ltr"
-                            android:textIsSelectable="true" />
+                            android:fillViewport="false"
+                            android:layoutDirection="ltr"
+                            android:scrollbars="horizontal">
+
+                            <TextView
+                                android:id="@+id/header_hex"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="monospace"
+                                android:textAlignment="textStart"
+                                android:textDirection="ltr" />
+                        </HorizontalScrollView>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/copy_header"
+                            style="@style/Widget.Material3.Button.TextButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:minHeight="48dp"
+                            android:text="@string/action_copy_header" />
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
             </LinearLayout>

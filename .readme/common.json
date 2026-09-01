@@ -10,8 +10,11 @@
   "explorer_action_id": "inspect-file",
   "mime_type": "*/*",
   "required_host_build": "5268",
-  "supported_formats": "ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3",
+  "algorithm_list": "CRC32, MD5, SHA-1, SHA-256, SHA-512",
+  "supported_formats": "ZIP, 7z, RAR 4, RAR 5, GZIP, XZ, BZIP2, Zstandard, LZ4, TAR, PDF, PNG, JPEG, GIF87a, GIF89a, WebP, MP4 / ISO-BMFF, EBML / Matroska, ELF, DEX, Java Class, Mach-O, PE, SQLite 3, WOFF, WOFF2",
+  "supported_formats_v1_0_0": "ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3",
   "max_input_size": "8 TiB",
-  "header_size": "64 bytes",
-  "digest_input_max": "512 ASCII characters"
+  "header_bytes": "64",
+  "analysis_sample_bytes": "4096",
+  "digest_input_max_chars": "512"
 }

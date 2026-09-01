@@ -47,9 +47,14 @@ internal class DigestAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(row: DigestRow) = with(binding) {
-            algorithm.text = row.algorithm.label(root.context)
+            val algorithmLabel = row.algorithm.label(root.context)
+            algorithm.text = algorithmLabel
             digest.text = row.value.hex
             legacy.visibility = if (row.algorithm.isLegacy()) View.VISIBLE else View.GONE
+            copy.contentDescription = root.context.getString(
+                R.string.action_copy_checksum,
+                algorithmLabel,
+            )
             copy.setOnClickListener { onCopy(row) }
         }
     }

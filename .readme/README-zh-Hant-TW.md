@@ -1,26 +1,23 @@
-<!--suppress HtmlDeprecatedAttribute, HttpUrlsUsage -->
-
 <div align="center">
   <p>
-    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="file-inspector-ic-launcher" border="0" width="128" />
+    <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="File Inspector" width="128" />
   </p>
 
-  <p>檔案管理器外掛程式. 檢查檔案簽章並驗證密碼學檢查碼</p>
+  <h1>File Inspector</h1>
+
+  <p>AutoJs6 檔案管理器外掛: 一次讀取算出七種檢查碼, 貼上官方檢查值即刻核對完整性, 順帶看清檔案真實格式</p>
 
   <p>
+    <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/releases"><img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/SuperMonster003/AutoJs6-Plugin-File-Inspector?label=Release"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/issues"><img alt="GitHub closed issues" src="https://img.shields.io/github/issues/SuperMonster003/AutoJs6-Plugin-File-Inspector?color=A24232&label=Issues"/></a>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/LICENSE"><img alt="GitHub License" src="https://img.shields.io/github/license/SuperMonster003/AutoJs6-Plugin-File-Inspector?color=534BAE&label=License"/></a>
   </p>
 </div>
 
-******
-
 ### 語言 (Languages)
 
-******
-
-目前 README.md 支援以下語言:
+README 提供以下語言版本:
 
 - [简体中文 [zh-Hans]](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/.readme/README-zh-Hans.md)
 - [繁體中文 (香港) [zh-Hant-HK]](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/.readme/README-zh-Hant-HK.md)
@@ -33,45 +30,76 @@
 - [Русский [ru]](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/.readme/README-ru.md)
 - [العربية [ar]](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/.readme/README-ar.md)
 
-******
+### 專案簡介
 
-### 簡介
+檔案檢查器 (File Inspector) 是 AutoJs6 檔案管理器的配套外掛. 在檔案管理器中對任意檔案選擇「檢查檔案」, 外掛只把檔案讀取一遍, 就同時算出 CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384, SHA-512 七種檢查碼, 並顯示檔案的真實格式特徵、大小與開頭位元組, 一畫面看全. 全程唯讀, 不申請儲存與網路權限, 絕不修改原始檔案.
 
-******
+報告頁還內建「完整性驗證」: 把發佈方公佈的檢查碼貼進輸入框, 外掛自動識別演算法並直接給出「相符 / 不相符」結論, 免去肉眼逐位比對長串十六進位的麻煩. 每條檢查碼與檔案標頭快照均可獨立複製; 複製整份報告或經系統面板分享前, 可選擇結構化 Markdown 或 JSON.
 
-檔案檢查器透過檔案管理器暫時授予的唯讀 content URI 檢查任何可讀的一般檔案. 外掛程式會報告檔案中繼資料, 前 64 位元組標頭和多個摘要, 而不會修改來源檔案.
+### 功能亮點
 
-******
+- 讀一遍, 全都有: 檔案只被循序讀取一次, 同時算出全部七種檢查碼, 大檔案不必按演算法分別等待多輪計算.
+- 貼上即核對: 支援十六進位與指紋分隔、Base64、SRI, 以及完整的 `md5sum` / `sha256sum` 輸出行; 自動識別演算法, 貼上的檔案名稱不同時給出警告.
+- 識破真實格式: 透過有界開頭與固定偏移位元組識別 26 種常見特徵, 為基於 ZIP 的 APK/JAR/Office 文件補充用途提示, 並依可列印字元比例與熵值估算文字或二進位內容.
+- 開頭一覽: 以「十六進位 + ASCII」對照樣式顯示檔案前 64 位元組, 並偵測 UTF-8 / UTF-16 / UTF-32 的 BOM 位元組序標記.
+- 大小雙重核對: 同時顯示檔案管理器宣告的大小與實際讀取的大小, 檔案在讀取期間被改動會立即報錯, 幫助發現下載不完整或正在寫入的檔案.
+- 進度可控: 大檔案讀取時顯示即時位元組數、讀取速度與預計剩餘時間, 隨時可以取消; 失敗後可一鍵重試.
+- 結果即取即用: 檢查碼與檔案標頭快照均可獨立複製, 畫面上的完整結果可選 Markdown 或 JSON 後複製到剪貼簿或透過系統分享面板傳送, 全程不建立檔案.
+- 舊演算法明示: MD5 與 SHA-1 標注 Legacy 徽章, 提醒它們已不適合作為安全證明.
 
-### 功能
+### 使用方法
 
-******
+1. 從同一個官方 Release 下載 APK 及其同名 `.apk.sha256` 檢查檔, 安裝 APK, 然後在 AutoJs6 的外掛中心啟用它 (需要 AutoJs6 版本代碼 5268 或更高).
+2. 升級前, 用已安裝的檔案檢查器檢查新下載的 APK; 首次安裝時請保留 APK, 啟用外掛後再檢查它. 把檢查檔中的 64 位 SHA-256 貼到完整性驗證欄, 只有顯示綠色相符才通過; 兩個檔案都應來自同一個可信的 HTTPS Release 頁面.
+3. 開啟 AutoJs6 的檔案管理器, 找到想檢查的檔案; 任意類型的普通檔案均可.
+4. 在該檔案的選單中選擇「檢查檔案」, 外掛立即開始讀取並顯示進度, 完成後即可看到檢查碼、格式特徵與開頭位元組.
+5. 需要核對完整性時, 把發佈方公佈的檢查碼貼到「完整性驗證」輸入框並點按「驗證」: 綠色表示相符, 紅色表示不相符.
+6. 點按檢查碼旁或檔案標頭下方的複製按鈕可取得單項結果; 選擇 Markdown 或 JSON 後可複製或分享完整報告, 按返回鍵回到檔案管理器.
 
-- 透過共用的 `org.autojs.plugin.EXPLORER_ACTION` 通訊協定註冊單一檔案唯讀檔案瀏覽器溢出選單動作.
-- 只讀取來源檔案一次, 同時計算 CRC32, MD5, SHA-1, SHA-256 和 SHA-512, 並支援進度顯示和取消.
-- 顯示宣告大小, 實際大小, MIME 類型, 副檔名, 前 64 位元組十六進位和 ASCII 標頭, BOM 和已辨識的檔案特徵.
-- 嚴格正規化預期摘要輸入, 根據有效長度或明確前綴辨識演算法, 並以不因不相符位置提前結束的方式比較等長位元組.
-- 支援複製單一校驗和, 以及複製或分享完整檢查報告.
+> 檢查碼輸入支援純十六進位、`sha256: <值>` 或 `MD5=<值>` 等演算法前綴、`AB:CD:EF` 式指紋分隔、CRC32 的 `0x` 前綴、標準 Base64、`sha256-<base64>` 式 SRI, 以及 coreutils 的完整 `<十六進位>  <檔案名稱>` 或 `<十六進位> *<檔案名稱>` 行. 自動忽略大小寫與首尾空白; 摘要長度唯一時自動識別演算法, 貼上的檔案名稱不同時顯示警告.
 
-******
+### 可識別的格式特徵
 
-### 檢查的資料
-
-******
-
-版本 1 可為任何可讀的一般檔案計算摘要, 並辨識以下位於偏移 0 的固定標頭特徵:
+檢查碼計算適用於任意可讀的普通檔案; 在此基礎上, 目前版本還能識別以下有界開頭或固定偏移格式特徵:
 
 ```text
-ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
+ZIP, 7z, RAR 4, RAR 5, GZIP, XZ, BZIP2, Zstandard, LZ4, TAR, PDF, PNG, JPEG, GIF87a, GIF89a, WebP, MP4 / ISO-BMFF, EBML / Matroska, ELF, DEX, Java Class, Mach-O, PE, SQLite 3, WOFF, WOFF2
 ```
 
-******
+格式識別使用有界樣本以及 TAR 偏移 257、ISO-BMFF 偏移 4 的 `ftyp`、PE 開頭指標等結構欄位, 僅作快速提示, 不構成完整的格式合法性驗證; 可列印比例與熵值同樣是啟發式估算. 未命中特徵的檔案顯示為「未知」, 檢查碼仍然正常計算.
+
+### 常見問題
+
+#### 這個外掛適合在什麼時候用?
+
+最典型的場景是核對下載檔案: 從網路取得安裝包、韌體或文件後, 把發佈方公佈的 SHA-256 等檢查碼貼進外掛, 立即知道檔案是否完整、有沒有被竄改. 它也適合檢視被改過副檔名的檔案的真實格式, 或為任意檔案快速產生檢查碼以便存檔與比對.
+
+#### 檢查碼「相符」能說明檔案是安全的嗎?
+
+「相符」只說明檔案內容與公佈該檢查碼的那份檔案完全一致; 檔案是否可信取決於檢查碼的來源是否可信. 請優先使用官方管道透過 HTTPS 公佈的 SHA-256 或 SHA-512. MD5 與 SHA-1 已能被人為構造碰撞, 外掛將其標注為 Legacy, 不應作為安全證明.
+
+#### 為什麼有些檔案無法檢查?
+
+常見原因: 檔案超過 8 TiB 上限; 檔案在讀取過程中被其他應用改動, 導致實際大小與宣告大小不一致; 或主程式授予的唯讀存取已失效. 錯誤提示會說明具體原因, 點按「重試」可再次檢查.
+
+#### 檢查大檔案會不會很慢?
+
+外掛把檔案循序讀取一遍就同時算出全部七種檢查碼, 耗時主要取決於儲存讀取速度, 不會因為演算法多而成倍變慢. 讀取期間顯示即時進度, 隨時可以取消.
+
+### 權限與安全
+
+外掛不申請儲存與網路權限, 只能透過主程式臨時授予的唯讀 content 位址存取使用者選中的那一個檔案, 檢查結束後授權即失效, 無法觸及其他檔案. 來自檔案管理器的請求會逐項校驗動作識別、協定版本、content 位址結構、檔案名稱、MIME 類型、宣告大小與唯讀授權, 任何攜帶寫入或持久化授權的請求都會被直接拒絕. 檔案始終以串流唯讀方式處理; 記憶體中僅保留有界緩衝區、前 4096 位元組分析樣本、前 64 位元組顯示快照與 4 位元組 PE 簽章視窗, 原始檔案絕不會被修改.
+
+為保證檢查過程可控, 外掛設有以下邊界:
+
+- 單一檔案最大 8 TiB; 每次動作只處理一個目標檔案.
+- 分析最多取樣檔案前 4096 位元組並額外保留 4 位元組 PE 簽章視窗, 顯示的開頭仍為 64 位元組; 檢查碼輸入最長 512 個字元, 僅 coreutils 檔案名稱部分可使用非 ASCII 字元.
+- 實際讀取大小與宣告大小不一致時, 判定為檔案已變化, 檢查失敗並給出提示.
+- 檢查碼比對使用等長恆定時間比較; MD5 與 SHA-1 僅供舊資料核對, 不應視為防碰撞的安全證明.
 
 ### 外掛程式介面
 
-******
-
-主程式使用以下識別資訊探索和執行外掛程式:
+主程式 (AutoJs6) 透過以下識別探索並執行外掛, 供外掛或主程式開發者參考:
 
 ```text
 service action: org.autojs.plugin.EXPLORER_ACTION
@@ -84,100 +112,60 @@ MIME type: */*
 required host build: 5268
 ```
 
-版本 1 在主檔案管理器中提供單一檔案唯讀溢出選單動作.
+目前版本在主程式檔案管理器中提供單檔案唯讀溢位選單動作, 不修改原始檔案, 也不列舉目錄. 外掛未安裝或被停用時, 主程式自動回退到預設行為, 互不影響.
 
-需要主程式建置版本 5268 或更新版本.
+### Roadmap
 
-******
+已實現能力以上文與 Roadmap 勾選條目為準; 依賴額外 provider 的摘要演算法、批次校驗與宿主協議擴充等後續計畫集中維護在 Roadmap 中, 未勾選條目不代表目前版本已支援.
 
-### 安全性
-
-******
-
-外掛程式不要求儲存空間或網路權限. 主程式只授予目標 content URI 暫時唯讀存取權. 外掛程式會驗證確切的 Intent 動作, URI, ClipData, 檔案名稱, MIME 類型和宣告大小, 拒絕寫入或持久授權, 且絕不寫入來源檔案. 宣告大小與實際大小不相符或輸入大於 8 TiB 時會被拒絕. 檔案位元組使用有界緩衝區處理, 報告只保留 64 位元組標頭快照.
-
-******
-
-### 安全限制
-
-******
-
-- 最大輸入大小: `8 TiB`.
-- 標頭快照: `64 bytes`.
-- 預期摘要文字上限: `512 ASCII characters`.
-- 每次動作只處理 1 個目標檔案.
-- 檔案特徵偵測只依據偏移 0 的固定位元組, 不代表完整格式驗證.
-- MD5 和 SHA-1 會顯示為舊式摘要, 不應視為具抗碰撞能力的安全證明.
-
-******
+- [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### 版本記錄
 
-******
+#### v1.0.1
 
-# v1.0.1
+_2026/08/08_
 
-###### 2026/08/08
+- `修復` 修復外掛在外掛中心啟用後主程式無法繫結服務的問題; 現在啟用後「檢查檔案」動作立即可用
+- `優化` 精簡外掛名稱與描述, 使使用者文件表述更自然易讀
 
-* `修復` 外掛程式中心啟用時出現空服務綁定的問題
-* `優化` 外掛程式名稱, 描述和使用者文件更簡潔自然
+#### v1.0.0
 
-# v1.0.0
+_2026/08/02_
 
-###### 2026/08/02
+- `提示` 首個公開版本, 需要 AutoJs6 版本代碼 5268 或更高
+- `新增` 在 AutoJs6 檔案管理器的檔案選單中新增唯讀動作「檢查檔案」, 適用於任意類型的普通檔案 (外掛 ID `file-inspector`, 動作 ID `inspect-file`)
+- `新增` 一次循序讀取同時計算 CRC32, MD5, SHA-1, SHA-256, SHA-512 五種檢查碼, 讀取期間顯示即時進度, 支援取消與重試
+- `新增` 支援貼上預期檢查碼做完整性驗證: 按長度或 `sha256:` 等前綴自動識別演算法, 相容 `AB:CD:EF` 式指紋分隔與 CRC32 的 `0x` 前綴, 比對採用等長恆定時間比較
+- `新增` 報告顯示檔案名稱、MIME 類型、副檔名、宣告大小與實際大小, 以及前 64 位元組的「十六進位 + ASCII」開頭快照與 UTF BOM 偵測
+- `新增` 依據檔案開頭特徵識別 ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3 十種常見格式
+- `新增` 每條檢查碼可單獨複製, 整份檢查報告支援複製與系統分享; MD5 與 SHA-1 標注 Legacy 徽章
+- `新增` 外掛不申請儲存與網路權限, 僅透過主程式臨時授予的唯讀 content 位址存取檔案, 單檔案上限 8 TiB
+- `新增` 內建 10 種語言的介面文字、使用說明、README 與 CHANGELOG: 簡體中文、香港繁體、台灣繁體、英語、法語、西班牙語、日語、韓語、俄語、阿拉伯語
+- `相依性` 引入 AndroidX Lifecycle ViewModel 2.9.4
 
-* `新增` 檔案檢查器外掛程式, 外掛程式 ID 為 `file-inspector`, 動作 ID 為 `inspect-file`, 引擎為 `explorer-action`, 變體為 `default`
-* `新增` 適用於任何可讀一般檔案的單一檔案唯讀檔案瀏覽器動作, 輸入上限為 8 TiB, 不要求儲存空間或網路權限
-* `新增` 單次讀取同時計算 CRC32, MD5, SHA-1, SHA-256 和 SHA-512, 支援進度顯示和取消
-* `新增` 嚴格正規化和驗證預期摘要, 支援演算法推斷, 明確前綴和等長位元組恆定時間比較
-* `新增` 64 位元組十六進位和 ASCII 標頭快照, BOM 偵測, 以及 ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX 和 SQLite 3 檔案特徵辨識
-* `新增` 外掛程式中繼資料, 介面文字, 使用說明, README 和 CHANGELOG 的多語言資源: 西班牙語/法語/俄語/阿拉伯語/日語/韓語/英語/簡體中文/香港繁體/台灣繁體
-* `相依性` 附加 AndroidX Lifecycle ViewModel 版本 2.9.4
+##### 完整記錄
 
-##### 查看更多版本
-
-* [CHANGELOG-zh-Hant-TW.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/assets/doc/CHANGELOG-zh-Hant-TW.md)
-
-******
+- [CHANGELOG-zh-Hant-TW.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/assets/doc/CHANGELOG-zh-Hant-TW.md)
 
 ### 建置
-
-******
 
 ```powershell
 .\gradlew.bat :app:assembleDebug
 ```
 
-發行建置:
+Release 建置:
 
 ```powershell
-.\gradlew.bat :app:assembleRelease
+.\gradlew.bat :app:appendDigestToReleasedFiles
+.\gradlew.bat :app:verifyReleaseChecksums
 ```
 
-建置參數來自 `version.properties`. 目前最低 SDK 為 24, 目標 SDK 為 36.
+建置與簽章參數由 version.properties 與 sign.properties 控制; 目前最低支援 Android 7.0 (SDK 24), 目標 SDK 36.
 
-******
+README、CHANGELOG 與 res/raw*/plugin_instruction.md 外掛內說明均由 .python/generate_markdown.py 依據 .readme/ 與 .changelog/ 下的 JSON 語言資源和模板生成 (共 10 種語言). 修改文件請編輯對應 JSON 後重新執行腳本, 不要直接改動生成的 Markdown.
 
-### 資源配置
-
-******
-
-```text
-.readme/lang_*.json
-.changelog/lang_*.json
-.python/generate_markdown.py
-app/src/main/assets/doc/CHANGELOG-*.md
-app/src/main/res/values-*/strings.xml
-app/src/main/res/raw-*/plugin_instruction.md
-```
-
-`strings.xml` 為外掛程式中繼資料和介面文字提供本地化. `plugin_instruction.md` 提供主程式顯示的說明. `.python/generate_markdown.py` 根據 JSON 來源檔案產生多語言 README 和更新記錄.
-
-******
-
-### 連結
-
-******
+### 相關連結
 
 - AutoJs6 文件: https://docs.autojs6.com
 - Android 安全檔案分享: https://developer.android.com/training/secure-file-sharing

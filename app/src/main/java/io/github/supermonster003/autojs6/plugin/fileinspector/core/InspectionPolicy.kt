@@ -20,6 +20,7 @@ data class InspectionPolicy(
 
     companion object {
         const val HEADER_BYTES = 64
+        const val ANALYSIS_SAMPLE_BYTES = 4 * 1024
         const val DEFAULT_BUFFER_BYTES = 256 * 1024
         const val MAX_BUFFER_BYTES = 1024 * 1024
         const val DEFAULT_PROGRESS_EVERY_BYTES = 1024L * 1024L

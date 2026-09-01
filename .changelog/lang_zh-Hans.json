@@ -8,24 +8,29 @@
     "v1.0.1": {
       "released_date": "2026/08/08",
       "fix": [
-        "插件中心启用时出现空服务绑定的问题"
+        "修复插件在插件中心启用后宿主无法绑定服务的问题; 现在启用后 “检查文件” 动作立即可用"
       ],
       "improvement": [
-        "插件名称, 描述和用户文档更加简洁自然"
+        "精简插件名称与描述, 使用户文档表述更自然易读"
       ]
     },
     "v1.0.0": {
       "released_date": "2026/08/02",
+      "hint": [
+        "首个公开版本, 需要 AutoJs6 版本代码 {{ required_host_build }} 或更高"
+      ],
       "feature": [
-        "文件检查器插件, 插件 ID 为 `file-inspector`, 动作 ID 为 `inspect-file`, 引擎为 `explorer-action`, 变体为 `default`",
-        "面向任意可读普通文件的单文件只读文件浏览器动作, 输入上限为 8 TiB, 不申请存储或网络权限",
-        "单次读取同时计算 CRC32, MD5, SHA-1, SHA-256 和 SHA-512, 支持进度显示和取消",
-        "严格规范化和验证预期摘要, 支持算法推断, 显式前缀和等长字节恒定时间比较",
-        "64 字节十六进制和 ASCII 头部快照, BOM 检测, 以及 ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX 和 SQLite 3 文件特征识别",
-        "插件元数据, 界面文本, 使用说明, README 和 CHANGELOG 的多语言资源: 西班牙语/法语/俄语/阿拉伯语/日语/韩语/英语/简体中文/香港繁体/台湾繁体"
+        "在 AutoJs6 文件管理器的文件菜单中新增只读动作 “检查文件”, 适用于任意类型的普通文件 (插件 ID `file-inspector`, 动作 ID `inspect-file`)",
+        "一次顺序读取同时计算 {{ algorithm_list }} 五种校验和, 读取期间显示实时进度, 支持取消与重试",
+        "支持粘贴预期校验和做完整性校验: 按长度或 `sha256:` 等前缀自动识别算法, 兼容 `AB:CD:EF` 式指纹分隔与 CRC32 的 `0x` 前缀, 比对采用等长恒定时间比较",
+        "报告展示文件名、MIME 类型、扩展名、声明大小与实际大小, 以及前 {{ header_bytes }} 字节的 “十六进制 + ASCII” 头部快照与 UTF BOM 检测",
+        "依据文件开头特征识别 {{ supported_formats_v1_0_0 }} 十种常见格式",
+        "每条校验和可单独复制, 整份检查报告支持复制与系统分享; MD5 与 SHA-1 标注 Legacy 徽标",
+        "插件不申请存储与网络权限, 仅通过宿主临时授予的只读 content 地址访问文件, 单文件上限 {{ max_input_size }}",
+        "内置 10 种语言的界面文本、使用说明、README 与 CHANGELOG: 简体中文、香港繁体、台湾繁体、英语、法语、西班牙语、日语、韩语、俄语、阿拉伯语"
       ],
       "dependency": [
-        "附加 AndroidX Lifecycle ViewModel 版本 2.9.4"
+        "引入 AndroidX Lifecycle ViewModel 2.9.4"
       ]
     }
   }

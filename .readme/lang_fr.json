@@ -1,44 +1,75 @@
 {
   "$name": "Français",
   "text_current_lowercase": "actuel",
-  "text_plugin_synopsis": "Plugin de gestionnaire de fichiers. Inspecte les signatures de fichiers et vérifie les sommes de contrôle cryptographiques",
+  "text_plugin_synopsis": "Plugin du gestionnaire de fichiers AutoJs6 : sept sommes de contrôle en une seule lecture, collez la valeur publiée pour vérifier l'intégrité aussitôt, et découvrez le vrai format du fichier d'un coup d'œil",
   "h3_languages_with_ascii": "Langues (Languages)",
-  "p_languages_all_supported_for_readme": "Le fichier README.md actuel prend en charge les langues suivantes",
-  "h3_introduction": "Introduction",
-  "p_introduction": "File Inspector inspecte tout fichier ordinaire lisible transmis par le gestionnaire de fichiers via un accès temporaire en lecture seule à un content URI. Il affiche les métadonnées, les 64 premiers octets de l'en-tête et plusieurs empreintes sans modifier le fichier source.",
-  "h3_functions": "Fonctionnalités",
+  "p_languages_all_supported_for_readme": "Ce README est disponible dans les langues suivantes",
+  "h3_introduction": "Présentation",
+  "p_introduction": "File Inspector est un plugin compagnon du gestionnaire de fichiers AutoJs6. Choisissez « Inspecter le fichier » sur n'importe quel fichier : le plugin ne le lit qu'une seule fois et calcule simultanément les sommes de contrôle CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384 et SHA-512, tout en affichant sur un seul écran la signature de format réelle du fichier, sa taille et ses premiers octets. Tout est en lecture seule : le plugin ne demande aucune autorisation de stockage ni de réseau et ne modifie jamais le fichier d'origine.",
+  "p_introduction_report": "La page de rapport intègre un « Contrôle d'intégrité » : collez la somme de contrôle publiée par le fournisseur du fichier, le plugin détecte l'algorithme automatiquement et rend un verdict clair de correspondance ou non, sans plus jamais comparer de longues chaînes hexadécimales à l'œil nu. Chaque somme de contrôle et l'instantané de l'en-tête peuvent être copiés séparément ; choisissez Markdown ou JSON avant de copier le rapport complet ou de l'envoyer via le panneau de partage du système.",
+  "h3_functions": "Points forts",
   "features": [
-    "Enregistre une action supplémentaire en lecture seule pour un seul fichier via le protocole partagé `{{ plugin_action }}`.",
-    "Lit la source une seule fois tout en calculant CRC32, MD5, SHA-1, SHA-256 et SHA-512 ensemble, avec progression et annulation.",
-    "Affiche la taille déclarée, la taille réelle, le type MIME, l'extension, les 64 premiers octets en hexadécimal et ASCII, le BOM et une signature de fichier reconnue.",
-    "Normalise strictement une empreinte attendue, déduit son algorithme à partir d'une longueur valide ou d'un préfixe explicite et compare les octets de même longueur sans arrêt anticipé à la position différente.",
-    "Copie une somme de contrôle individuelle ou copie et partage le rapport d'inspection complet."
+    "Une lecture, tous les résultats : le fichier est lu séquentiellement une seule fois pendant que les sept sommes de contrôle sont calculées ensemble ; les gros fichiers n'attendent jamais plusieurs passes.",
+    "Coller pour vérifier : accepte l'hexadécimal et les empreintes, Base64, SRI et les lignes complètes de `md5sum` / `sha256sum` ; l'algorithme est détecté automatiquement et un nom de fichier différent déclenche un avertissement.",
+    "Détection du vrai format : reconnaît 26 signatures courantes dans un en-tête borné ou à des positions fixes, précise l'usage des documents APK/JAR/Office fondés sur ZIP et estime texte ou binaire d'après le taux de caractères imprimables et l'entropie.",
+    "En-tête d'un coup d'œil : affiche les {{ header_bytes }} premiers octets du fichier en vis-à-vis hexadécimal + ASCII et détecte les marques d'ordre des octets (BOM) UTF-8 / UTF-16 / UTF-32.",
+    "Double contrôle de taille : montre à la fois la taille déclarée par le gestionnaire de fichiers et la taille réellement lue ; si le fichier change pendant la lecture, l'inspection échoue immédiatement, ce qui révèle les téléchargements incomplets et les fichiers en cours d'écriture.",
+    "Progression maîtrisée : les gros fichiers affichent les octets lus, le débit et le temps restant estimé ; la lecture peut être annulée à tout moment et une inspection échouée se relance d'une pression.",
+    "Résultats prêts à l'emploi : copiez séparément une somme de contrôle ou l'instantané de l'en-tête, puis exportez le résultat complet affiché en Markdown ou JSON vers le presse-papiers ou le panneau de partage, sans créer de fichier.",
+    "Algorithmes anciens signalés : MD5 et SHA-1 portent un badge Legacy pour rappeler qu'ils ne conviennent plus comme preuve de sécurité."
   ],
-  "h3_supported_formats": "Données inspectées",
-  "p_supported_formats": "La version 1 calcule les empreintes de tout fichier ordinaire lisible et reconnaît ces signatures d'en-tête fixes au décalage 0",
-  "h3_plugin_interface": "Interface du plugin",
-  "p_plugin_interface": "L'hôte découvre et exécute le plugin avec les identités suivantes",
-  "p_plugin_scope": "La version 1 fournit une action supplémentaire en lecture seule pour un seul fichier dans le gestionnaire de fichiers principal.",
-  "p_plugin_packaging": "La version 5268 ou ultérieure de l'hôte est requise.",
-  "h3_security": "Sécurité",
-  "p_security": "Le plugin ne demande aucune autorisation de stockage ou de réseau. L'hôte accorde un accès temporaire en lecture seule au content URI cible. Le plugin vérifie précisément l'action Intent, l'URI, ClipData, le nom, le type MIME et la taille déclarée, refuse les droits d'écriture ou persistants et ne modifie jamais la source. Il refuse les différences entre taille déclarée et taille réelle ainsi que les entrées de plus de 8 TiB. Les octets sont traités avec un tampon borné et le rapport ne conserve qu'un instantané d'en-tête de 64 octets.",
-  "h3_security_limits": "Limites de sécurité",
+  "h3_usage": "Mode d'emploi",
+  "usage_steps": [
+    "Téléchargez l'APK et son fichier de contrôle homonyme `.apk.sha256` depuis la même Release officielle, installez l'APK, puis activez-le dans le centre de plugins d'AutoJs6 (code de version AutoJs6 {{ required_host_build }} ou ultérieur requis).",
+    "Avant une mise à niveau, inspectez l'APK téléchargé avec la version déjà installée de File Inspector ; lors d'une première installation, conservez l'APK et inspectez-le après l'activation du plugin. Collez le SHA-256 de 64 caractères du fichier de contrôle et exigez une correspondance verte ; les deux fichiers doivent provenir de la même page Release HTTPS de confiance.",
+    "Ouvrez le gestionnaire de fichiers d'AutoJs6 et repérez le fichier à inspecter ; tout fichier ordinaire convient.",
+    "Choisissez « Inspecter le fichier » dans le menu du fichier ; la lecture démarre aussitôt avec une progression en direct, puis les sommes de contrôle, la signature de format et les octets d'en-tête s'affichent.",
+    "Pour vérifier l'intégrité, collez la somme de contrôle publiée dans le champ « Contrôle d'intégrité » et touchez « Vérifier » : vert signifie correspondance, rouge signifie écart.",
+    "Touchez le bouton de copie près d'une somme de contrôle ou sous l'instantané de l'en-tête pour obtenir une valeur ; choisissez Markdown ou JSON avant de copier ou partager le rapport complet, puis revenez au gestionnaire de fichiers."
+  ],
+  "p_usage_note": "Le champ accepte l'hexadécimal brut, les préfixes comme `sha256: <valeur>` ou `MD5=<valeur>`, les empreintes `AB:CD:EF`, CRC32 avec `0x`, Base64 standard, SRI comme `sha256-<base64>`, et les lignes coreutils complètes `<hex>  <fichier>` ou `<hex> *<fichier>`. La casse et les espaces environnants sont ignorés ; l'algorithme est déduit lorsque la longueur est unique, et un nom de fichier différent déclenche un avertissement.",
+  "h3_supported_formats": "Signatures de format reconnues",
+  "p_supported_formats": "Les sommes de contrôle fonctionnent sur tout fichier ordinaire lisible ; en complément, la version actuelle reconnaît les signatures suivantes dans un en-tête borné ou à des positions fixes",
+  "p_supported_formats_note": "La détection utilise un échantillon borné et des champs structuraux, tels que le marqueur TAR à l'offset 257, `ftyp` d'ISO-BMFF à l'offset 4 et le pointeur d'en-tête PE. Il s'agit d'un indice rapide, pas d'une validation complète ; le taux de caractères imprimables et l'entropie sont également des estimations heuristiques. Les fichiers sans signature correspondante affichent « Inconnu » et leurs sommes sont calculées normalement.",
+  "h3_faq": "FAQ",
+  "faq": [
+    {
+      "q": "Quand ce plugin est-il utile ?",
+      "a": "Le scénario classique est la vérification des téléchargements : après avoir récupéré un installateur, un micrologiciel ou un document, collez la somme de contrôle SHA-256 (ou autre) publiée par le fournisseur et sachez immédiatement si le fichier est complet et intact. Il sert aussi à révéler le vrai format de fichiers à l'extension trompeuse, ou à produire rapidement des sommes de contrôle de n'importe quel fichier pour archivage et comparaison."
+    },
+    {
+      "q": "Une correspondance de somme de contrôle prouve-t-elle que le fichier est sûr ?",
+      "a": "Une correspondance prouve seulement que le fichier est identique octet pour octet à celui pour lequel la somme a été publiée ; la confiance dépend de la provenance de cette somme. Privilégiez les valeurs SHA-256 ou SHA-512 publiées en HTTPS par la source officielle. Des collisions MD5 et SHA-1 peuvent être fabriquées délibérément, c'est pourquoi le plugin les marque Legacy : ne les considérez pas comme une preuve de sécurité."
+    },
+    {
+      "q": "Pourquoi certains fichiers ne peuvent-ils pas être inspectés ?",
+      "a": "Raisons courantes : le fichier dépasse la limite de {{ max_input_size }} ; le fichier a été modifié par une autre application pendant la lecture, si bien que la taille réelle ne correspond plus à la taille déclarée ; ou l'autorisation en lecture seule accordée par l'hôte a expiré. Le message d'erreur précise la raison, et « Réessayer » relance l'inspection."
+    },
+    {
+      "q": "Les gros fichiers sont-ils longs à inspecter ?",
+      "a": "Le plugin lit le fichier séquentiellement une seule fois et calcule les sept sommes de contrôle pendant cette unique passe : la durée dépend de la vitesse de lecture du stockage, pas du nombre d'algorithmes. La progression s'affiche en continu et l'inspection peut être annulée à tout moment."
+    }
+  ],
+  "h3_security": "Autorisations et sécurité",
+  "p_security": "Le plugin ne demande aucune autorisation de stockage ni de réseau et n'atteint que le seul fichier choisi par l'utilisateur, via une URI content temporaire en lecture seule accordée par l'hôte ; l'autorisation expire à la fin de l'inspection et aucun autre fichier n'est accessible. Les requêtes du gestionnaire de fichiers sont validées champ par champ — identifiant d'action, version de protocole, forme de l'URI content, nom de fichier, type MIME, taille déclarée et autorisations en lecture seule — et toute requête portant une autorisation d'écriture ou persistante est rejetée d'emblée. Le fichier est traité en flux et en lecture seule ; la mémoire ne conserve que des tampons bornés, les {{ analysis_sample_bytes }} premiers octets pour l'analyse, les {{ header_bytes }} premiers pour l'affichage et une fenêtre de quatre octets pour la signature PE, sans jamais modifier le fichier source.",
+  "p_security_bounds_intro": "Pour garder chaque inspection prévisible, le plugin applique les bornes suivantes",
   "security_limits": [
-    "Taille maximale de l'entrée: `{{ max_input_size }}`.",
-    "Instantané de l'en-tête: `{{ header_size }}`.",
-    "Texte maximal de l'empreinte attendue: `{{ digest_input_max }}`.",
-    "Un fichier cible par action.",
-    "La détection de signature utilise uniquement des octets fixes au décalage 0 et ne constitue pas une validation complète du format.",
-    "MD5 et SHA-1 sont affichés comme empreintes héritées et ne doivent pas être considérés comme des preuves de sécurité résistantes aux collisions."
+    "Un fichier ne peut dépasser {{ max_input_size }}, et chaque action traite exactement un fichier cible.",
+    "L'analyse échantillonne au plus les {{ analysis_sample_bytes }} premiers octets, plus une fenêtre de signature PE de quatre octets, tandis que l'en-tête affiché reste limité à {{ header_bytes }} octets ; la saisie est limitée à {{ digest_input_max_chars }} caractères, les caractères non ASCII n'étant admis que dans un nom de fichier coreutils.",
+    "Si la taille réellement lue diffère de la taille déclarée, le fichier est considéré comme modifié et l'inspection échoue avec un message.",
+    "La comparaison des sommes de contrôle s'effectue en temps constant sur des valeurs de même longueur ; MD5 et SHA-1 ne servent qu'à contrôler des données anciennes et ne doivent pas être tenus pour résistants aux collisions."
   ],
+  "h3_plugin_interface": "Interface du plugin",
+  "p_plugin_interface": "L'hôte (AutoJs6) découvre et invoque le plugin via les identités suivantes, fournies pour les développeurs de plugins et d'hôtes",
+  "p_plugin_scope": "La version actuelle ajoute au gestionnaire de fichiers de l'hôte une action de menu en lecture seule portant sur un seul fichier ; elle ne modifie jamais le fichier source et n'énumère jamais de répertoires. Si le plugin est absent ou désactivé, l'hôte revient silencieusement à son comportement par défaut.",
+  "p_roadmap": "Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'existant ; les travaux futurs, tels que les algorithmes nécessitant un fournisseur, la vérification par lots et les extensions du protocole hôte, y sont suivis, et les éléments non cochés ne sont pas des capacités actuelles",
   "h3_release_history": "Historique des versions",
-  "h5_for_more_release_history": "Pour consulter davantage de versions",
+  "h5_for_more_release_history": "Historique complet",
   "h3_build": "Compilation",
-  "text_release_build": "Compilation Release",
-  "p_build_params": "Les paramètres de compilation proviennent de `version.properties`. Le SDK minimal actuel est 24 et le SDK cible est 36",
-  "h3_resource_layout": "Structure des ressources",
-  "p_resource_layout": "`strings.xml` localise les métadonnées du plugin et le texte de l'interface. `plugin_instruction.md` fournit les instructions visibles depuis l'hôte. `.python/generate_markdown.py` génère les fichiers README et les historiques localisés depuis les sources JSON",
+  "text_release_build": "Compilation release",
+  "p_build_params": "Les paramètres de compilation et de signature proviennent de version.properties et sign.properties ; le minimum actuel est Android 7.0 (SDK 24) avec un SDK cible 36",
+  "p_resource_layout": "Les README, CHANGELOG et instructions intégrées sous res/raw*/plugin_instruction.md sont générés par .python/generate_markdown.py à partir des sources JSON et des modèles de .readme/ et .changelog/ (10 langues). Pour modifier la documentation, éditez les sources JSON puis relancez le script au lieu de modifier le Markdown généré",
   "h3_links": "Liens",
   "text_link_autojs6_docs": "Documentation AutoJs6",
-  "text_link_android_secure_file_sharing": "Partage sécurisé de fichiers Android"
+  "text_link_android_secure_file_sharing": "Partage de fichiers sécurisé Android"
 }

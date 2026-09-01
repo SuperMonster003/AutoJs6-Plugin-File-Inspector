@@ -8,24 +8,29 @@
     "v1.0.1": {
       "released_date": "2026/08/08",
       "fix": [
-        "Null service binding when enabling the plugin in Plugin Center"
+        "Fixed the host failing to bind the plugin service after enabling it in the plugin center; the \"Inspect file\" action is now available immediately after enabling"
       ],
       "improvement": [
-        "Clearer and more concise plugin name, description, and user documentation"
+        "Streamlined the plugin name and description so the user-facing documentation reads more naturally"
       ]
     },
     "v1.0.0": {
       "released_date": "2026/08/02",
+      "hint": [
+        "First public release; requires AutoJs6 version code {{ required_host_build }} or later"
+      ],
       "feature": [
-        "File Inspector plugin with plugin ID `file-inspector`, action ID `inspect-file`, engine `explorer-action`, and variant `default`",
-        "Read-only single-file Explorer action for any readable regular file, with an 8 TiB input limit and no storage or network permission",
-        "One-pass CRC32, MD5, SHA-1, SHA-256, and SHA-512 calculation with progress and cancellation",
-        "Strict expected digest normalization and verification with algorithm inference, explicit prefixes, and constant-time comparison of equal-length bytes",
-        "A 64-byte hexadecimal and ASCII header snapshot, BOM detection, and recognition of ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, and SQLite 3 signatures",
-        "Localized metadata, interface text, usage instructions, README files, and changelogs in Spanish, French, Russian, Arabic, Japanese, Korean, English, Simplified Chinese, Hong Kong Traditional Chinese, and Taiwan Traditional Chinese"
+        "Added the read-only \"Inspect file\" action to the AutoJs6 file manager's file menu, working on regular files of any type (plugin ID `file-inspector`, action ID `inspect-file`)",
+        "One sequential read computes the {{ algorithm_list }} checksums together, with live progress plus cancel and retry",
+        "Paste an expected checksum for integrity verification: the algorithm is detected by length or by prefixes such as `sha256:`, fingerprint notation like `AB:CD:EF` and the CRC32 `0x` prefix are accepted, and comparison is constant-time over equal-length values",
+        "The report shows the file name, MIME type, extension, declared and actual sizes, a hex + ASCII snapshot of the first {{ header_bytes }} bytes, and UTF BOM detection",
+        "Recognizes 10 common formats from leading signature bytes: {{ supported_formats_v1_0_0 }}",
+        "Each checksum can be copied individually, the full report can be copied or shared through the system share sheet, and MD5 and SHA-1 carry a Legacy badge",
+        "The plugin requests no storage or network permission and reads files only through the temporary read-only content URI granted by the host, up to {{ max_input_size }} per file",
+        "Ships UI text, instructions, README, and CHANGELOG in 10 languages: Simplified Chinese, Traditional Chinese (Hong Kong), Traditional Chinese (Taiwan), English, French, Spanish, Japanese, Korean, Russian, and Arabic"
       ],
       "dependency": [
-        "Added AndroidX Lifecycle ViewModel version 2.9.4"
+        "Introduced AndroidX Lifecycle ViewModel 2.9.4"
       ]
     }
   }

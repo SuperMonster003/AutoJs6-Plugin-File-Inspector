@@ -1,10 +1,13 @@
 package io.github.supermonster003.autojs6.plugin.fileinspector
 
 import android.app.Application
+import android.os.SystemClock
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.FileInspectionEngine
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionPolicy
+import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionRate
+import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionRateEstimator
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionReport
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectorSource
 import kotlinx.coroutines.CancellationException
@@ -18,7 +21,10 @@ import kotlinx.coroutines.withContext
 
 internal sealed interface FileInspectorUiState {
     data object Idle : FileInspectorUiState
-    data class Running(val bytesRead: Long) : FileInspectorUiState
+    data class Running(
+        val bytesRead: Long,
+        val rate: InspectionRate?,
+    ) : FileInspectorUiState
     data class Complete(val report: InspectionReport) : FileInspectorUiState
     data object Canceled : FileInspectorUiState
     data class Failed(val error: Throwable) : FileInspectorUiState
@@ -53,7 +59,14 @@ internal class FileInspectorViewModel(application: Application) : AndroidViewMod
         generation += 1L
         val operationGeneration = generation
         activeJob?.cancel()
-        _state.value = FileInspectorUiState.Running(0L)
+        val rateEstimator = InspectionRateEstimator().apply {
+            update(
+                bytesRead = 0L,
+                totalBytes = request.declaredSize,
+                elapsedRealtimeMillis = SystemClock.elapsedRealtime(),
+            )
+        }
+        _state.value = FileInspectorUiState.Running(bytesRead = 0L, rate = null)
         activeJob = viewModelScope.launch {
             try {
                 val report = withContext(Dispatchers.IO) {
@@ -73,7 +86,14 @@ internal class FileInspectorViewModel(application: Application) : AndroidViewMod
                         ),
                     ) { progress ->
                         if (operationGeneration == generation && !progress.isComplete) {
-                            _state.value = FileInspectorUiState.Running(progress.bytesRead)
+                            _state.value = FileInspectorUiState.Running(
+                                bytesRead = progress.bytesRead,
+                                rate = rateEstimator.update(
+                                    bytesRead = progress.bytesRead,
+                                    totalBytes = progress.declaredSize,
+                                    elapsedRealtimeMillis = SystemClock.elapsedRealtime(),
+                                ),
+                            )
                         }
                     }
                 }

@@ -25,7 +25,16 @@ class FileInspectionEngineTest {
         assertEquals("00000000", report[DigestAlgorithm.CRC32].hex)
         assertEquals("d41d8cd98f00b204e9800998ecf8427e", report[DigestAlgorithm.MD5].hex)
         assertEquals("da39a3ee5e6b4b0d3255bfef95601890afd80709", report[DigestAlgorithm.SHA1].hex)
+        assertEquals(
+            "d14a028c2a3a2bc9476102bb288234c415a2b01f828ea62ac5b3e42f",
+            report[DigestAlgorithm.SHA224].hex,
+        )
         assertEquals("e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", report[DigestAlgorithm.SHA256].hex)
+        assertEquals(
+            "38b060a751ac96384cd9327eb1b1e36a21fdb71114be07434c0cc7bf63f6e1da" +
+                    "274edebfe76f65fbd51ad2f14898b95b",
+            report[DigestAlgorithm.SHA384].hex,
+        )
         assertEquals(
             "cf83e1357eefb8bdf1542850d66d8007d620e4050b5715dc83f4a921d36ce9ce" +
                     "47d0d13c5d85f2b0ff8318d2877eec2f63b931bd47417a81a538327af927da3e",
@@ -48,7 +57,16 @@ class FileInspectionEngineTest {
         assertEquals("cbf43926", report[DigestAlgorithm.CRC32].hex)
         assertEquals("25f9e794323b453885f5181f1b624d0b", report[DigestAlgorithm.MD5].hex)
         assertEquals("f7c3bc1d808e04732adf679965ccc34ca7ae3441", report[DigestAlgorithm.SHA1].hex)
+        assertEquals(
+            "9b3e61bf29f17c75572fae2e86e17809a4513d07c8a18152acf34521",
+            report[DigestAlgorithm.SHA224].hex,
+        )
         assertEquals("15e2b0d3c33891ebb0f1ef609ec419420c20e320ce94c65fbc8c3312448eb225", report[DigestAlgorithm.SHA256].hex)
+        assertEquals(
+            "eb455d56d2c1a69de64e832011f3393d45f3fa31d6842f21af92d2fe469c499" +
+                    "da5e3179847334a18479c8d1dedea1be3",
+            report[DigestAlgorithm.SHA384].hex,
+        )
         assertEquals(
             "d9e6762dd1c8eaf6d61b3c6192fc408d4d6d5f1176d0c29169bc24e71c3f274" +
                     "ad27fcd5811b313d681f7e55ec02d73d499c95455b6b5bb503acf574fba8ffe85",
@@ -269,6 +287,53 @@ class FileInspectionEngineTest {
 
         assertEquals(InspectionPolicy.HEADER_BYTES, report.header.bytes.size)
         assertTrue(report.header.bytes.contentEquals(data.copyOf(InspectionPolicy.HEADER_BYTES)))
+    }
+
+    @Test
+    fun capturesTarOffsetAndAnalysisSampleAcrossSmallReadChunks() {
+        val data = ByteArray(512).apply {
+            "ustar\u0000".encodeToByteArray().copyInto(this, destinationOffset = 257)
+        }
+        val source = TestSource(
+            data = data,
+            declaredSize = data.size.toLong(),
+            streamFactory = { bytes -> TrackingInputStream(bytes, maxChunk = 7) },
+        )
+
+        val report = inspect(source, InspectionPolicy(bufferBytes = 11))
+
+        assertEquals(listOf(FileSignature.TAR), report.header.signatures)
+        assertEquals(InspectionPolicy.HEADER_BYTES, report.header.bytes.size)
+        assertEquals(data.size, report.header.content.sampleSize)
+        assertEquals(1, source.openCount)
+        assertEquals(data.size, source.lastStream?.position)
+    }
+
+    @Test
+    fun capturesPeSignatureBeyondAnalysisPrefixWithoutSeekingOrSecondPass() {
+        val peOffset = InspectionPolicy.ANALYSIS_SAMPLE_BYTES + 317
+        val data = ByteArray(peOffset + 4).apply {
+            this[0] = 'M'.code.toByte()
+            this[1] = 'Z'.code.toByte()
+            this[0x3C] = peOffset.toByte()
+            this[0x3D] = (peOffset ushr 8).toByte()
+            this[0x3E] = (peOffset ushr 16).toByte()
+            this[0x3F] = (peOffset ushr 24).toByte()
+            byteArrayOf('P'.code.toByte(), 'E'.code.toByte(), 0, 0)
+                .copyInto(this, destinationOffset = peOffset)
+        }
+        val source = TestSource(
+            data = data,
+            declaredSize = data.size.toLong(),
+            streamFactory = { bytes -> TrackingInputStream(bytes, maxChunk = 13) },
+        )
+
+        val report = inspect(source, InspectionPolicy(bufferBytes = 29))
+
+        assertEquals(listOf(FileSignature.PE), report.header.signatures)
+        assertEquals(InspectionPolicy.ANALYSIS_SAMPLE_BYTES, report.header.content.sampleSize)
+        assertEquals(1, source.openCount)
+        assertEquals(data.size, source.lastStream?.position)
     }
 
     private fun inspect(

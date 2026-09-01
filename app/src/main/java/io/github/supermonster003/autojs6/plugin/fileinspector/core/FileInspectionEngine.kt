@@ -25,8 +25,7 @@ class FileInspectionEngine {
         val crc32 = CRC32()
         val messageDigests = createMessageDigests()
         val buffer = ByteArray(policy.bufferBytes)
-        val header = ByteArray(InspectionPolicy.HEADER_BYTES)
-        var headerSize = 0
+        val sampleCollector = InspectionSampleCollector()
         var bytesRead = 0L
         var lastProgressBytes = 0L
 
@@ -69,11 +68,7 @@ class FileInspectionEngine {
                     )
                 }
 
-                if (headerSize < header.size) {
-                    val copyCount = minOf(count, header.size - headerSize)
-                    buffer.copyInto(header, destinationOffset = headerSize, endIndex = copyCount)
-                    headerSize += copyCount
-                }
+                sampleCollector.accept(fileOffset = bytesRead, source = buffer, count = count)
                 crc32.update(buffer, 0, count)
                 messageDigests.values.forEach { digest -> digest.update(buffer, 0, count) }
                 bytesRead += countLong
@@ -103,7 +98,7 @@ class FileInspectionEngine {
         val report = InspectionReport(
             bytesRead = bytesRead,
             digests = values,
-            header = HeaderInspector.inspect(header.copyOf(headerSize)),
+            header = HeaderInspector.inspect(sampleCollector.snapshot()),
         )
         onProgress(InspectionProgress(bytesRead, declaredSize, isComplete = true))
         return report

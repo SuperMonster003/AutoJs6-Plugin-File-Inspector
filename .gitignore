@@ -7,6 +7,7 @@
 *.ffs_db
 *.patch
 *.salive
+*.pre-platform-versions.bak
 .tmp_*.txt
 *.py[cod]
 
@@ -34,7 +35,8 @@ __pycache__/
 /plugin-api/**/build/
 /captures/
 /release/
-/releases/
+/releases/*
+!/releases/*.sha256
 /tools/*
 !/tools/nodejs/
 !/tools/nodejs/**

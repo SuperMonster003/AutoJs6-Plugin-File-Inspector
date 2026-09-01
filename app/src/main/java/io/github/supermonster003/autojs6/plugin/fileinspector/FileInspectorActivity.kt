@@ -4,27 +4,33 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Intent
 import android.os.Bundle
+import android.text.format.DateUtils
 import android.text.format.Formatter
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.color.MaterialColors
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.DigestInputError
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.DigestInputNormalizer
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.DigestParseResult
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.DigestVerifier
+import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionRate
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionReport
+import io.github.supermonster003.autojs6.plugin.fileinspector.core.InspectionReportFormat
 import io.github.supermonster003.autojs6.plugin.fileinspector.core.VerificationStatus
+import io.github.supermonster003.autojs6.plugin.fileinspector.core.ZipContainerInspector
 import io.github.supermonster003.autojs6.plugin.fileinspector.databinding.ActivityFileInspectorBinding
 import kotlinx.coroutines.launch
 import java.io.FileNotFoundException
-import java.util.Locale
 
 class FileInspectorActivity : AppCompatActivity() {
 
@@ -44,6 +50,7 @@ class FileInspectorActivity : AppCompatActivity() {
         request = validatedRequest
         binding = ActivityFileInspectorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        applySystemBarContrast()
         bindStaticContent()
         bindActions()
         observeState()
@@ -54,13 +61,23 @@ class FileInspectorActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { finish() }
         fileName.text = request.displayName
         mimeType.text = getString(R.string.file_mime_type, request.mimeType)
-        extension.text = getString(R.string.file_extension, request.displayName.fileExtension())
+        extension.text = getString(
+            R.string.file_extension,
+            request.displayName.fileExtensionOrNull() ?: getString(R.string.no_extension),
+        )
         declaredSize.text = getString(
             R.string.declared_size,
             Formatter.formatFileSize(this@FileInspectorActivity, request.declaredSize),
         )
         digestList.layoutManager = LinearLayoutManager(this@FileInspectorActivity)
         digestList.adapter = digestAdapter
+        listOf(
+            fileName,
+            fileInformationTitle,
+            reportFormatLabel,
+            integrityCheckTitle,
+            fileHeaderTitle,
+        ).forEach { heading -> ViewCompat.setAccessibilityHeading(heading, true) }
     }
 
     private fun bindActions() = with(binding) {
@@ -68,12 +85,26 @@ class FileInspectorActivity : AppCompatActivity() {
         retry.setOnClickListener { viewModel.retry(request) }
         copyReport.setOnClickListener {
             viewModel.completedReport()?.let { report ->
-                copyText(getString(R.string.app_name), buildInspectionReport(request, report))
+                val format = selectedReportFormat()
+                copyText(
+                    getString(R.string.app_name),
+                    buildInspectionReport(request, report, format),
+                )
                 Toast.makeText(this@FileInspectorActivity, R.string.report_copied, Toast.LENGTH_SHORT).show()
             }
         }
         shareReport.setOnClickListener {
-            viewModel.completedReport()?.let { report -> shareReport(buildInspectionReport(request, report)) }
+            viewModel.completedReport()?.let { report ->
+                val format = selectedReportFormat()
+                shareReport(buildInspectionReport(request, report, format), format)
+            }
+        }
+        copyHeader.setOnClickListener {
+            viewModel.completedReport()?.let { report ->
+                val header = report.header.bytes.formatHeader().ifEmpty { getString(R.string.header_empty) }
+                copyText(getString(R.string.file_header), header)
+                Toast.makeText(this@FileInspectorActivity, R.string.header_copied, Toast.LENGTH_SHORT).show()
+            }
         }
         verify.setOnClickListener { verifyExpectedDigest() }
     }
@@ -88,28 +119,54 @@ class FileInspectorActivity : AppCompatActivity() {
 
     private fun render(state: FileInspectorUiState) = with(binding) {
         when (state) {
-            FileInspectorUiState.Idle -> renderRunning(bytesRead = 0L)
-            is FileInspectorUiState.Running -> renderRunning(state.bytesRead)
+            FileInspectorUiState.Idle -> renderRunning(bytesRead = 0L, rate = null)
+            is FileInspectorUiState.Running -> renderRunning(state.bytesRead, state.rate)
             is FileInspectorUiState.Complete -> renderComplete(state.report)
             FileInspectorUiState.Canceled -> renderStopped(getString(R.string.inspect_canceled))
             is FileInspectorUiState.Failed -> renderStopped(errorMessage(state.error))
         }
     }
 
-    private fun renderRunning(bytesRead: Long) = with(binding) {
+    private fun renderRunning(
+        bytesRead: Long,
+        rate: InspectionRate?,
+    ) = with(binding) {
         resultsContainer.isVisible = false
         progress.isVisible = true
         cancel.isVisible = true
         retry.isVisible = false
+        status.accessibilityLiveRegion = View.ACCESSIBILITY_LIVE_REGION_NONE
         if (request.declaredSize > 0L) {
             progress.isIndeterminate = false
             progress.progress = ((bytesRead * 100.0 / request.declaredSize).toInt()).coerceIn(0, 100)
-            status.text = getString(
-                R.string.inspect_progress,
-                Formatter.formatFileSize(this@FileInspectorActivity, bytesRead),
-                Formatter.formatFileSize(this@FileInspectorActivity, request.declaredSize),
-                progress.progress,
+            val bytesReadDisplay = Formatter.formatFileSize(this@FileInspectorActivity, bytesRead)
+            val totalBytesDisplay = Formatter.formatFileSize(
+                this@FileInspectorActivity,
+                request.declaredSize,
             )
+            status.text = if (rate?.remainingMillis != null) {
+                getString(
+                    R.string.inspect_progress_with_estimate,
+                    bytesReadDisplay,
+                    totalBytesDisplay,
+                    progress.progress,
+                    Formatter.formatFileSize(this@FileInspectorActivity, rate.bytesPerSecond),
+                    DateUtils.formatElapsedTime(
+                        (
+                            rate.remainingMillis / MILLIS_PER_SECOND +
+                                if (rate.remainingMillis % MILLIS_PER_SECOND == 0L) 0L else 1L
+                        )
+                            .coerceAtLeast(1L),
+                    ),
+                )
+            } else {
+                getString(
+                    R.string.inspect_progress,
+                    bytesReadDisplay,
+                    totalBytesDisplay,
+                    progress.progress,
+                )
+            }
         } else {
             progress.isIndeterminate = true
             status.setText(R.string.inspect_starting)
@@ -120,6 +177,7 @@ class FileInspectorActivity : AppCompatActivity() {
         progress.isVisible = false
         cancel.isVisible = false
         retry.isVisible = false
+        status.accessibilityLiveRegion = View.ACCESSIBILITY_LIVE_REGION_POLITE
         status.setText(R.string.inspect_complete)
         resultsContainer.isVisible = true
         actualSize.isVisible = true
@@ -132,6 +190,11 @@ class FileInspectorActivity : AppCompatActivity() {
             R.string.detected_format,
             report.header.signatures.formatSignatures(this@FileInspectorActivity),
         )
+        val zipHint = ZipContainerInspector.inspect(request.displayName, report.header.signatures)
+        containerHint.isVisible = zipHint != null
+        containerHint.text = zipHint?.formatZipContainerHint(this@FileInspectorActivity)
+        contentAnalysis.isVisible = true
+        contentAnalysis.text = report.header.content.formatContentAnalysis(this@FileInspectorActivity)
         textEncoding.isVisible = true
         textEncoding.text = getString(
             R.string.text_encoding,
@@ -146,12 +209,14 @@ class FileInspectorActivity : AppCompatActivity() {
         progress.isVisible = false
         cancel.isVisible = false
         retry.isVisible = true
+        status.accessibilityLiveRegion = View.ACCESSIBILITY_LIVE_REGION_POLITE
         status.text = message
     }
 
     private fun verifyExpectedDigest() {
         val report = viewModel.completedReport() ?: return
         binding.expectedDigestLayout.error = null
+        binding.verificationFileNameWarning.isVisible = false
         when (val parsed = DigestInputNormalizer.parse(binding.expectedDigest.text?.toString().orEmpty())) {
             is DigestParseResult.Invalid -> {
                 binding.expectedDigestLayout.error = getString(parsed.reason.errorResource())
@@ -173,6 +238,18 @@ class FileInspectorActivity : AppCompatActivity() {
                         ),
                     )
                 }
+                parsed.value.sourceFileName?.takeIf {
+                    parsed.value.hasSourceFileNameMismatch(request.displayName)
+                }?.let { sourceFileName ->
+                    binding.verificationFileNameWarning.apply {
+                        isVisible = true
+                        text = getString(
+                            R.string.verification_file_name_mismatch,
+                            sourceFileName,
+                            request.displayName,
+                        )
+                    }
+                }
             }
         }
     }
@@ -191,17 +268,43 @@ class FileInspectorActivity : AppCompatActivity() {
             .setPrimaryClip(ClipData.newPlainText(label, value))
     }
 
-    private fun shareReport(report: String) {
+    private fun shareReport(report: String, format: InspectionReportFormat) {
         startActivity(
             Intent.createChooser(
                 Intent(Intent.ACTION_SEND).apply {
-                    type = "text/plain"
+                    type = when (format) {
+                        InspectionReportFormat.MARKDOWN -> "text/markdown"
+                        InspectionReportFormat.JSON -> "application/json"
+                    }
                     putExtra(Intent.EXTRA_SUBJECT, request.displayName)
                     putExtra(Intent.EXTRA_TEXT, report)
                 },
                 getString(R.string.report_share_title),
             ),
         )
+    }
+
+    private fun selectedReportFormat(): InspectionReportFormat =
+        if (binding.reportFormatJson.isChecked) {
+            InspectionReportFormat.JSON
+        } else {
+            InspectionReportFormat.MARKDOWN
+        }
+
+    @Suppress("DEPRECATION")
+    private fun applySystemBarContrast() {
+        val primary = MaterialColors.getColor(this, androidx.appcompat.R.attr.colorPrimary, 0)
+        val surface = MaterialColors.getColor(
+            this,
+            com.google.android.material.R.attr.colorSurface,
+            0,
+        )
+        window.statusBarColor = primary
+        window.navigationBarColor = surface
+        WindowInsetsControllerCompat(window, binding.root).apply {
+            isAppearanceLightStatusBars = MaterialColors.isColorLight(primary)
+            isAppearanceLightNavigationBars = MaterialColors.isColorLight(surface)
+        }
     }
 
     private fun errorMessage(error: Throwable): String = when (error) {
@@ -221,12 +324,7 @@ class FileInspectorActivity : AppCompatActivity() {
         else -> R.string.error_digest_invalid
     }
 
-    private fun String.fileExtension(): String {
-        val delimiter = lastIndexOf('.')
-        return if (delimiter <= 0 || delimiter == lastIndex) {
-            getString(R.string.no_extension)
-        } else {
-            substring(delimiter + 1).lowercase(Locale.ROOT)
-        }
+    private companion object {
+        const val MILLIS_PER_SECOND = 1_000L
     }
 }

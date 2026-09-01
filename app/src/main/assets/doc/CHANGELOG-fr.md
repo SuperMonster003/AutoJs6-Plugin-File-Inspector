@@ -1,24 +1,23 @@
-******
+# Historique des versions
 
-### Historique des versions
+## v1.0.1
 
-******
+_2026/08/08_
 
-# v1.0.1
+- `Correctif` Correction de l'échec de liaison du service par l'hôte après activation dans le centre de plugins ; l'action « Inspecter le fichier » est désormais disponible dès l'activation
+- `Amélioration` Nom et description du plugin allégés pour une documentation utilisateur plus naturelle à lire
 
-###### 2026/08/08
+## v1.0.0
 
-* `Correctif` Liaison de service nulle lors de l'activation du plugin dans le centre des plugins
-* `Amélioration` Nom, description et documentation utilisateur plus clairs et concis
+_2026/08/02_
 
-# v1.0.0
-
-###### 2026/08/02
-
-* `Fonctionnalité` Plugin File Inspector avec l'ID de plugin `file-inspector`, l'ID d'action `inspect-file`, le moteur `explorer-action` et la variante `default`
-* `Fonctionnalité` Action de l'explorateur en lecture seule pour un seul fichier ordinaire lisible, avec une limite d'entrée de 8 TiB et sans autorisation de stockage ou de réseau
-* `Fonctionnalité` Calcul de CRC32, MD5, SHA-1, SHA-256 et SHA-512 en une seule lecture avec progression et annulation
-* `Fonctionnalité` Normalisation et vérification strictes de l'empreinte attendue avec déduction de l'algorithme, préfixes explicites et comparaison en temps constant des octets de même longueur
-* `Fonctionnalité` Instantané d'en-tête de 64 octets en hexadécimal et ASCII, détection du BOM et reconnaissance des signatures ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX et SQLite 3
-* `Fonctionnalité` Métadonnées, textes de l'interface, instructions, fichiers README et historiques localisés en espagnol, français, russe, arabe, japonais, coréen, anglais, chinois simplifié, chinois traditionnel de Hong Kong et chinois traditionnel de Taïwan
-* `Dépendance` Ajout de AndroidX Lifecycle ViewModel version 2.9.4
+- `Note` Première version publique ; requiert AutoJs6 avec un code de version 5268 ou ultérieur
+- `Fonctionnalité` Ajout de l'action en lecture seule « Inspecter le fichier » au menu des fichiers du gestionnaire AutoJs6, pour les fichiers ordinaires de tout type (ID de plugin `file-inspector`, ID d'action `inspect-file`)
+- `Fonctionnalité` Une seule lecture séquentielle calcule ensemble les sommes de contrôle CRC32, MD5, SHA-1, SHA-256, SHA-512, avec progression en direct, annulation et nouvelle tentative
+- `Fonctionnalité` Collage d'une somme de contrôle attendue pour vérifier l'intégrité : algorithme détecté par la longueur ou par des préfixes comme `sha256:`, notation d'empreinte `AB:CD:EF` et préfixe `0x` de CRC32 acceptés, comparaison en temps constant sur valeurs de même longueur
+- `Fonctionnalité` Le rapport affiche le nom du fichier, le type MIME, l'extension, les tailles déclarée et réelle, un instantané hex + ASCII des 64 premiers octets et la détection des BOM UTF
+- `Fonctionnalité` Reconnaissance de 10 formats courants d'après les octets de signature en tête : ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
+- `Fonctionnalité` Chaque somme de contrôle peut être copiée individuellement, le rapport complet copié ou partagé via le panneau système, et MD5 et SHA-1 portent un badge Legacy
+- `Fonctionnalité` Le plugin ne demande aucune autorisation de stockage ni de réseau et lit les fichiers uniquement via l'URI content temporaire en lecture seule accordée par l'hôte, jusqu'à 8 TiB par fichier
+- `Fonctionnalité` Textes d'interface, instructions, README et CHANGELOG fournis en 10 langues : chinois simplifié, chinois traditionnel (Hong Kong), chinois traditionnel (Taïwan), anglais, français, espagnol, japonais, coréen, russe et arabe
+- `Dépendance` Introduction d'AndroidX Lifecycle ViewModel 2.9.4
