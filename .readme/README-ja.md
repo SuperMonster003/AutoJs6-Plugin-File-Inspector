@@ -124,10 +124,11 @@ required host build: 5268
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `修正` プラグインセンターで有効化した後にホストがサービスへバインドできない問題を修正. 有効化直後から「ファイルを検査」アクションが使えるようになりました
 - `改善` プラグインの名称と説明を簡潔にし, ユーザー向けドキュメントをより自然で読みやすい表現に調整
+- `改善` 意図しないネイティブ依存関係をビルド時に拒否し, JSON レポートを生成
 
 #### v1.0.0
 
@@ -169,3 +170,6 @@ README, CHANGELOG, res/raw*/plugin_instruction.md のプラグイン内説明は
 
 - AutoJs6ドキュメント: https://docs.autojs6.com
 - Androidの安全なファイル共有: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/docs/16kb.md)

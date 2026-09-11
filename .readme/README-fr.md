@@ -124,10 +124,11 @@ Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'ex
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Correctif` Correction de l'échec de liaison du service par l'hôte après activation dans le centre de plugins ; l'action « Inspecter le fichier » est désormais disponible dès l'activation
 - `Amélioration` Nom et description du plugin allégés pour une documentation utilisateur plus naturelle à lire
+- `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 #### v1.0.0
 
@@ -169,3 +170,6 @@ Les README, CHANGELOG et instructions intégrées sous res/raw*/plugin_instructi
 
 - Documentation AutoJs6: https://docs.autojs6.com
 - Partage de fichiers sécurisé Android: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/docs/16kb.md)

@@ -2,10 +2,11 @@
 
 ## v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Fix` Fixed the host failing to bind the plugin service after enabling it in the plugin center; the "Inspect file" action is now available immediately after enabling
 - `Improvement` Streamlined the plugin name and description so the user-facing documentation reads more naturally
+- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 ## v1.0.0
 

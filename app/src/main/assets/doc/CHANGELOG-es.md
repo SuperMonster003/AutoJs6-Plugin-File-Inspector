@@ -2,10 +2,11 @@
 
 ## v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Corrección` Corregido el fallo por el que el anfitrión no podía enlazar el servicio del plugin tras activarlo en el centro de plugins; la acción «Inspeccionar archivo» queda disponible inmediatamente después de activarlo
 - `Mejora` Nombre y descripción del plugin simplificados para que la documentación de usuario se lea con más naturalidad
+- `Mejora` La verificación de compilación rechaza dependencias nativas accidentales y genera un informe JSON
 
 ## v1.0.0
 

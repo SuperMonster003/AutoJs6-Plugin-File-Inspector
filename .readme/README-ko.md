@@ -124,10 +124,11 @@ required host build: 5268
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `수정` 플러그인 센터에서 활성화한 뒤 호스트가 플러그인 서비스에 바인딩하지 못하던 문제를 수정. 이제 활성화 직후부터 "파일 검사" 동작을 바로 사용할 수 있습니다
 - `개선` 플러그인 이름과 설명을 간결하게 다듬어 사용자 문서가 더 자연스럽게 읽히도록 개선
+- `개선` 빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성
 
 #### v1.0.0
 
@@ -169,3 +170,6 @@ README, CHANGELOG와 res/raw*/plugin_instruction.md의 플러그인 내 설명�
 
 - AutoJs6 문서: https://docs.autojs6.com
 - Android 안전한 파일 공유: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/docs/16kb.md)

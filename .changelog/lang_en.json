@@ -6,12 +6,13 @@
   "changelog_label_dependency": "Dependency",
   "$data": {
     "v1.0.1": {
-      "released_date": "2026/08/08",
+      "released_date": "2026/09/11",
       "fix": [
         "Fixed the host failing to bind the plugin service after enabling it in the plugin center; the \"Inspect file\" action is now available immediately after enabling"
       ],
       "improvement": [
-        "Streamlined the plugin name and description so the user-facing documentation reads more naturally"
+        "Streamlined the plugin name and description so the user-facing documentation reads more naturally",
+        "Build verification rejects accidental native dependencies and produces a JSON report"
       ]
     },
     "v1.0.0": {

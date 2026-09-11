@@ -2,10 +2,11 @@
 
 ## v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Correctif` Correction de l'échec de liaison du service par l'hôte après activation dans le centre de plugins ; l'action « Inspecter le fichier » est désormais disponible dès l'activation
 - `Amélioration` Nom et description du plugin allégés pour une documentation utilisateur plus naturelle à lire
+- `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 ## v1.0.0
 

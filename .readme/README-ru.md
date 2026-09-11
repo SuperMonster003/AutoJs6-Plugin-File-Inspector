@@ -124,10 +124,11 @@ required host build: 5268
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `Исправление` Исправлена ошибка, из-за которой хост не мог привязаться к службе плагина после включения в центре плагинов; теперь действие «Проверить файл» доступно сразу после включения
 - `Улучшение` Название и описание плагина упрощены, чтобы пользовательская документация читалась естественнее
+- `Улучшение` Проверка сборки отклоняет непреднамеренные нативные зависимости и создает отчет JSON
 
 #### v1.0.0
 
@@ -169,3 +170,6 @@ README, CHANGELOG и встроенные инструкции res/raw*/plugin_i
 
 - Документация AutoJs6: https://docs.autojs6.com
 - Безопасный обмен файлами в Android: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/docs/16kb.md)

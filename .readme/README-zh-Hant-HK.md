@@ -124,10 +124,11 @@ required host build: 5268
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `修復` 修復插件在插件中心啟用後宿主無法綁定服務的問題; 現在啟用後「檢查檔案」動作立即可用
 - `優化` 精簡插件名稱與描述, 使用戶文檔表述更自然易讀
+- `優化` 建置階段阻止意外引入原生相依套件, 並輸出 JSON 校驗報告
 
 #### v1.0.0
 
@@ -169,3 +170,6 @@ README、CHANGELOG 與 res/raw*/plugin_instruction.md 插件內說明均由 .pyt
 
 - AutoJs6 文檔: https://docs.autojs6.com
 - Android 安全檔案分享: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/docs/16kb.md)

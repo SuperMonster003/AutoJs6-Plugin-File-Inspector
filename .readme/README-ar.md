@@ -124,10 +124,11 @@ required host build: 5268
 
 #### v1.0.1
 
-_2026/08/08_
+_2026/09/11_
 
 - `إصلاح` إصلاح تعذر ربط المضيف بخدمة الإضافة بعد تفعيلها في مركز الإضافات؛ أصبح إجراء «فحص الملف» متاحًا فور التفعيل
 - `تحسين` تبسيط اسم الإضافة ووصفها لتصبح وثائق المستخدم أكثر سلاسة ووضوحًا
+- `تحسين` التحقق أثناء البناء لمنع إدخال تبعيات أصلية غير مقصودة, مع تقرير JSON
 
 #### v1.0.0
 
@@ -169,3 +170,6 @@ _2026/08/02_
 
 - وثائق AutoJs6: https://docs.autojs6.com
 - المشاركة الآمنة للملفات في Android: https://developer.android.com/training/secure-file-sharing
+
+
+[16 KB page alignment and build verification](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/docs/16kb.md)
