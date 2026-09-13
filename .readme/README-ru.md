@@ -5,7 +5,7 @@
 
   <h1>File Inspector</h1>
 
-  <p>Плагин файлового менеджера AutoJs6: семь контрольных сумм за одно чтение, вставьте опубликованное значение — и целостность проверена мгновенно, а заодно виден настоящий формат файла</p>
+  <p>Просмотр метаданных файлов и проверка контрольных сумм</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
@@ -121,6 +121,13 @@ required host build: 5268
 - [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### История версий
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `Функция` Локальная история выпусков в интерфейсе с переводами и английским запасным вариантом
+- `Улучшение` Проверка полной настройки подписи, ожидаемого набора APK и воспроизводимости документации
 
 #### v1.0.1
 

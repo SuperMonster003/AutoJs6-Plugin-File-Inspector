@@ -30,7 +30,7 @@ internal fun Context.fileInspectorPluginInfo(): PluginInfo {
     return PluginInfo().apply {
         name = getString(R.string.app_name)
         description = getString(R.string.plugin_description)
-        instruction = null
+        instruction = "@raw/plugin_instruction"
         author = getString(R.string.plugin_author)
         collaborators = null
         versionName = packageInfo.versionName.orEmpty()

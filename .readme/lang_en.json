@@ -1,7 +1,7 @@
 {
   "$name": "English",
   "text_current_lowercase": "current",
-  "text_plugin_synopsis": "AutoJs6 file manager plugin: seven checksums from a single read, paste the published value to verify integrity instantly, and see the file's true format at a glance",
+  "text_plugin_synopsis": "Inspect file metadata and verify checksums",
   "h3_languages_with_ascii": "Languages",
   "p_languages_all_supported_for_readme": "This README is available in the following languages",
   "h3_introduction": "Introduction",

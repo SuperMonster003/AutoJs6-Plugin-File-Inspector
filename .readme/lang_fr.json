@@ -1,7 +1,7 @@
 {
   "$name": "Français",
   "text_current_lowercase": "actuel",
-  "text_plugin_synopsis": "Plugin du gestionnaire de fichiers AutoJs6 : sept sommes de contrôle en une seule lecture, collez la valeur publiée pour vérifier l'intégrité aussitôt, et découvrez le vrai format du fichier d'un coup d'œil",
+  "text_plugin_synopsis": "Inspecte les métadonnées et vérifie les sommes de contrôle",
   "h3_languages_with_ascii": "Langues (Languages)",
   "p_languages_all_supported_for_readme": "Ce README est disponible dans les langues suivantes",
   "h3_introduction": "Présentation",

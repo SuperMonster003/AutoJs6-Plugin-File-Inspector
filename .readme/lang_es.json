@@ -1,7 +1,7 @@
 {
   "$name": "Español",
   "text_current_lowercase": "actual",
-  "text_plugin_synopsis": "Plugin del gestor de archivos de AutoJs6: siete sumas de comprobación en una sola lectura, pega el valor publicado para verificar la integridad al instante y descubre el formato real del archivo de un vistazo",
+  "text_plugin_synopsis": "Inspecciona metadatos y verifica sumas de comprobación",
   "h3_languages_with_ascii": "Idiomas (Languages)",
   "p_languages_all_supported_for_readme": "Este README está disponible en los siguientes idiomas",
   "h3_introduction": "Presentación",

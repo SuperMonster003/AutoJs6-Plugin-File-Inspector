@@ -59,6 +59,7 @@ class FileInspectorActivity : AppCompatActivity() {
 
     private fun bindStaticContent() = with(binding) {
         toolbar.setNavigationOnClickListener { finish() }
+        toolbar.menu.add(R.string.release_history).setOnMenuItemClickListener { showReleaseHistory(); true }
         fileName.text = request.displayName
         mimeType.text = getString(R.string.file_mime_type, request.mimeType)
         extension.text = getString(

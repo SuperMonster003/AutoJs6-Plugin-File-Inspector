@@ -5,7 +5,7 @@
 
   <h1>File Inspector</h1>
 
-  <p>إضافة مدير ملفات AutoJs6: سبع بصمات تحقق بقراءة واحدة، والصق القيمة المنشورة للتحقق من السلامة فورًا، مع كشف التنسيق الحقيقي للملف بنظرة واحدة</p>
+  <p>فحص بيانات الملفات والتحقق من المجاميع الاختبارية</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
@@ -121,6 +121,13 @@ required host build: 5268
 - [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### سجل الإصدارات
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `ميزة` يتوفر سجل الإصدارات محليا من الواجهة بالنص المترجم والإنجليزية كبديل
+- `تحسين` التحقق من اكتمال إعداد توقيع حزم الإصدار وملفات APK المتوقعة وإمكانية إعادة إنشاء الوثائق
 
 #### v1.0.1
 

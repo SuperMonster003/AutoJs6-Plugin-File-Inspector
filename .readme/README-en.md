@@ -5,7 +5,7 @@
 
   <h1>File Inspector</h1>
 
-  <p>AutoJs6 file manager plugin: seven checksums from a single read, paste the published value to verify integrity instantly, and see the file's true format at a glance</p>
+  <p>Inspect file metadata and verify checksums</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
@@ -121,6 +121,13 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 - [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### Release history
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `Feature` Local release history is available from the interface, with localized text and an English fallback
+- `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
 
 #### v1.0.1
 
