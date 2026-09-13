@@ -5,7 +5,7 @@
 
   <h1>File Inspector</h1>
 
-  <p>AutoJs6 文件管理器插件: 一次读取算出七种校验和, 粘贴官方校验值即刻核对完整性, 顺带看清文件真实格式</p>
+  <p>检查文件信息并验证校验和</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
@@ -121,6 +121,13 @@ required host build: 5268
 - [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### 版本记录
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `新增` 界面提供本地发行历史, 支持多语言及英语回退
+- `优化` 校验发行签名配置, 预期 APK 集合与可复现文档
 
 #### v1.0.1
 

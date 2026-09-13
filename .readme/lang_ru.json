@@ -1,7 +1,7 @@
 {
   "$name": "Русский",
   "text_current_lowercase": "текущий",
-  "text_plugin_synopsis": "Плагин файлового менеджера AutoJs6: семь контрольных сумм за одно чтение, вставьте опубликованное значение — и целостность проверена мгновенно, а заодно виден настоящий формат файла",
+  "text_plugin_synopsis": "Просмотр метаданных файлов и проверка контрольных сумм",
   "h3_languages_with_ascii": "Языки (Languages)",
   "p_languages_all_supported_for_readme": "Этот README доступен на следующих языках",
   "h3_introduction": "О проекте",

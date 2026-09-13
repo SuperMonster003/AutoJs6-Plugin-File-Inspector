@@ -17,7 +17,6 @@
     <string name="algorithm_sha256">SHA-256</string>
     <string name="algorithm_sha384">SHA-384</string>
     <string name="algorithm_sha512">SHA-512</string>
-    <string name="app_name">File Inspector</string>
     <string name="bom_none">None detected</string>
     <string name="bom_utf16_be">UTF-16 BE BOM</string>
     <string name="bom_utf16_le">UTF-16 LE BOM</string>
@@ -74,8 +73,8 @@
     <string name="format_xz">XZ compressed data</string>
     <string name="format_zip">ZIP container signature</string>
     <string name="format_zstd">Zstandard compressed data</string>
-    <string name="header_empty">The file is empty</string>
     <string name="header_copied">File header copied</string>
+    <string name="header_empty">The file is empty</string>
     <string name="inspect_canceled">Inspection canceled</string>
     <string name="inspect_complete">Inspection complete</string>
     <string name="inspect_progress">%1$s of %2$s (%3$d%%)</string>
@@ -83,9 +82,11 @@
     <string name="inspect_starting">Preparing file</string>
     <string name="integrity_check">Integrity check</string>
     <string name="no_extension">None</string>
-    <string name="plugin_description">File manager plugin. Inspect file signatures and verify cryptographic checksums</string>
-    <string name="report_copied">Inspection report copied</string>
+    <string name="plugin_description">Inspect file metadata and verify checksums</string>
+    <string name="release_history">Release history</string>
+    <string name="release_history_unavailable">Release history is unavailable</string>
     <string name="report_checksums">Checksums</string>
+    <string name="report_copied">Inspection report copied</string>
     <string name="report_format_json">JSON</string>
     <string name="report_format_label">Report format</string>
     <string name="report_format_markdown">Markdown</string>
@@ -93,7 +94,7 @@
     <string name="text_encoding">Byte order mark: %1$s</string>
     <string name="verification_expected_hint">Paste hex, Base64, SRI, or a checksum-file line</string>
     <string name="verification_expected_label">Expected checksum</string>
-    <string name="verification_file_name_mismatch">Warning: the checksum line names “%1$s”, but this file is “%2$s”</string>
+    <string name="verification_file_name_mismatch">Warning: the checksum line names "%1$s", but this file is "%2$s"</string>
     <string name="verification_match">Checksum matches %1$s</string>
     <string name="verification_mismatch">Checksum does not match %1$s</string>
     <string name="zip_container_android">Android application package</string>

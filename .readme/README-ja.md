@@ -5,7 +5,7 @@
 
   <h1>File Inspector</h1>
 
-  <p>AutoJs6 ファイルマネージャープラグイン: 1回の読み取りで7種類のチェックサムを計算し, 公開値を貼り付けるだけで完全性を即確認, ファイルの本当の形式もひと目で分かります</p>
+  <p>ファイル情報の検査とチェックサムの検証</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
@@ -121,6 +121,13 @@ required host build: 5268
 - [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### リリース履歴
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `機能` 画面からローカルのリリース履歴を表示し, 各言語と英語へのフォールバックに対応
+- `改善` リリース署名の設定, APK の構成, ドキュメントの再生成結果を検証
 
 #### v1.0.1
 

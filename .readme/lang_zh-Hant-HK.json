@@ -1,7 +1,7 @@
 {
   "$name": "繁體中文 (香港)",
   "text_current_lowercase": "目前",
-  "text_plugin_synopsis": "AutoJs6 檔案管理器插件: 一次讀取算出七種校驗碼, 貼上官方校驗值即刻核對完整性, 順帶看清檔案真實格式",
+  "text_plugin_synopsis": "檢查檔案資訊並驗證校驗和",
   "h3_languages_with_ascii": "語言 (Languages)",
   "p_languages_all_supported_for_readme": "README 提供以下語言版本",
   "h3_introduction": "項目簡介",

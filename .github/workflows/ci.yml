@@ -39,7 +39,7 @@ jobs:
         uses: gradle/actions/setup-gradle@4733eaac7c1b0da527e4206b7671e0061de1ce37 # v6
 
       - name: Assemble Debug and run unit tests
-        run: ./gradlew --no-daemon :app:assembleDebug :app:testDebugUnitTest
+        run: ./gradlew --max-workers=2 -Pautojs.gradle.build.number.auto.increment.enabled=false -Pautojs.gradle.build.time.update.enabled=false --no-daemon :app:assembleDebug :app:testDebugUnitTest
 
       - name: Regenerate documentation
         run: python .python/generate_markdown.py

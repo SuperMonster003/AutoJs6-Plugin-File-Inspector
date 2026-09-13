@@ -5,7 +5,7 @@
 
   <h1>File Inspector</h1>
 
-  <p>AutoJs6 파일 관리자 플러그인: 한 번의 읽기로 일곱 가지 체크섬을 계산하고, 공개된 값을 붙여넣으면 즉시 무결성을 확인하며, 파일의 실제 형식까지 한눈에 파악</p>
+  <p>파일 정보 검사 및 체크섬 검증</p>
 
   <p>
     <a href="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/actions/workflows/ci.yml/badge.svg"/></a>
@@ -121,6 +121,13 @@ required host build: 5268
 - [ROADMAP.md](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/ROADMAP.md)
 
 ### 릴리스 기록
+
+#### v1.1.0
+
+_2026/09/13_
+
+- `기능` 화면에서 현지화된 로컬 릴리스 기록을 표시하고 영어 대체 제공
+- `개선` 릴리스 서명 설정, 예상 APK 구성 및 문서 재생성 결과 검증
 
 #### v1.0.1
 

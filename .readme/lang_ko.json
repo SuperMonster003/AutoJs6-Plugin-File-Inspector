@@ -1,7 +1,7 @@
 {
   "$name": "한국어",
   "text_current_lowercase": "현재",
-  "text_plugin_synopsis": "AutoJs6 파일 관리자 플러그인: 한 번의 읽기로 일곱 가지 체크섬을 계산하고, 공개된 값을 붙여넣으면 즉시 무결성을 확인하며, 파일의 실제 형식까지 한눈에 파악",
+  "text_plugin_synopsis": "파일 정보 검사 및 체크섬 검증",
   "h3_languages_with_ascii": "언어 (Languages)",
   "p_languages_all_supported_for_readme": "이 README는 다음 언어로 제공됩니다",
   "h3_introduction": "소개",
