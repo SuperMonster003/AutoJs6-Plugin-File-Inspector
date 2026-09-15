@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "完整记录",
   "h3_build": "构建",
   "text_release_build": "Release 构建",
-  "p_build_params": "构建与签名参数由 version.properties 与 sign.properties 控制; 当前最低支持 Android 7.0 (SDK 24), 目标 SDK 36",
+  "p_build_params": "构建与签名参数由 version.properties 与 sign.properties 控制; 当前最低支持 Android 7.0 (SDK 24), 目标 SDK 37",
   "p_resource_layout": "README、CHANGELOG 与 res/raw*/plugin_instruction.md 插件内说明均由 .python/generate_markdown.py 依据 .readme/ 与 .changelog/ 下的 JSON 语言资源和模板生成 (共 10 种语言). 修改文档请编辑对应 JSON 后重新运行脚本, 不要直接改动生成的 Markdown",
   "h3_links": "相关链接",
   "text_link_autojs6_docs": "AutoJs6 文档",

@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "Полная история",
   "h3_build": "Сборка",
   "text_release_build": "Release-сборка",
-  "p_build_params": "Параметры сборки и подписи задаются в version.properties и sign.properties; текущий минимум — Android 7.0 (SDK 24), целевой SDK — 36",
+  "p_build_params": "Параметры сборки и подписи задаются в version.properties и sign.properties; текущий минимум — Android 7.0 (SDK 24), целевой SDK — 37",
   "p_resource_layout": "README, CHANGELOG и встроенные инструкции res/raw*/plugin_instruction.md генерируются скриптом .python/generate_markdown.py из JSON-источников и шаблонов в .readme/ и .changelog/ (10 языков). Чтобы изменить документацию, правьте JSON-источники и запускайте скрипт заново, а не редактируйте сгенерированный Markdown",
   "h3_links": "Ссылки",
   "text_link_autojs6_docs": "Документация AutoJs6",

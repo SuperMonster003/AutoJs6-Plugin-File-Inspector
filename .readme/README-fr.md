@@ -122,6 +122,12 @@ Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'ex
 
 ### Historique des versions
 
+#### v1.1.1
+
+_2026/09/15_
+
+- `Amélioration` compileSdk et targetSdk passent à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
+
 #### v1.1.0
 
 _2026/09/13_
@@ -136,21 +142,6 @@ _2026/09/11_
 - `Correctif` Correction de l'échec de liaison du service par l'hôte après activation dans le centre de plugins ; l'action « Inspecter le fichier » est désormais disponible dès l'activation
 - `Amélioration` Nom et description du plugin allégés pour une documentation utilisateur plus naturelle à lire
 - `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
-
-#### v1.0.0
-
-_2026/08/02_
-
-- `Note` Première version publique ; requiert AutoJs6 avec un code de version 5268 ou ultérieur
-- `Fonctionnalité` Ajout de l'action en lecture seule « Inspecter le fichier » au menu des fichiers du gestionnaire AutoJs6, pour les fichiers ordinaires de tout type (ID de plugin `file-inspector`, ID d'action `inspect-file`)
-- `Fonctionnalité` Une seule lecture séquentielle calcule ensemble les sommes de contrôle CRC32, MD5, SHA-1, SHA-256, SHA-512, avec progression en direct, annulation et nouvelle tentative
-- `Fonctionnalité` Collage d'une somme de contrôle attendue pour vérifier l'intégrité : algorithme détecté par la longueur ou par des préfixes comme `sha256:`, notation d'empreinte `AB:CD:EF` et préfixe `0x` de CRC32 acceptés, comparaison en temps constant sur valeurs de même longueur
-- `Fonctionnalité` Le rapport affiche le nom du fichier, le type MIME, l'extension, les tailles déclarée et réelle, un instantané hex + ASCII des 64 premiers octets et la détection des BOM UTF
-- `Fonctionnalité` Reconnaissance de 10 formats courants d'après les octets de signature en tête : ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
-- `Fonctionnalité` Chaque somme de contrôle peut être copiée individuellement, le rapport complet copié ou partagé via le panneau système, et MD5 et SHA-1 portent un badge Legacy
-- `Fonctionnalité` Le plugin ne demande aucune autorisation de stockage ni de réseau et lit les fichiers uniquement via l'URI content temporaire en lecture seule accordée par l'hôte, jusqu'à 8 TiB par fichier
-- `Fonctionnalité` Textes d'interface, instructions, README et CHANGELOG fournis en 10 langues : chinois simplifié, chinois traditionnel (Hong Kong), chinois traditionnel (Taïwan), anglais, français, espagnol, japonais, coréen, russe et arabe
-- `Dépendance` Introduction d'AndroidX Lifecycle ViewModel 2.9.4
 
 ##### Historique complet
 
@@ -169,7 +160,7 @@ Compilation release:
 .\gradlew.bat :app:verifyReleaseChecksums
 ```
 
-Les paramètres de compilation et de signature proviennent de version.properties et sign.properties ; le minimum actuel est Android 7.0 (SDK 24) avec un SDK cible 36.
+Les paramètres de compilation et de signature proviennent de version.properties et sign.properties ; le minimum actuel est Android 7.0 (SDK 24) avec un SDK cible 37.
 
 Les README, CHANGELOG et instructions intégrées sous res/raw*/plugin_instruction.md sont générés par .python/generate_markdown.py à partir des sources JSON et des modèles de .readme/ et .changelog/ (10 langues). Pour modifier la documentation, éditez les sources JSON puis relancez le script au lieu de modifier le Markdown généré.
 

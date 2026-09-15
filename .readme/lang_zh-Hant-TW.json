@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "完整記錄",
   "h3_build": "建置",
   "text_release_build": "Release 建置",
-  "p_build_params": "建置與簽章參數由 version.properties 與 sign.properties 控制; 目前最低支援 Android 7.0 (SDK 24), 目標 SDK 36",
+  "p_build_params": "建置與簽章參數由 version.properties 與 sign.properties 控制; 目前最低支援 Android 7.0 (SDK 24), 目標 SDK 37",
   "p_resource_layout": "README、CHANGELOG 與 res/raw*/plugin_instruction.md 外掛內說明均由 .python/generate_markdown.py 依據 .readme/ 與 .changelog/ 下的 JSON 語言資源和模板生成 (共 10 種語言). 修改文件請編輯對應 JSON 後重新執行腳本, 不要直接改動生成的 Markdown",
   "h3_links": "相關連結",
   "text_link_autojs6_docs": "AutoJs6 文件",
