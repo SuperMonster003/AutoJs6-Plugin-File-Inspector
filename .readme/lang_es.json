@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "Historial completo",
   "h3_build": "Compilación",
   "text_release_build": "Compilación release",
-  "p_build_params": "Los parámetros de compilación y firma provienen de version.properties y sign.properties; el mínimo actual es Android 7.0 (SDK 24) con SDK objetivo 36",
+  "p_build_params": "Los parámetros de compilación y firma provienen de version.properties y sign.properties; el mínimo actual es Android 7.0 (SDK 24) con SDK objetivo 37",
   "p_resource_layout": "Los README, CHANGELOG y las instrucciones integradas en res/raw*/plugin_instruction.md se generan con .python/generate_markdown.py a partir de las fuentes JSON y plantillas de .readme/ y .changelog/ (10 idiomas). Para cambiar la documentación, edita las fuentes JSON y vuelve a ejecutar el script en lugar de editar el Markdown generado",
   "h3_links": "Enlaces",
   "text_link_autojs6_docs": "Documentación de AutoJs6",

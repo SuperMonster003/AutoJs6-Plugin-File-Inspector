@@ -122,6 +122,12 @@ required host build: 5268
 
 ### 릴리스 기록
 
+#### v1.1.1
+
+_2026/09/15_
+
+- `개선` compileSdk 와 targetSdk 를 37 (Android 17) 로 올리며, 플러그인 동작은 새 대상 버전의 영향을 받지 않음
+
 #### v1.1.0
 
 _2026/09/13_
@@ -136,21 +142,6 @@ _2026/09/11_
 - `수정` 플러그인 센터에서 활성화한 뒤 호스트가 플러그인 서비스에 바인딩하지 못하던 문제를 수정. 이제 활성화 직후부터 "파일 검사" 동작을 바로 사용할 수 있습니다
 - `개선` 플러그인 이름과 설명을 간결하게 다듬어 사용자 문서가 더 자연스럽게 읽히도록 개선
 - `개선` 빌드 시 의도하지 않은 네이티브 의존성을 거부하고 JSON 보고서 생성
-
-#### v1.0.0
-
-_2026/08/02_
-
-- `힌트` 첫 공개 버전. AutoJs6 버전 코드 5268 이상이 필요합니다
-- `기능` AutoJs6 파일 관리자의 파일 메뉴에 읽기 전용 동작 "파일 검사"를 추가. 모든 종류의 일반 파일에 사용 가능 (플러그인 ID `file-inspector`, 동작 ID `inspect-file`)
-- `기능` 한 번의 순차 읽기로 CRC32, MD5, SHA-1, SHA-256, SHA-512 다섯 가지 체크섬을 동시에 계산. 실시간 진행률 표시와 취소·재시도 지원
-- `기능` 예상 체크섬을 붙여넣는 무결성 검증 지원: 길이 또는 `sha256:` 등의 접두사로 알고리즘을 자동 판별하고, `AB:CD:EF` 식 지문 구분자와 CRC32의 `0x` 접두사를 허용하며, 같은 길이 값의 상수 시간 비교로 대조
-- `기능` 보고서에 파일 이름, MIME 유형, 확장자, 신고 크기와 실제 크기, 앞 64 바이트의 16진수 + ASCII 스냅샷, UTF BOM 감지 표시
-- `기능` 앞부분 시그니처 바이트로 10가지 일반 형식 인식: ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
-- `기능` 체크섬 개별 복사, 보고서 전체 복사와 시스템 공유 지원. MD5와 SHA-1에는 Legacy 배지 표시
-- `기능` 플러그인은 저장소·네트워크 권한을 요청하지 않으며 호스트가 임시로 부여한 읽기 전용 content URI로만 파일을 읽음. 파일당 상한 8 TiB
-- `기능` 인터페이스 문구, 사용 설명, README, CHANGELOG를 10개 언어로 내장: 중국어 간체, 중국어 번체 (홍콩), 중국어 번체 (대만), 영어, 프랑스어, 스페인어, 일본어, 한국어, 러시아어, 아랍어
-- `의존성` AndroidX Lifecycle ViewModel 2.9.4 도입
 
 ##### 전체 기록
 
@@ -169,7 +160,7 @@ Release 빌드:
 .\gradlew.bat :app:verifyReleaseChecksums
 ```
 
-빌드와 서명 매개변수는 version.properties와 sign.properties가 관리합니다. 현재 최소 지원은 Android 7.0 (SDK 24), 대상 SDK는 36입니다.
+빌드와 서명 매개변수는 version.properties와 sign.properties가 관리합니다. 현재 최소 지원은 Android 7.0 (SDK 24), 대상 SDK는 37입니다.
 
 README, CHANGELOG와 res/raw*/plugin_instruction.md의 플러그인 내 설명은 .readme/ 와 .changelog/ 의 JSON 언어 소스와 템플릿을 바탕으로 .python/generate_markdown.py 가 생성합니다 (10개 언어). 수정할 때는 생성된 Markdown을 직접 고치지 말고 JSON 소스를 수정한 뒤 스크립트를 다시 실행하세요.
 

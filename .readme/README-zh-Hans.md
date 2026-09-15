@@ -122,6 +122,12 @@ required host build: 5268
 
 ### 版本记录
 
+#### v1.1.1
+
+_2026/09/15_
+
+- `优化` 将 compileSdk 与 targetSdk 提升到 37 (Android 17), 插件行为不受新目标版本影响
+
 #### v1.1.0
 
 _2026/09/13_
@@ -136,21 +142,6 @@ _2026/09/11_
 - `修复` 修复插件在插件中心启用后宿主无法绑定服务的问题; 现在启用后 “检查文件” 动作立即可用
 - `优化` 精简插件名称与描述, 使用户文档表述更自然易读
 - `优化` 构建阶段阻止意外引入原生依赖, 并输出 JSON 校验报告
-
-#### v1.0.0
-
-_2026/08/02_
-
-- `提示` 首个公开版本, 需要 AutoJs6 版本代码 5268 或更高
-- `新增` 在 AutoJs6 文件管理器的文件菜单中新增只读动作 “检查文件”, 适用于任意类型的普通文件 (插件 ID `file-inspector`, 动作 ID `inspect-file`)
-- `新增` 一次顺序读取同时计算 CRC32, MD5, SHA-1, SHA-256, SHA-512 五种校验和, 读取期间显示实时进度, 支持取消与重试
-- `新增` 支持粘贴预期校验和做完整性校验: 按长度或 `sha256:` 等前缀自动识别算法, 兼容 `AB:CD:EF` 式指纹分隔与 CRC32 的 `0x` 前缀, 比对采用等长恒定时间比较
-- `新增` 报告展示文件名、MIME 类型、扩展名、声明大小与实际大小, 以及前 64 字节的 “十六进制 + ASCII” 头部快照与 UTF BOM 检测
-- `新增` 依据文件开头特征识别 ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3 十种常见格式
-- `新增` 每条校验和可单独复制, 整份检查报告支持复制与系统分享; MD5 与 SHA-1 标注 Legacy 徽标
-- `新增` 插件不申请存储与网络权限, 仅通过宿主临时授予的只读 content 地址访问文件, 单文件上限 8 TiB
-- `新增` 内置 10 种语言的界面文本、使用说明、README 与 CHANGELOG: 简体中文、香港繁体、台湾繁体、英语、法语、西班牙语、日语、韩语、俄语、阿拉伯语
-- `依赖` 引入 AndroidX Lifecycle ViewModel 2.9.4
 
 ##### 完整记录
 
@@ -169,7 +160,7 @@ Release 构建:
 .\gradlew.bat :app:verifyReleaseChecksums
 ```
 
-构建与签名参数由 version.properties 与 sign.properties 控制; 当前最低支持 Android 7.0 (SDK 24), 目标 SDK 36.
+构建与签名参数由 version.properties 与 sign.properties 控制; 当前最低支持 Android 7.0 (SDK 24), 目标 SDK 37.
 
 README、CHANGELOG 与 res/raw*/plugin_instruction.md 插件内说明均由 .python/generate_markdown.py 依据 .readme/ 与 .changelog/ 下的 JSON 语言资源和模板生成 (共 10 种语言). 修改文档请编辑对应 JSON 后重新运行脚本, 不要直接改动生成的 Markdown.
 

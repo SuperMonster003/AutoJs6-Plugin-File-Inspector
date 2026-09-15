@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "全履歴",
   "h3_build": "ビルド",
   "text_release_build": "Releaseビルド",
-  "p_build_params": "ビルドと署名のパラメーターはversion.propertiesとsign.propertiesで管理されます. 現在の最小要件はAndroid 7.0 (SDK 24), ターゲットSDKは36です",
+  "p_build_params": "ビルドと署名のパラメーターはversion.propertiesとsign.propertiesで管理されます. 現在の最小要件はAndroid 7.0 (SDK 24), ターゲットSDKは37です",
   "p_resource_layout": "README, CHANGELOG, res/raw*/plugin_instruction.md のプラグイン内説明は, .readme/ と .changelog/ のJSON言語ソースとテンプレートから .python/generate_markdown.py が生成します (10言語). 変更時は生成済みMarkdownを直接編集せず, JSONソースを編集してスクリプトを再実行してください",
   "h3_links": "関連リンク",
   "text_link_autojs6_docs": "AutoJs6ドキュメント",

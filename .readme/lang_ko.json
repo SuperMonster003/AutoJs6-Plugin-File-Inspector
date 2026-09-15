@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "전체 기록",
   "h3_build": "빌드",
   "text_release_build": "Release 빌드",
-  "p_build_params": "빌드와 서명 매개변수는 version.properties와 sign.properties가 관리합니다. 현재 최소 지원은 Android 7.0 (SDK 24), 대상 SDK는 36입니다",
+  "p_build_params": "빌드와 서명 매개변수는 version.properties와 sign.properties가 관리합니다. 현재 최소 지원은 Android 7.0 (SDK 24), 대상 SDK는 37입니다",
   "p_resource_layout": "README, CHANGELOG와 res/raw*/plugin_instruction.md의 플러그인 내 설명은 .readme/ 와 .changelog/ 의 JSON 언어 소스와 템플릿을 바탕으로 .python/generate_markdown.py 가 생성합니다 (10개 언어). 수정할 때는 생성된 Markdown을 직접 고치지 말고 JSON 소스를 수정한 뒤 스크립트를 다시 실행하세요",
   "h3_links": "관련 링크",
   "text_link_autojs6_docs": "AutoJs6 문서",

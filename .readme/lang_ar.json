@@ -67,7 +67,7 @@
   "h5_for_more_release_history": "السجل الكامل",
   "h3_build": "البناء",
   "text_release_build": "بناء Release",
-  "p_build_params": "تُضبط معاملات البناء والتوقيع في version.properties وsign.properties؛ والحد الأدنى الحالي هو Android 7.0 (SDK 24) مع SDK مستهدف 36",
+  "p_build_params": "تُضبط معاملات البناء والتوقيع في version.properties وsign.properties؛ والحد الأدنى الحالي هو Android 7.0 (SDK 24) مع SDK مستهدف 37",
   "p_resource_layout": "تُولَّد ملفات README وCHANGELOG والتعليمات المدمجة في res/raw*/plugin_instruction.md بواسطة .python/generate_markdown.py من مصادر JSON والقوالب في .readme/ و.changelog/ (بعشر لغات). لتعديل الوثائق، حرر مصادر JSON ثم أعد تشغيل السكربت بدلًا من تعديل Markdown المولد",
   "h3_links": "روابط",
   "text_link_autojs6_docs": "وثائق AutoJs6",
