@@ -122,13 +122,18 @@ Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'ex
 
 ### Historique des versions
 
+#### v1.1.2
+
+_2026/11/04_
+
+- `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
+
 #### v1.1.1
 
-_2026/10/05_
+_2026/09/19_
 
 - `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
 - `Amélioration` compileSdk et targetSdk passent à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
-- `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
 
 #### v1.1.0
 
@@ -136,14 +141,6 @@ _2026/09/13_
 
 - `Fonctionnalité` Historique local accessible depuis l'interface, avec traductions et repli en anglais
 - `Amélioration` Vérification de la signature complète, des APK attendus et de la reproductibilité de la documentation
-
-#### v1.0.1
-
-_2026/09/11_
-
-- `Correctif` Correction de l'échec de liaison du service par l'hôte après activation dans le centre de plugins ; l'action « Inspecter le fichier » est désormais disponible dès l'activation
-- `Amélioration` Nom et description du plugin allégés pour une documentation utilisateur plus naturelle à lire
-- `Amélioration` La vérification de compilation rejette les dépendances natives involontaires et produit un rapport JSON
 
 ##### Historique complet
 

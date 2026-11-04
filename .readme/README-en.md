@@ -122,13 +122,18 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 
 ### Release history
 
+#### v1.1.2
+
+_2026/11/04_
+
+- `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
+
 #### v1.1.1
 
-_2026/10/05_
+_2026/09/19_
 
 - `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
 - `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
-- `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 #### v1.1.0
 
@@ -136,14 +141,6 @@ _2026/09/13_
 
 - `Feature` Local release history is available from the interface, with localized text and an English fallback
 - `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
-
-#### v1.0.1
-
-_2026/09/11_
-
-- `Fix` Fixed the host failing to bind the plugin service after enabling it in the plugin center; the "Inspect file" action is now available immediately after enabling
-- `Improvement` Streamlined the plugin name and description so the user-facing documentation reads more naturally
-- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 ##### Full history
 
