@@ -23,7 +23,7 @@
     "Téléchargez l'APK et son fichier de contrôle homonyme `.apk.sha256` depuis la même Release officielle, installez l'APK, puis activez-le dans le centre de plugins d'AutoJs6 (code de version AutoJs6 {{ required_host_build }} ou ultérieur requis).",
     "Avant une mise à niveau, inspectez l'APK téléchargé avec la version déjà installée de File Inspector ; lors d'une première installation, conservez l'APK et inspectez-le après l'activation du plugin. Collez le SHA-256 de 64 caractères du fichier de contrôle et exigez une correspondance verte ; les deux fichiers doivent provenir de la même page Release HTTPS de confiance.",
     "Ouvrez le gestionnaire de fichiers d'AutoJs6 et repérez le fichier à inspecter ; tout fichier ordinaire convient.",
-    "Choisissez « Inspecter le fichier » dans le menu du fichier ; la lecture démarre aussitôt avec une progression en direct, puis les sommes de contrôle, la signature de format et les octets d'en-tête s'affichent.",
+    "Choisissez \"Inspecter le fichier\" dans le menu du fichier (depuis AutoJs6 6.8.1, dans le menu de premier niveau \"File Inspector\"); la lecture démarre aussitôt avec une progression en direct, puis les sommes de contrôle, la signature de format et les octets d'en-tête s'affichent.",
     "Pour vérifier l'intégrité, collez la somme de contrôle publiée dans le champ « Contrôle d'intégrité » et touchez « Vérifier » : vert signifie correspondance, rouge signifie écart.",
     "Touchez le bouton de copie près d'une somme de contrôle ou sous l'instantané de l'en-tête pour obtenir une valeur ; choisissez Markdown ou JSON avant de copier ou partager le rapport complet, puis revenez au gestionnaire de fichiers."
   ],

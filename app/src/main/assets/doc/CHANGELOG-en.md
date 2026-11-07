@@ -1,5 +1,11 @@
 # Release history
 
+## v1.1.3
+
+_2026/11/07_
+
+- `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
+
 ## v1.1.2
 
 _2026/11/04_

@@ -52,7 +52,7 @@ La page de rapport intègre un « Contrôle d'intégrité » : collez la somme d
 1. Téléchargez l'APK et son fichier de contrôle homonyme `.apk.sha256` depuis la même Release officielle, installez l'APK, puis activez-le dans le centre de plugins d'AutoJs6 (code de version AutoJs6 5268 ou ultérieur requis).
 2. Avant une mise à niveau, inspectez l'APK téléchargé avec la version déjà installée de File Inspector ; lors d'une première installation, conservez l'APK et inspectez-le après l'activation du plugin. Collez le SHA-256 de 64 caractères du fichier de contrôle et exigez une correspondance verte ; les deux fichiers doivent provenir de la même page Release HTTPS de confiance.
 3. Ouvrez le gestionnaire de fichiers d'AutoJs6 et repérez le fichier à inspecter ; tout fichier ordinaire convient.
-4. Choisissez « Inspecter le fichier » dans le menu du fichier ; la lecture démarre aussitôt avec une progression en direct, puis les sommes de contrôle, la signature de format et les octets d'en-tête s'affichent.
+4. Choisissez "Inspecter le fichier" dans le menu du fichier (depuis AutoJs6 6.8.1, dans le menu de premier niveau "File Inspector"); la lecture démarre aussitôt avec une progression en direct, puis les sommes de contrôle, la signature de format et les octets d'en-tête s'affichent.
 5. Pour vérifier l'intégrité, collez la somme de contrôle publiée dans le champ « Contrôle d'intégrité » et touchez « Vérifier » : vert signifie correspondance, rouge signifie écart.
 6. Touchez le bouton de copie près d'une somme de contrôle ou sous l'instantané de l'en-tête pour obtenir une valeur ; choisissez Markdown ou JSON avant de copier ou partager le rapport complet, puis revenez au gestionnaire de fichiers.
 
@@ -122,6 +122,12 @@ Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'ex
 
 ### Historique des versions
 
+#### v1.1.3
+
+_2026/11/07_
+
+- `Amélioration` Dans le menu de fichier d'AutoJs6 6.8.1 et versions ultérieures, "Inspecter le fichier" se trouve dans le menu de premier niveau "File Inspector" (inchangé dans les versions antérieures d'AutoJs6)
+
 #### v1.1.2
 
 _2026/11/04_
@@ -134,13 +140,6 @@ _2026/09/19_
 
 - `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
 - `Amélioration` compileSdk et targetSdk passent à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
-
-#### v1.1.0
-
-_2026/09/13_
-
-- `Fonctionnalité` Historique local accessible depuis l'interface, avec traductions et repli en anglais
-- `Amélioration` Vérification de la signature complète, des APK attendus et de la reproductibilité de la documentation
 
 ##### Historique complet
 

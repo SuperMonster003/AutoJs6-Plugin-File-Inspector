@@ -22,7 +22,7 @@ La página del informe incluye una «Comprobación de integridad»: pega la suma
 1. Descarga el APK y su archivo de control homónimo `.apk.sha256` desde la misma Release oficial, instala el APK y actívalo en el centro de plugins de AutoJs6 (se requiere AutoJs6 con código de versión 5268 o superior).
 2. Antes de actualizar, inspecciona el APK descargado con File Inspector ya instalado; en una primera instalación, conserva el APK e inspecciónalo después de activar el plugin. Pega el SHA-256 de 64 caracteres del archivo de control y exige una coincidencia verde; obtén ambos archivos de la misma página Release HTTPS de confianza.
 3. Abre el gestor de archivos de AutoJs6 y localiza el archivo que quieras inspeccionar; vale cualquier archivo normal.
-4. Elige «Inspeccionar archivo» en el menú del archivo; la lectura empieza al momento con progreso en vivo, y al terminar aparecen las sumas, la firma de formato y los bytes de cabecera.
+4. Elige "Inspeccionar archivo" en el menú del archivo (desde AutoJs6 6.8.1, dentro del menú de primer nivel "File Inspector"); la lectura empieza al momento con progreso en vivo, y al terminar aparecen las sumas, la firma de formato y los bytes de cabecera.
 5. Para verificar la integridad, pega la suma publicada en el campo «Comprobación de integridad» y toca «Verificar»: verde significa que coincide, rojo que no.
 6. Toca el botón de copia junto a una suma o bajo la instantánea de la cabecera para obtener un valor; elige Markdown o JSON antes de copiar o compartir el informe completo y pulsa atrás para volver al gestor de archivos.
 

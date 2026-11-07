@@ -22,6 +22,10 @@ internal object FileInspectorPlugin {
         "io.github.supermonster003.autojs6.plugin.fileinspector.FileInspectorActivity"
     const val ACTION_PRIORITY = 20
 
+    // First-level menu of the plugin's action in the host's file menu (AutoJs6 6.8.1+): the display name, as in
+    // the Plugin Center. Older hosts ignore it, so the catalog keeps its protocol version.
+    val MENU_GROUP_LABEL = ExplorerMenuGroupKeys.entries(resourceName = "app_name", fallback = "File Inspector")
+
     val MIME_TYPES = arrayOf("*/*")
 }
 
@@ -70,6 +74,7 @@ internal fun fileInspectorActionCatalog(): Bundle {
     }
     return Bundle().apply {
         putInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION, ExplorerActionProtocol.VERSION)
+        FileInspectorPlugin.MENU_GROUP_LABEL.forEach { (key, value) -> putString(key, value) }
         putParcelableArrayList(ExplorerActionCatalogKeys.ACTIONS, arrayListOf(action))
     }
 }

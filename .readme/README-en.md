@@ -52,7 +52,7 @@ The report page includes an "Integrity check" box: paste the checksum published 
 1. Download the APK and its same-named `.apk.sha256` sidecar from the same official Release, install the APK, then enable it in the AutoJs6 plugin center (AutoJs6 version code 5268 or later is required).
 2. Before upgrading, inspect the downloaded APK with the already installed File Inspector; for a first installation, retain the APK and inspect it after enabling the plugin. Paste the 64-character SHA-256 from the sidecar and require a green match; obtain both files from the same trusted HTTPS Release page.
 3. Open the AutoJs6 file manager and locate the file you want to inspect; any kind of regular file works.
-4. Choose "Inspect file" from the file's menu; the plugin starts reading right away with live progress, and the checksums, format signature, and header bytes appear when it finishes.
+4. Choose "Inspect file" from the file's menu (under the top-level menu "File Inspector" since AutoJs6 6.8.1); the plugin starts reading right away with live progress, and the checksums, format signature, and header bytes appear when it finishes.
 5. To verify integrity, paste the published checksum into the "Integrity check" box and tap "Verify": green means match, red means mismatch.
 6. Tap the copy button next to any checksum or below the header snapshot for an individual value; choose Markdown or JSON before copying or sharing the complete report, then press back to return to the file manager.
 
@@ -122,6 +122,12 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 
 ### Release history
 
+#### v1.1.3
+
+_2026/11/07_
+
+- `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
+
 #### v1.1.2
 
 _2026/11/04_
@@ -134,13 +140,6 @@ _2026/09/19_
 
 - `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
 - `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
-
-#### v1.1.0
-
-_2026/09/13_
-
-- `Feature` Local release history is available from the interface, with localized text and an English fallback
-- `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
 
 ##### Full history
 

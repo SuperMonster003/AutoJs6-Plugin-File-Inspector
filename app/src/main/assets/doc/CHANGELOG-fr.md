@@ -1,5 +1,11 @@
 # Historique des versions
 
+## v1.1.3
+
+_2026/11/07_
+
+- `Amélioration` Dans le menu de fichier d'AutoJs6 6.8.1 et versions ultérieures, "Inspecter le fichier" se trouve dans le menu de premier niveau "File Inspector" (inchangé dans les versions antérieures d'AutoJs6)
+
 ## v1.1.2
 
 _2026/11/04_

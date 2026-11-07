@@ -50,6 +50,11 @@ class PluginContractInstrumentationTest {
         val action = actions?.single()
 
         assertEquals(ExplorerActionProtocol.VERSION, catalog.getInt(ExplorerActionCatalogKeys.PROTOCOL_VERSION))
+        // The first-level menu in the host's file menu (host explorer-action protocol v27), named like the plugin.
+        assertEquals("app_name", catalog.getString("menuGroupLabelResourceName"))
+        assertEquals("File Inspector", catalog.getString("menuGroupLabelFallback"))
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        assertEquals(context.getString(R.string.app_name), catalog.getString("menuGroupLabelFallback"))
         assertNotNull(action)
         assertEquals(FileInspectorPlugin.ACTION_ID, action?.getString(ExplorerActionCatalogKeys.ID))
         assertEquals(

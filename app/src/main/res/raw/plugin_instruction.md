@@ -22,7 +22,7 @@ The report page includes an "Integrity check" box: paste the checksum published 
 1. Download the APK and its same-named `.apk.sha256` sidecar from the same official Release, install the APK, then enable it in the AutoJs6 plugin center (AutoJs6 version code 5268 or later is required).
 2. Before upgrading, inspect the downloaded APK with the already installed File Inspector; for a first installation, retain the APK and inspect it after enabling the plugin. Paste the 64-character SHA-256 from the sidecar and require a green match; obtain both files from the same trusted HTTPS Release page.
 3. Open the AutoJs6 file manager and locate the file you want to inspect; any kind of regular file works.
-4. Choose "Inspect file" from the file's menu; the plugin starts reading right away with live progress, and the checksums, format signature, and header bytes appear when it finishes.
+4. Choose "Inspect file" from the file's menu (under the top-level menu "File Inspector" since AutoJs6 6.8.1); the plugin starts reading right away with live progress, and the checksums, format signature, and header bytes appear when it finishes.
 5. To verify integrity, paste the published checksum into the "Integrity check" box and tap "Verify": green means match, red means mismatch.
 6. Tap the copy button next to any checksum or below the header snapshot for an individual value; choose Markdown or JSON before copying or sharing the complete report, then press back to return to the file manager.
 
