@@ -1,5 +1,6 @@
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="File Inspector" width="128" />
   </p>
 
@@ -122,6 +123,12 @@ Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'ex
 
 ### Historique des versions
 
+#### v1.1.4
+
+_2026/11/17_
+
+- `Amélioration` Icône du plugin redessinée en un motif monochrome sur fond transparent, bien lisible avec les thèmes clair et sombre
+
 #### v1.1.3
 
 _2026/11/07_
@@ -133,13 +140,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
-
-#### v1.1.1
-
-_2026/09/19_
-
-- `Correctif` Avertissements de lecture SDK XML v4 avec AGP 9.1 et contrôles d'alignement natif des APK déclenchés par erreur lors de l'assemblage des tests unitaires JVM, avec les plugins de compilation partagés 1.8.3
-- `Amélioration` compileSdk et targetSdk passent à 37 (Android 17) ; le comportement du plugin ne dépend pas de la nouvelle cible
 
 ##### Historique complet
 

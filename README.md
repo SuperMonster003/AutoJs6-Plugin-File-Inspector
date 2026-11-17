@@ -1,5 +1,6 @@
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="File Inspector" width="128" />
   </p>
 
@@ -122,6 +123,12 @@ required host build: 5268
 
 ### 版本记录
 
+#### v1.1.4
+
+_2026/11/17_
+
+- `优化` 插件图标重新设计为透明背景的单色图案, 在亮色与暗色主题下都清晰可辨
+
 #### v1.1.3
 
 _2026/11/07_
@@ -133,13 +140,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `优化` Android 系统应用信息图标与图标工作台共用图稿和亮暗底色, 保留插件中心透明图稿及现有启动器选项
-
-#### v1.1.1
-
-_2026/09/19_
-
-- `修复` AGP 9.1 构建时的 SDK XML v4 解析警告, 以及 JVM 单元测试误触发 APK 原生库对齐检查的问题 (共享构建插件 1.8.3)
-- `优化` compileSdk/targetSdk 升级至 37 (Android 17)
 
 ##### 完整记录
 

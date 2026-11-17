@@ -1,5 +1,6 @@
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="File Inspector" width="128" />
   </p>
 
@@ -122,6 +123,12 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 
 ### Release history
 
+#### v1.1.4
+
+_2026/11/17_
+
+- `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
+
 #### v1.1.3
 
 _2026/11/07_
@@ -133,13 +140,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
-
-#### v1.1.1
-
-_2026/09/19_
-
-- `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
-- `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
 
 ##### Full history
 

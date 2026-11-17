@@ -1,5 +1,6 @@
 <div align="center">
   <p>
+    <source srcset="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap-night/ic_launcher.png?raw=true" media="(prefers-color-scheme: dark)" />
     <img src="https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector/blob/master/app/src/main/res/mipmap/ic_launcher.png?raw=true" alt="File Inspector" width="128" />
   </p>
 
@@ -122,6 +123,12 @@ required host build: 5268
 
 ### سجل الإصدارات
 
+#### v1.1.4
+
+_2026/11/17_
+
+- `تحسين` أُعيد تصميم أيقونة الملحق كرسم بلون واحد على خلفية شفافة يظهر بوضوح في السمتين الفاتحة والداكنة
+
 #### v1.1.3
 
 _2026/11/07_
@@ -133,13 +140,6 @@ _2026/11/07_
 _2026/11/04_
 
 - `تحسين` تستخدم أيقونات معلومات التطبيق في Android صور Icon Studio وخلفياته الفاتحة والداكنة مع الحفاظ على الصور الشفافة في مركز الملحقات وخيارات المشغل الحالية
-
-#### v1.1.1
-
-_2026/09/19_
-
-- `إصلاح` تحذيرات قراءة SDK XML v4 مع AGP 9.1 وتشغيل فحص محاذاة مكتبات APK الأصلية خطأ عند تجميع اختبارات JVM, باستخدام إضافات البناء المشتركة 1.8.3
-- `تحسين` رفع compileSdk و targetSdk إلى 37 (Android 17)؛ لا يعتمد سلوك المكون الإضافي على الهدف الجديد
 
 ##### السجل الكامل
 

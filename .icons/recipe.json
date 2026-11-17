@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatorVersion": "1.3.0",
+  "generatorVersion": "1.4.0",
   "profile": "catalog",
   "repository": "AutoJs6-Plugin-File-Inspector",
   "packages": [
@@ -9,18 +9,18 @@
   "launcher": false,
   "params": {
     "sources": {
-      "day": "fd34f3942db13587c934fdff4a19475b27503c9162dc9f834a7ac5e60ec2511a",
-      "night": "fd34f3942db13587c934fdff4a19475b27503c9162dc9f834a7ac5e60ec2511a",
+      "day": "e348386b456151f295bc708ebf15e2b8d8a47faf4dc766a45b8311a2a6de8457",
+      "night": "e348386b456151f295bc708ebf15e2b8d8a47faf4dc766a45b8311a2a6de8457",
       "alphaMode": "alpha"
     },
     "geometry": {
-      "mode": "preserve",
+      "mode": "normalized",
       "scale": 1.0,
       "offsetX": 0.0,
       "offsetY": 0.0
     },
     "day": {
-      "mode": "original",
+      "mode": "mask",
       "foreground": "#272727",
       "brightness": 1.0,
       "contrast": 1.0,
@@ -29,7 +29,7 @@
       "invert": false
     },
     "night": {
-      "mode": "original",
+      "mode": "mask",
       "foreground": "#d8d8d8",
       "brightness": 1.0,
       "contrast": 1.0,
@@ -128,6 +128,8 @@
     }
   },
   "assets": [
+    "1dcc538bf57febdd175f9d3677c8ba5304e6e2075d5a405cf1607da8ef8bf4a6",
+    "e348386b456151f295bc708ebf15e2b8d8a47faf4dc766a45b8311a2a6de8457",
     "fd34f3942db13587c934fdff4a19475b27503c9162dc9f834a7ac5e60ec2511a"
   ],
   "legacyGenerator": null,
@@ -136,7 +138,12 @@
     "night": "transparent"
   },
   "systemIcon": true,
-  "originalSources": {},
+  "originalSources": {
+    "e348386b456151f295bc708ebf15e2b8d8a47faf4dc766a45b8311a2a6de8457": {
+      "asset": "1dcc538bf57febdd175f9d3677c8ba5304e6e2075d5a405cf1607da8ef8bf4a6",
+      "filename": "file-inspector-icon.svg"
+    }
+  },
   "systemIconMinSdk": 24,
   "systemIconObsolete": []
 }
