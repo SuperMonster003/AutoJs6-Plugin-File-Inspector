@@ -123,6 +123,15 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 
 ### Release history
 
+#### v1.1.5
+
+###### 2026/11/20
+
+* `Improvement` The release history is now a separate page instead of a dialog showing the raw text, expanding and collapsing by version: a collapsed version shows its date and the number of entries per category, an expanded one names each category once; all versions can be expanded or collapsed at once, the newest one opens expanded and the subtitle shows the plugin name
+* `Improvement` Rewrote the instructions shown in Plugin Center in four parts: getting started, main features, requirements and FAQ
+* `Dependency` Added Jetpack Compose BOM 2026.09.00 (release history page)
+* `Dependency` Upgraded shared build plugins version 1.9.0 -> 1.9.1
+
 #### v1.1.4
 
 ###### 2026/11/18
@@ -134,12 +143,6 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 ###### 2026/11/07
 
 * `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
-
-#### v1.1.2
-
-###### 2026/11/04
-
-* `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 ##### Full history
 
