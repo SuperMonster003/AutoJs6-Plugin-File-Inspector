@@ -125,21 +125,21 @@ The capabilities above and the checked Roadmap items reflect what is implemented
 
 #### v1.1.4
 
-_2026/11/18_
+###### 2026/11/18
 
-- `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
+* `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
 
 #### v1.1.3
 
-_2026/11/07_
+###### 2026/11/07
 
-- `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
+* `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
 
 #### v1.1.2
 
-_2026/11/04_
+###### 2026/11/04
 
-- `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
+* `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 ##### Full history
 

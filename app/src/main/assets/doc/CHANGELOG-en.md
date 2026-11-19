@@ -2,55 +2,55 @@
 
 ## v1.1.4
 
-_2026/11/18_
+###### 2026/11/18
 
-- `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
+* `Improvement` Redesigned the plugin icon as a single-color glyph on a transparent background that stays clear in both light and dark themes
 
 ## v1.1.3
 
-_2026/11/07_
+###### 2026/11/07
 
-- `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
+* `Improvement` "Inspect file" now sits under the top-level menu "File Inspector" in the file menu of AutoJs6 6.8.1 and later (unchanged in older AutoJs6 versions)
 
 ## v1.1.2
 
-_2026/11/04_
+###### 2026/11/04
 
-- `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
+* `Improvement` Android App info icons share Icon Studio artwork and light/dark backgrounds while preserving transparent Plugin Center artwork and existing launcher choices
 
 ## v1.1.1
 
-_2026/09/19_
+###### 2026/09/19
 
-- `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
-- `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
+* `Fix` SDK XML v4 parsing warnings with AGP 9.1 and APK native alignment checks incorrectly triggered by JVM unit-test assembly tasks, using shared build plugins 1.8.3
+* `Improvement` Raise compileSdk and targetSdk to 37 (Android 17); the plugin's behavior does not depend on the new target
 
 ## v1.1.0
 
-_2026/09/13_
+###### 2026/09/13
 
-- `Feature` Local release history is available from the interface, with localized text and an English fallback
-- `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
+* `Feature` Local release history is available from the interface, with localized text and an English fallback
+* `Improvement` Release packages are checked for a complete signing configuration, exact APK contents and reproducible documentation
 
 ## v1.0.1
 
-_2026/09/11_
+###### 2026/09/11
 
-- `Fix` Fixed the host failing to bind the plugin service after enabling it in the plugin center; the "Inspect file" action is now available immediately after enabling
-- `Improvement` Streamlined the plugin name and description so the user-facing documentation reads more naturally
-- `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
+* `Fix` Fixed the host failing to bind the plugin service after enabling it in the plugin center; the "Inspect file" action is now available immediately after enabling
+* `Improvement` Streamlined the plugin name and description so the user-facing documentation reads more naturally
+* `Improvement` Build verification rejects accidental native dependencies and produces a JSON report
 
 ## v1.0.0
 
-_2026/08/02_
+###### 2026/08/02
 
-- `Hint` First public release; requires AutoJs6 version code 5268 or later
-- `Feature` Added the read-only "Inspect file" action to the AutoJs6 file manager's file menu, working on regular files of any type (plugin ID `file-inspector`, action ID `inspect-file`)
-- `Feature` One sequential read computes the CRC32, MD5, SHA-1, SHA-256, SHA-512 checksums together, with live progress plus cancel and retry
-- `Feature` Paste an expected checksum for integrity verification: the algorithm is detected by length or by prefixes such as `sha256:`, fingerprint notation like `AB:CD:EF` and the CRC32 `0x` prefix are accepted, and comparison is constant-time over equal-length values
-- `Feature` The report shows the file name, MIME type, extension, declared and actual sizes, a hex + ASCII snapshot of the first 64 bytes, and UTF BOM detection
-- `Feature` Recognizes 10 common formats from leading signature bytes: ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
-- `Feature` Each checksum can be copied individually, the full report can be copied or shared through the system share sheet, and MD5 and SHA-1 carry a Legacy badge
-- `Feature` The plugin requests no storage or network permission and reads files only through the temporary read-only content URI granted by the host, up to 8 TiB per file
-- `Feature` Ships UI text, instructions, README, and CHANGELOG in 10 languages: Simplified Chinese, Traditional Chinese (Hong Kong), Traditional Chinese (Taiwan), English, French, Spanish, Japanese, Korean, Russian, and Arabic
-- `Dependency` Introduced AndroidX Lifecycle ViewModel 2.9.4
+* `Hint` First public release; requires AutoJs6 version code 5268 or later
+* `Feature` Added the read-only "Inspect file" action to the AutoJs6 file manager's file menu, working on regular files of any type (plugin ID `file-inspector`, action ID `inspect-file`)
+* `Feature` One sequential read computes the CRC32, MD5, SHA-1, SHA-256, SHA-512 checksums together, with live progress plus cancel and retry
+* `Feature` Paste an expected checksum for integrity verification: the algorithm is detected by length or by prefixes such as `sha256:`, fingerprint notation like `AB:CD:EF` and the CRC32 `0x` prefix are accepted, and comparison is constant-time over equal-length values
+* `Feature` The report shows the file name, MIME type, extension, declared and actual sizes, a hex + ASCII snapshot of the first 64 bytes, and UTF BOM detection
+* `Feature` Recognizes 10 common formats from leading signature bytes: ZIP, GZIP, PDF, PNG, JPEG, GIF87a, GIF89a, ELF, DEX, SQLite 3
+* `Feature` Each checksum can be copied individually, the full report can be copied or shared through the system share sheet, and MD5 and SHA-1 carry a Legacy badge
+* `Feature` The plugin requests no storage or network permission and reads files only through the temporary read-only content URI granted by the host, up to 8 TiB per file
+* `Feature` Ships UI text, instructions, README, and CHANGELOG in 10 languages: Simplified Chinese, Traditional Chinese (Hong Kong), Traditional Chinese (Taiwan), English, French, Spanish, Japanese, Korean, Russian, and Arabic
+* `Dependency` Introduced AndroidX Lifecycle ViewModel 2.9.4

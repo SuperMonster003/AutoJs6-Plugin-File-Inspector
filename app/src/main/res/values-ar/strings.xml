@@ -84,7 +84,11 @@
     <string name="no_extension">لا يوجد</string>
     <string name="plugin_description">فحص بيانات الملفات والتحقق من المجاميع الاختبارية</string>
     <string name="release_history">سجل الإصدارات</string>
-    <string name="release_history_unavailable">سجل الإصدارات غير متاح</string>
+    <string name="release_history_collapse_all">طيّ الكل</string>
+    <string name="release_history_collapsed">مطوي</string>
+    <string name="release_history_expand_all">توسيع الكل</string>
+    <string name="release_history_expanded">موسَّع</string>
+    <string name="release_history_load_failed">تعذر تحميل سجل الإصدارات</string>
     <string name="report_checksums">المجاميع الاختبارية</string>
     <string name="report_copied">تم نسخ تقرير الفحص</string>
     <string name="report_format_json">JSON</string>

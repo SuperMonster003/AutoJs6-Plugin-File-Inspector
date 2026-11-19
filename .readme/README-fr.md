@@ -125,21 +125,21 @@ Les capacités ci-dessus et les éléments cochés de la Roadmap reflètent l'ex
 
 #### v1.1.4
 
-_2026/11/18_
+###### 2026/11/18
 
-- `Amélioration` Icône du plugin redessinée en un motif monochrome sur fond transparent, bien lisible avec les thèmes clair et sombre
+* `Amélioration` Icône du plugin redessinée en un motif monochrome sur fond transparent, bien lisible avec les thèmes clair et sombre
 
 #### v1.1.3
 
-_2026/11/07_
+###### 2026/11/07
 
-- `Amélioration` Dans le menu de fichier d'AutoJs6 6.8.1 et versions ultérieures, "Inspecter le fichier" se trouve dans le menu de premier niveau "File Inspector" (inchangé dans les versions antérieures d'AutoJs6)
+* `Amélioration` Dans le menu de fichier d'AutoJs6 6.8.1 et versions ultérieures, "Inspecter le fichier" se trouve dans le menu de premier niveau "File Inspector" (inchangé dans les versions antérieures d'AutoJs6)
 
 #### v1.1.2
 
-_2026/11/04_
+###### 2026/11/04
 
-- `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
+* `Amélioration` Les icônes des informations d'application Android utilisent les illustrations et les fonds clairs et sombres d'Icon Studio, en conservant les images transparentes du centre de plugins et les choix du lanceur
 
 ##### Historique complet
 

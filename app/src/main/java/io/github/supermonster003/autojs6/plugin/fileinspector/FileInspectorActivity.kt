@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.format.DateUtils
 import android.text.format.Formatter
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -59,7 +60,8 @@ class FileInspectorActivity : AppCompatActivity() {
 
     private fun bindStaticContent() = with(binding) {
         toolbar.setNavigationOnClickListener { finish() }
-        toolbar.menu.add(R.string.release_history).setOnMenuItemClickListener { showReleaseHistory(); true }
+        toolbar.menu.add(Menu.NONE, R.id.action_release_history, Menu.NONE, R.string.release_history)
+            .setOnMenuItemClickListener { openReleaseHistory(); true }
         fileName.text = request.displayName
         mimeType.text = getString(R.string.file_mime_type, request.mimeType)
         extension.text = getString(

@@ -84,7 +84,11 @@
     <string name="no_extension">なし</string>
     <string name="plugin_description">ファイル情報の検査とチェックサムの検証</string>
     <string name="release_history">リリース履歴</string>
-    <string name="release_history_unavailable">リリース履歴を表示できません</string>
+    <string name="release_history_collapse_all">すべて折りたたむ</string>
+    <string name="release_history_collapsed">折りたたみ中</string>
+    <string name="release_history_expand_all">すべて展開する</string>
+    <string name="release_history_expanded">展開中</string>
+    <string name="release_history_load_failed">リリース履歴を読み込めませんでした</string>
     <string name="report_checksums">チェックサム</string>
     <string name="report_copied">検査レポートをコピーしました</string>
     <string name="report_format_json">JSON</string>

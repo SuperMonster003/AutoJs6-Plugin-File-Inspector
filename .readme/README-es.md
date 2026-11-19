@@ -125,21 +125,21 @@ Las capacidades anteriores y los elementos marcados de la Roadmap reflejan lo im
 
 #### v1.1.4
 
-_2026/11/18_
+###### 2026/11/18
 
-- `Mejora` Icono del plugin rediseñado como una figura de un solo color sobre fondo transparente, bien visible en los temas claro y oscuro
+* `Mejora` Icono del plugin rediseñado como una figura de un solo color sobre fondo transparente, bien visible en los temas claro y oscuro
 
 #### v1.1.3
 
-_2026/11/07_
+###### 2026/11/07
 
-- `Mejora` En el menú de archivos de AutoJs6 6.8.1 y posteriores, "Inspeccionar archivo" está en el menú de primer nivel "File Inspector" (sin cambios en versiones anteriores de AutoJs6)
+* `Mejora` En el menú de archivos de AutoJs6 6.8.1 y posteriores, "Inspeccionar archivo" está en el menú de primer nivel "File Inspector" (sin cambios en versiones anteriores de AutoJs6)
 
 #### v1.1.2
 
-_2026/11/04_
+###### 2026/11/04
 
-- `Mejora` Los iconos de información de la aplicación de Android comparten las imágenes y los fondos claros y oscuros de Icon Studio, conservando las imágenes transparentes del centro de plugins y las opciones del lanzador
+* `Mejora` Los iconos de información de la aplicación de Android comparten las imágenes y los fondos claros y oscuros de Icon Studio, conservando las imágenes transparentes del centro de plugins y las opciones del lanzador
 
 ##### Historial completo
 

@@ -84,7 +84,11 @@
     <string name="no_extension">Ninguna</string>
     <string name="plugin_description">Inspecciona metadatos y verifica sumas de comprobación</string>
     <string name="release_history">Historial de versiones</string>
-    <string name="release_history_unavailable">El historial de versiones no está disponible</string>
+    <string name="release_history_collapse_all">Contraer todo</string>
+    <string name="release_history_collapsed">Contraído</string>
+    <string name="release_history_expand_all">Expandir todo</string>
+    <string name="release_history_expanded">Expandido</string>
+    <string name="release_history_load_failed">No se pudo cargar el historial de versiones</string>
     <string name="report_checksums">Sumas de comprobación</string>
     <string name="report_copied">Informe de inspección copiado</string>
     <string name="report_format_json">JSON</string>
