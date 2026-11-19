@@ -1,40 +1,44 @@
-# File Inspector
+File Inspector examines any file in the AutoJs6 file manager. It reads the file only once to compute seven checksums such as CRC32, MD5, SHA-1 and SHA-256, and shows the format, size and header of the file. Paste a checksum published by the provider to check whether the file is intact. It only reads the file and never changes the original.
 
-## Introduction
+### Getting started
 
-File Inspector is a companion plugin for the AutoJs6 file manager. Choose "Inspect file" on any file in the file manager and the plugin reads it just once, computing the CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 checksums all at the same time, while also showing the file's true format signature, size, and leading bytes on a single screen. Everything is read-only: the plugin requests no storage or network permission and never modifies the original file.
+1. Make sure this plugin is enabled in AutoJs6 "Plugin Center".
+2. Open the AutoJs6 file manager and locate the file you want to check.
+3. Choose "Inspect file" from the file menu (in AutoJs6 6.8.1 and later it is under the top-level menu "File Inspector").
+4. When reading finishes, look at "File information", "Checksums" and "File header" in the report.
 
-The report page includes an "Integrity check" box: paste the checksum published by the file's provider, and the plugin detects the algorithm automatically and answers with a clear match / mismatch verdict, so you never have to compare long hex strings by eye. Each checksum and the header snapshot can be copied individually; choose Markdown or JSON before copying the whole report or sending it through the system share sheet.
+### Main features
 
-## Highlights
+- **Checksums**: computes CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384 and SHA-512 in a single pass; MD5 and SHA-1 are marked "Legacy" and are not suitable as proof of security.
+- **Integrity check**: paste the published checksum into "Expected checksum" and tap "Verify"; green means a match and red means a mismatch. A full line of `sha256sum` output is accepted too.
+- **File information**: shows the detected format, extension and MIME type, and estimates whether the content is text or binary; for ZIP files it also hints whether the file is an APK, a JAR or an Office document.
+- **File header**: shows the first 64 bytes of the file side by side in hexadecimal and ASCII, and detects UTF-8, UTF-16 and UTF-32 byte order marks (BOM).
+- **Size check**: shows both the declared size and the actual size; if the file changes while it is being read, an error is shown, which helps you spot incomplete downloads or files that are still being written.
+- **Copy and share**: copy each checksum or the file header on its own; after choosing Markdown or JSON in "Report format", use "Copy report" or "Share" to send the full report without creating a file.
+- **Reading progress**: large files show progress, speed and remaining time, and you can "Cancel" at any time; if reading fails, tap "Retry".
 
-- One read, all results: the file is read sequentially exactly once while all seven checksums are computed together, so large files never wait through multiple passes.
-- Paste to verify: accepts hex and fingerprint notation, Base64, SRI, and complete `md5sum` / `sha256sum` output lines; it detects the algorithm automatically and warns when a pasted file name differs.
-- True format detection: recognizes 26 common signatures from bounded leading and fixed-offset bytes, adds a purpose hint for ZIP-based APK/JAR/Office documents, and estimates text versus binary content from printable ratio and entropy.
-- Header at a glance: shows the file's first 64 bytes in a hex + ASCII side-by-side view and detects UTF-8 / UTF-16 / UTF-32 byte order marks.
-- Double size check: shows both the size declared by the file manager and the size actually read; if the file changes during reading, the inspection fails immediately, catching incomplete downloads and files still being written.
-- Progress under control: large files show live bytes, read speed, and estimated time remaining; reading can be canceled at any time, and a failed inspection can be retried with one tap.
-- Results ready to use: copy any checksum or the header snapshot independently, then export the complete on-screen result as structured Markdown or JSON to the clipboard or system share sheet without creating a file.
-- Legacy algorithms flagged: MD5 and SHA-1 carry a Legacy badge as a reminder that they are no longer suitable as proof of security.
+### Requirements
 
-## How to use
+- Android 7.0 or later.
+- AutoJs6 6.8.0 or later.
+- No storage or network permission is needed; the plugin only reads the file you selected in the file manager.
 
-1. Download the APK and its same-named `.apk.sha256` sidecar from the same official Release, install the APK, then enable it in the AutoJs6 plugin center (AutoJs6 version code 5268 or later is required).
-2. Before upgrading, inspect the downloaded APK with the already installed File Inspector; for a first installation, retain the APK and inspect it after enabling the plugin. Paste the 64-character SHA-256 from the sidecar and require a green match; obtain both files from the same trusted HTTPS Release page.
-3. Open the AutoJs6 file manager and locate the file you want to inspect; any kind of regular file works.
-4. Choose "Inspect file" from the file's menu (under the top-level menu "File Inspector" since AutoJs6 6.8.1); the plugin starts reading right away with live progress, and the checksums, format signature, and header bytes appear when it finishes.
-5. To verify integrity, paste the published checksum into the "Integrity check" box and tap "Verify": green means match, red means mismatch.
-6. Tap the copy button next to any checksum or below the header snapshot for an individual value; choose Markdown or JSON before copying or sharing the complete report, then press back to return to the file manager.
+### FAQ
 
-> The checksum input accepts plain hex, prefixes such as `sha256: <value>` or `MD5=<value>`, `AB:CD:EF` fingerprints, CRC32 with `0x`, standard Base64, SRI such as `sha256-<base64>`, and complete `<hex>  <file>` or `<hex> *<file>` lines from coreutils. Case and surrounding whitespace are ignored; the algorithm is inferred when its digest length is unique, and a differing pasted file name produces a warning.
+**What to do when the checksum does not match**
 
-## Permissions and safety
+First make sure the pasted checksum comes from the release page of this very file. If it still does not match, the file differs from the original published by the provider: the download may be incomplete or the file may have been changed. Download it again from the official source and check it again.
 
-The plugin requests no storage or network permission and can only reach the single file the user selected, through a temporary read-only content URI granted by the host; the grant expires when the inspection ends, and no other file is reachable. Requests from the file manager are validated field by field, including action ID, protocol version, content URI shape, file name, MIME type, declared size, and read-only grants, and any request carrying write or persistable grants is rejected outright. The file is processed as a read-only stream; memory holds only bounded buffers, the first 4096 bytes for analysis, the first 64 bytes for display, and a four-byte PE-signature window, and the source file is never modified.
+**What a matching checksum means**
 
-To keep every inspection predictable, the plugin enforces the following bounds:
+A match only shows that the file has the same content as the file the checksum was published for; whether the file can be trusted depends on where the checksum came from. Prefer SHA-256 or SHA-512 values published over HTTPS by the official source.
 
-- A single file may be at most 8 TiB, and each action handles exactly one target file.
-- Analysis samples at most the first 4096 bytes plus a four-byte PE-signature window, while the displayed header remains 64 bytes; checksum input is limited to 512 characters, with non-ASCII accepted only in a coreutils file name.
-- If the size actually read differs from the declared size, the file is considered changed and the inspection fails with a message.
-- Checksum comparison uses constant-time comparison of equal-length values; MD5 and SHA-1 are for checking legacy data only and must not be treated as collision-resistant proof.
+**Why a file name warning appears when you paste a full line**
+
+When you paste a full line from a tool such as `sha256sum`, the plugin compares the file name in that line. If it differs from the current file name, a warning reminds you to confirm that the checksum belongs to this file.
+
+**Why some files cannot be inspected**
+
+Common causes are a file larger than 8 TiB, a file changed by another app while it is being read, or a read permission from the file manager that has expired. The error message names the cause; tap "Retry" to check again.
+
+See the [project homepage](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector) for more details.

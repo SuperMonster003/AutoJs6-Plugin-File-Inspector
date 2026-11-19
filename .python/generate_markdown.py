@@ -40,6 +40,24 @@ ANDROID_INSTRUCTION_DIRECTORIES = {
 }
 TEMPLATE_PATTERN = re.compile(r"\{\{\s*([A-Za-z0-9_$.-]+)\s*\}\}")
 
+# Plugin Center instruction copy lives in its own keys and never borrows README fields
+# (D:/idea-projects/AUTOJS6_PLUGIN_INSTRUCTION_AGENTS.md).
+INSTRUCTION_KEY_PREFIX = "instruction_"
+INSTRUCTION_LIST_KEYS = [
+    "instruction_start_steps",
+    "instruction_features",
+    "instruction_script_notes",
+    "instruction_requirements",
+]
+INSTRUCTION_FAQ_KEY = "instruction_faq"
+INSTRUCTION_REQUIRED_KEYS = [
+    "instruction_p_what",
+    "instruction_h3_start",
+    "instruction_start_steps",
+    "instruction_h3_requirements",
+    "instruction_requirements",
+]
+
 
 ROOT = Path(__file__).resolve().parents[1]
 README_DIR = ROOT / ".readme"
@@ -118,11 +136,52 @@ def validate_changelog_keys(raw_changelogs: dict):
             )
 
 
+def shape_of(value):
+    if isinstance(value, dict):
+        return ("dict", tuple(sorted(value)))
+    if isinstance(value, list):
+        return ("list", len(value), tuple(shape_of(item) for item in value))
+    return type(value).__name__
+
+
+def validate_instruction_sources(raw_languages: dict):
+    reference = {k: v for k, v in raw_languages[LANGUAGE_CODE_DEFAULT].items() if k.startswith(INSTRUCTION_KEY_PREFIX)}
+    for code, content in raw_languages.items():
+        instruction = {k: v for k, v in content.items() if k.startswith(INSTRUCTION_KEY_PREFIX)}
+        for key in INSTRUCTION_REQUIRED_KEYS:
+            if key not in instruction:
+                raise ValueError(f"Instruction language {code!r} is missing {key!r}")
+        if set(instruction) != set(reference):
+            raise ValueError(f"Instruction keys of {code!r} differ from {LANGUAGE_CODE_DEFAULT!r}: {sorted(set(instruction) ^ set(reference))}")
+        for key, value in instruction.items():
+            if shape_of(value) != shape_of(reference[key]):
+                raise ValueError(f"Instruction field {key!r} of {code!r} does not match the {LANGUAGE_CODE_DEFAULT!r} shape")
+            if key in INSTRUCTION_LIST_KEYS:
+                valid = isinstance(value, list) and value and all(isinstance(item, str) and item for item in value)
+            elif key == INSTRUCTION_FAQ_KEY:
+                valid = isinstance(value, list) and value and all(
+                    isinstance(item, dict) and set(item) == {"q", "a"} and all(isinstance(text, str) and text for text in item.values())
+                    for item in value
+                )
+            else:
+                valid = isinstance(value, str) and value
+            if not valid:
+                raise ValueError(f"Instruction field {key!r} of {code!r} is empty or malformed")
+            # UI names are quoted with ASCII double quotes; an odd count means a quote was swallowed on the way in.
+            texts = [value] if isinstance(value, str) else [
+                text for item in value for text in (item.values() if isinstance(item, dict) else [item])
+            ]
+            for text in texts:
+                if text.count('"') % 2:
+                    raise ValueError(f"Instruction field {key!r} of {code!r} has an unpaired double quote: {text[:60]!r}")
+
+
 def load_languages():
     common = load_json(README_DIR / "common.json")
     raw_languages = {code: load_json(README_DIR / f"lang_{code}.json") for code in LANGUAGE_CODES}
     raw_changelogs = {code: load_json(CHANGELOG_DIR / f"lang_{code}.json") for code in LANGUAGE_CODES}
     validate_language_keys(raw_languages)
+    validate_instruction_sources(raw_languages)
     validate_changelog_keys(raw_changelogs)
 
     languages = {}
@@ -180,6 +239,22 @@ def build_shared_documentation_values(code, languages):
     content["placeholder_usage_steps"] = numbered_list(content["usage_steps"])
     content["placeholder_security_limits"] = bullet_list(content["security_limits"])
     return content
+
+
+def instruction_faq(items):
+    return "\n\n".join(f"**{item['q']}**\n\n{item['a']}" for item in items)
+
+
+def build_instruction_values(code, languages):
+    """Only instruction_* keys reach the instruction template, so it cannot borrow README copy."""
+    values = {key: value for key, value in languages[code].items() if key.startswith(INSTRUCTION_KEY_PREFIX)}
+    for key in INSTRUCTION_LIST_KEYS:
+        if key in values:
+            render = numbered_list if key == "instruction_start_steps" else bullet_list
+            values[f"placeholder_{key}"] = render(values[key])
+    if INSTRUCTION_FAQ_KEY in values:
+        values[f"placeholder_{INSTRUCTION_FAQ_KEY}"] = instruction_faq(values[INSTRUCTION_FAQ_KEY])
+    return values
 
 
 def build_readme_values(code, languages, changelogs):
@@ -247,7 +322,7 @@ def generate_plugin_instructions(languages):
     if set(ANDROID_INSTRUCTION_DIRECTORIES) != set(LANGUAGE_CODES):
         raise ValueError("Plugin instruction locale mapping must match LANGUAGE_CODES")
     for code in LANGUAGE_CODES:
-        output = render_template(template, build_shared_documentation_values(code, languages))
+        output = render_template(template, build_instruction_values(code, languages))
         ensure_fully_rendered("plugin instruction", code, output)
         for directory in ANDROID_INSTRUCTION_DIRECTORIES[code]:
             write_text(ANDROID_RESOURCE_DIR / directory / "plugin_instruction.md", output)

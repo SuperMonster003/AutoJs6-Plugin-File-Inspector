@@ -1,40 +1,44 @@
-# File Inspector
+File Inspector examina cualquier archivo del gestor de archivos de AutoJs6. Lee el archivo una sola vez para calcular siete sumas de comprobación, como CRC32, MD5, SHA-1 y SHA-256, y muestra el formato, el tamaño y la cabecera del archivo. Pega la suma publicada por el proveedor para comprobar si el archivo está íntegro. Solo lee el archivo y nunca modifica el original.
 
-## Presentación
+### Primeros pasos
 
-File Inspector es un plugin complementario del gestor de archivos de AutoJs6. Elige «Inspeccionar archivo» sobre cualquier archivo: el plugin lo lee una sola vez y calcula a la vez las sumas CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384 y SHA-512, mostrando además en una sola pantalla la firma de formato real del archivo, su tamaño y sus primeros bytes. Todo es de solo lectura: el plugin no solicita permisos de almacenamiento ni de red y nunca modifica el archivo original.
+1. Comprueba que este plugin esté activado en el "Centro de plugins" de AutoJs6.
+2. Abre el gestor de archivos de AutoJs6 y busca el archivo que quieres comprobar.
+3. Elige "Inspeccionar archivo" en el menú del archivo (en AutoJs6 6.8.1 y posteriores está en el menú de primer nivel "File Inspector").
+4. Cuando termine la lectura, revisa "Información del archivo", "Sumas de comprobación" y "Cabecera del archivo" en el informe.
 
-La página del informe incluye una «Comprobación de integridad»: pega la suma publicada por el proveedor del archivo y el plugin detecta el algoritmo automáticamente y responde con un veredicto claro de coincide / no coincide, sin volver a comparar largas cadenas hexadecimales a ojo. Cada suma y la instantánea de la cabecera pueden copiarse por separado; elige Markdown o JSON antes de copiar el informe completo o enviarlo por el panel de compartir del sistema.
+### Funciones principales
 
-## Puntos destacados
+- **Sumas de comprobación**: calcula CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384 y SHA-512 en una sola lectura; MD5 y SHA-1 llevan la marca "Heredado" y no sirven como prueba de seguridad.
+- **Comprobación de integridad**: pega la suma publicada en "Suma esperada" y toca "Verificar"; el verde indica que coincide y el rojo que no. También acepta una línea completa de la salida de `sha256sum`.
+- **Información del archivo**: muestra el formato detectado, la extensión y el tipo MIME, y estima si el contenido es texto o binario; en los archivos ZIP indica además si se trata de un APK, un JAR o un documento de Office.
+- **Cabecera del archivo**: muestra los primeros 64 bytes del archivo en hexadecimal y ASCII lado a lado, y detecta las marcas de orden de bytes (BOM) de UTF-8, UTF-16 y UTF-32.
+- **Comprobación del tamaño**: muestra el tamaño declarado y el tamaño real; si el archivo cambia durante la lectura, aparece un error, lo que ayuda a detectar descargas incompletas o archivos que aún se están escribiendo.
+- **Copiar y compartir**: copia cada suma o la cabecera por separado; tras elegir Markdown o JSON en "Formato del informe", usa "Copiar informe" o "Compartir" para enviar el informe completo sin crear ningún archivo.
+- **Progreso de lectura**: con archivos grandes se muestran el progreso, la velocidad y el tiempo restante, y puedes "Cancelar" en cualquier momento; si la lectura falla, toca "Reintentar".
 
-- Una lectura, todos los resultados: el archivo se lee secuencialmente una única vez mientras las siete sumas se calculan a la vez; los archivos grandes nunca esperan varias pasadas.
-- Pegar para verificar: admite hexadecimal y huellas, Base64, SRI y líneas completas de `md5sum` / `sha256sum`; detecta el algoritmo automáticamente y avisa si el nombre de archivo pegado es distinto.
-- Detección del formato real: reconoce 26 firmas comunes en una cabecera acotada o en posiciones fijas, añade una pista de uso para documentos APK/JAR/Office basados en ZIP y estima texto o binario mediante la proporción imprimible y la entropía.
-- Cabecera de un vistazo: muestra los primeros 64 bytes del archivo en vista hexadecimal + ASCII y detecta las marcas de orden de bytes (BOM) UTF-8 / UTF-16 / UTF-32.
-- Doble comprobación de tamaño: muestra el tamaño declarado por el gestor de archivos y el tamaño realmente leído; si el archivo cambia durante la lectura, la inspección falla de inmediato, delatando descargas incompletas y archivos aún en escritura.
-- Progreso bajo control: los archivos grandes muestran bytes leídos, velocidad y tiempo restante estimado; la lectura puede cancelarse en cualquier momento y una inspección fallida se reintenta con un toque.
-- Resultados listos para usar: copia por separado cualquier suma o la instantánea de la cabecera y exporta el resultado completo en Markdown o JSON al portapapeles o al panel de compartir, sin crear archivos.
-- Algoritmos antiguos señalados: MD5 y SHA-1 llevan una insignia Legacy como recordatorio de que ya no sirven como prueba de seguridad.
+### Requisitos
 
-## Cómo usarlo
+- Android 7.0 o posterior.
+- AutoJs6 6.8.0 o posterior.
+- No necesita permisos de almacenamiento ni de red; el plugin solo lee el archivo que seleccionaste en el gestor de archivos.
 
-1. Descarga el APK y su archivo de control homónimo `.apk.sha256` desde la misma Release oficial, instala el APK y actívalo en el centro de plugins de AutoJs6 (se requiere AutoJs6 con código de versión 5268 o superior).
-2. Antes de actualizar, inspecciona el APK descargado con File Inspector ya instalado; en una primera instalación, conserva el APK e inspecciónalo después de activar el plugin. Pega el SHA-256 de 64 caracteres del archivo de control y exige una coincidencia verde; obtén ambos archivos de la misma página Release HTTPS de confianza.
-3. Abre el gestor de archivos de AutoJs6 y localiza el archivo que quieras inspeccionar; vale cualquier archivo normal.
-4. Elige "Inspeccionar archivo" en el menú del archivo (desde AutoJs6 6.8.1, dentro del menú de primer nivel "File Inspector"); la lectura empieza al momento con progreso en vivo, y al terminar aparecen las sumas, la firma de formato y los bytes de cabecera.
-5. Para verificar la integridad, pega la suma publicada en el campo «Comprobación de integridad» y toca «Verificar»: verde significa que coincide, rojo que no.
-6. Toca el botón de copia junto a una suma o bajo la instantánea de la cabecera para obtener un valor; elige Markdown o JSON antes de copiar o compartir el informe completo y pulsa atrás para volver al gestor de archivos.
+### Preguntas frecuentes
 
-> La entrada admite hexadecimal simple, prefijos como `sha256: <valor>` o `MD5=<valor>`, huellas `AB:CD:EF`, CRC32 con `0x`, Base64 estándar, SRI como `sha256-<base64>` y líneas completas de coreutils `<hex>  <archivo>` o `<hex> *<archivo>`. Se ignoran mayúsculas y espacios exteriores; el algoritmo se infiere cuando la longitud es única y un nombre de archivo distinto genera un aviso.
+**Qué hacer si la suma de comprobación no coincide**
 
-## Permisos y seguridad
+Comprueba primero que la suma pegada proceda de la página de publicación de este mismo archivo. Si sigue sin coincidir, el archivo es distinto del original publicado: puede que la descarga esté incompleta o que el archivo se haya modificado. Descárgalo de nuevo desde la fuente oficial y vuelve a comprobarlo.
 
-El plugin no solicita permisos de almacenamiento ni de red y solo puede acceder al único archivo elegido por el usuario, a través de una URI content temporal de solo lectura concedida por el anfitrión; la concesión caduca al terminar la inspección y ningún otro archivo queda al alcance. Las solicitudes del gestor de archivos se validan campo a campo (identificador de acción, versión de protocolo, forma de la URI content, nombre de archivo, tipo MIME, tamaño declarado y concesiones de solo lectura) y cualquier solicitud con concesiones de escritura o persistentes se rechaza de plano. El archivo se procesa como flujo de solo lectura; la memoria solo retiene búferes acotados, los primeros 4096 bytes para análisis, los primeros 64 para mostrar y una ventana de cuatro bytes para la firma PE, y el original nunca se modifica.
+**Qué significa que la suma coincida**
 
-Para que cada inspección sea predecible, el plugin aplica los siguientes límites:
+Que coincida solo indica que el archivo tiene el mismo contenido que aquel para el que se publicó la suma; que el archivo sea de confianza depende del origen de la suma. Usa preferentemente valores SHA-256 o SHA-512 publicados por HTTPS en la fuente oficial.
 
-- Un archivo puede ocupar como máximo 8 TiB, y cada acción procesa exactamente un archivo objetivo.
-- El análisis toma como máximo los primeros 4096 bytes más una ventana de cuatro bytes para la firma PE, mientras la cabecera mostrada sigue limitada a 64 bytes; la entrada admite hasta 512 caracteres y solo acepta caracteres no ASCII en el nombre de archivo de coreutils.
-- Si el tamaño realmente leído difiere del declarado, el archivo se considera modificado y la inspección falla con un mensaje.
-- La comparación de sumas usa comparación en tiempo constante de valores de igual longitud; MD5 y SHA-1 son solo para cotejar datos antiguos y no deben considerarse resistentes a colisiones.
+**Por qué aparece un aviso sobre el nombre de archivo al pegar una línea completa**
+
+Al pegar una línea completa de una herramienta como `sha256sum`, el plugin compara el nombre de archivo de esa línea. Si no coincide con el nombre del archivo actual, un aviso te recuerda que confirmes que la suma corresponde a este archivo.
+
+**Por qué algunos archivos no se pueden inspeccionar**
+
+Las causas habituales son un archivo de más de 8 TiB, un archivo que otra aplicación modifica durante la lectura o un permiso de lectura del gestor de archivos que ha caducado. El mensaje de error indica la causa; toca "Reintentar" para comprobarlo de nuevo.
+
+Más detalles en la [página del proyecto](https://github.com/SuperMonster003/AutoJs6-Plugin-File-Inspector).

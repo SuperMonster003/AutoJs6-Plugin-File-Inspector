@@ -71,5 +71,49 @@
   "p_resource_layout": "Les README, CHANGELOG et instructions intégrées sous res/raw*/plugin_instruction.md sont générés par .python/generate_markdown.py à partir des sources JSON et des modèles de .readme/ et .changelog/ (10 langues). Pour modifier la documentation, éditez les sources JSON puis relancez le script au lieu de modifier le Markdown généré",
   "h3_links": "Liens",
   "text_link_autojs6_docs": "Documentation AutoJs6",
-  "text_link_android_secure_file_sharing": "Partage de fichiers sécurisé Android"
+  "text_link_android_secure_file_sharing": "Partage de fichiers sécurisé Android",
+  "instruction_p_what": "File Inspector examine n'importe quel fichier du gestionnaire de fichiers d'AutoJs6. Il lit le fichier une seule fois pour calculer sept sommes de contrôle, dont CRC32, MD5, SHA-1 et SHA-256, et affiche le format, la taille et l'en-tête du fichier. Collez la somme publiée par le fournisseur pour vérifier que le fichier est intact. Le fichier est uniquement lu, jamais modifié.",
+  "instruction_h3_start": "Prise en main",
+  "instruction_start_steps": [
+    "Vérifiez que ce plugin est activé dans le \"Centre des plugins\" d'AutoJs6.",
+    "Ouvrez le gestionnaire de fichiers d'AutoJs6 et repérez le fichier à vérifier.",
+    "Choisissez \"Inspecter le fichier\" dans le menu du fichier (dans AutoJs6 6.8.1 et versions ultérieures, il se trouve dans le menu de premier niveau \"File Inspector\").",
+    "Une fois la lecture terminée, consultez \"Informations sur le fichier\", \"Sommes de contrôle\" et \"En-tête du fichier\" dans le rapport."
+  ],
+  "instruction_h3_features": "Fonctionnalités principales",
+  "instruction_features": [
+    "**Sommes de contrôle**: calcule CRC32, MD5, SHA-1, SHA-224, SHA-256, SHA-384 et SHA-512 en une seule lecture; MD5 et SHA-1 sont marqués \"Hérité\" et ne constituent pas une preuve de sécurité.",
+    "**Contrôle d'intégrité**: collez la somme publiée dans \"Somme attendue\" puis touchez \"Vérifier\"; le vert indique une correspondance et le rouge une différence. Une ligne complète produite par `sha256sum` est aussi acceptée.",
+    "**Informations sur le fichier**: affiche le format détecté, l'extension et le type MIME, et estime si le contenu est du texte ou du binaire; pour un fichier ZIP, indique aussi s'il s'agit d'un APK, d'un JAR ou d'un document Office.",
+    "**En-tête du fichier**: affiche les {{ header_bytes }} premiers octets du fichier en hexadécimal et en ASCII côte à côte, et détecte les indicateurs d'ordre des octets (BOM) UTF-8, UTF-16 et UTF-32.",
+    "**Contrôle de la taille**: affiche la taille déclarée et la taille réelle; si le fichier change pendant la lecture, une erreur s'affiche, ce qui aide à repérer un téléchargement incomplet ou un fichier en cours d'écriture.",
+    "**Copie et partage**: copiez chaque somme ou l'en-tête séparément; après avoir choisi Markdown ou JSON dans \"Format du rapport\", utilisez \"Copier le rapport\" ou \"Partager\" pour envoyer le rapport complet sans créer de fichier.",
+    "**Progression de la lecture**: pour les gros fichiers, la progression, la vitesse et le temps restant s'affichent, et vous pouvez \"Annuler\" à tout moment; en cas d'échec, touchez \"Réessayer\"."
+  ],
+  "instruction_h3_requirements": "Prérequis",
+  "instruction_requirements": [
+    "Android 7.0 ou version ultérieure.",
+    "AutoJs6 6.8.0 ou version ultérieure.",
+    "Aucune autorisation de stockage ou de réseau n'est nécessaire; le plugin lit uniquement le fichier sélectionné dans le gestionnaire de fichiers."
+  ],
+  "instruction_h3_faq": "Questions fréquentes",
+  "instruction_faq": [
+    {
+      "q": "Que faire si la somme de contrôle ne correspond pas",
+      "a": "Vérifiez d'abord que la somme collée provient de la page de publication de ce fichier précis. Si elle ne correspond toujours pas, le fichier diffère de l'original publié: le téléchargement est peut-être incomplet ou le fichier a été modifié. Téléchargez-le de nouveau depuis la source officielle, puis vérifiez-le encore."
+    },
+    {
+      "q": "Ce que signifie une correspondance",
+      "a": "Une correspondance indique seulement que le fichier a le même contenu que celui pour lequel la somme a été publiée; la confiance accordée au fichier dépend de la provenance de la somme. Privilégiez les valeurs SHA-256 ou SHA-512 publiées en HTTPS par la source officielle."
+    },
+    {
+      "q": "Pourquoi un avertissement sur le nom de fichier apparaît après le collage d'une ligne complète",
+      "a": "Quand vous collez une ligne complète produite par un outil comme `sha256sum`, le plugin compare le nom de fichier de cette ligne. S'il diffère du nom du fichier actuel, un avertissement vous invite à confirmer que la somme concerne bien ce fichier."
+    },
+    {
+      "q": "Pourquoi certains fichiers ne peuvent pas être inspectés",
+      "a": "Les causes courantes sont un fichier de plus de {{ max_input_size }}, un fichier modifié par une autre application pendant la lecture, ou une autorisation de lecture du gestionnaire de fichiers qui a expiré. Le message d'erreur indique la cause; touchez \"Réessayer\" pour relancer la vérification."
+    }
+  ],
+  "instruction_p_more": "Plus de détails sur la [page du projet]({{ repo_url }})."
 }

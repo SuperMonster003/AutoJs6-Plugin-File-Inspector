@@ -1,25 +1,19 @@
-# File Inspector
+{{ instruction_p_what }}
 
-## {{ h3_introduction }}
+### {{ instruction_h3_start }}
 
-{{ p_introduction }}
+{{ placeholder_instruction_start_steps }}
 
-{{ p_introduction_report }}
+### {{ instruction_h3_features }}
 
-## {{ h3_functions }}
+{{ placeholder_instruction_features }}
 
-{{ placeholder_features }}
+### {{ instruction_h3_requirements }}
 
-## {{ h3_usage }}
+{{ placeholder_instruction_requirements }}
 
-{{ placeholder_usage_steps }}
+### {{ instruction_h3_faq }}
 
-> {{ p_usage_note }}
+{{ placeholder_instruction_faq }}
 
-## {{ h3_security }}
-
-{{ p_security }}
-
-{{ p_security_bounds_intro }}:
-
-{{ placeholder_security_limits }}
+{{ instruction_p_more }}
